@@ -1,0 +1,45 @@
+@keyframes rowSlide {
+  from { transform: translateX(1400px)}
+  to { transform: translateX(-1000px)}
+}
+
+@mixin hoverIconScale (){
+  transform: scale(1.1);
+  transition: transform 200ms ease-in;
+}
+
+@mixin hoverIconColor (){
+  filter: opacity(0.5) drop-shadow(0 0 0 red);
+  transition: filter 200ms ease-in;
+}
+
+@mixin AnimationRowSlide (){
+  animation: rowSlide 20s ease-in infinite;
+}
+
+@mixin sectionBoxShadow(){
+  -webkit-box-shadow: 1px 8px 17px 5px rgba(196,196,196,0.61);
+  box-shadow: 1px 8px 17px 5px rgba(196,196,196,0.61);
+}
+
+@mixin scrollBarNone1(){
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+  white-space: nowrap;
+}
+@mixin scrollBarNone2(){
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+}
+
+@mixin stopTextDragging() {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+
+}

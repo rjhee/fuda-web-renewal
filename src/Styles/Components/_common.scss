@@ -1,0 +1,216 @@
+// sass-lint:disable-all
+// image url
+$homeIcon : url('../../Assets/Images/icon/icon-home.png');
+$feedIcon : url('../../Assets/Images/icon/icon-feed.png');
+$QRIcon : url('../../Assets/Images/icon/chara.png');
+$miniGameIcon : url('../../Assets/Images/icon/icon-minigame.png');
+$myPageIcon : url('../../Assets/Images/icon/icon-mypage.png');
+$shopIcon : url('../../Assets/Images/icon/shop.png');
+$noticeIcon : url('../../Assets/Images/icon/notice.png');
+
+
+// common style
+* {
+  font-family: Noto_Regular, sans-serif;
+}
+
+
+// Header.jsx
+.header {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top:0;
+  background-color: $WHITE;
+  width: 100%;
+}
+
+.headerCover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  height: 50px;
+  width: 100%;
+}
+
+.headerCover  .logo {
+  font-family: Noto_Bold, sans-serif;
+  font-size: $font_XL;
+  margin-left: 30px;
+  letter-spacing: 0.1rem;
+}
+.sideMenuCover {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin-right: 12px;
+}
+
+.sideMenuCover button {
+  width: 20%;
+  max-width: 55px;
+  padding: 0 2px;
+}
+
+.noticeBtnCover {
+  position: relative;
+}
+
+.sideMenuCover  button > div {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 100%;
+}
+
+.shopBtn {
+  background-image: $shopIcon;
+  height: 30px
+}
+
+.noticeBtn {
+  background-image: $noticeIcon;
+  height: 30px;
+  transform: translateY(5px);
+}
+
+.newNotice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  background-color: $REGULAR_RED;
+  border-radius: 50%;
+  position: absolute;
+  right: 2px;
+  z-index: 10;
+  font-family: Noto_Bold, sans-serif;
+  font-size: $font_SS;
+  color: $WHITE;
+}
+
+.headerLine {
+  width: 100%;
+  height: 5px;
+  background-color: $BG_GREY;
+}
+
+// HomeBottomTap.jsx
+.tapCover{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  padding: 6px 0;
+  -webkit-box-shadow: 1px -2px 25px 17px rgba(191,191,191,0.38);
+  box-shadow: 1px -2px 25px 17px rgba(191,191,191,0.38);
+  border-radius: 20px 20px 0 0;
+  background-color: $WHITE;
+}
+
+.tapCover a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.tapCover a div {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.tapCover span {
+  font-family: Noto_Bold, sans-serif;
+  color: $LIGHT_GREY;
+  font-size: $font_S;
+
+}
+
+.homeBtn,
+.feedBtn,
+.miniGameBtn,
+.myPageBtn {
+  &:hover {
+    @include hoverIconColor;
+  }
+}
+
+.homeBtn div,
+.feedBtn div,
+.miniGameBtn div,
+.myPageBtn div {
+  filter: opacity(0.5) drop-shadow(0 0 0 $BLACK);
+
+}
+
+.homeBtn div{
+  background-image: $homeIcon;
+  height: 25px;
+}
+
+.feedBtn div{
+  background-image: $feedIcon;
+  height: 22px;
+}
+
+.QRBtn div{
+  background-image: $QRIcon;
+  height: 46px;
+}
+
+.miniGameBtn div{
+  background-image: $miniGameIcon;
+  height: 25px;
+}
+
+.myPageBtn div{
+  background-image: $myPageIcon;
+  height: 25px;
+}
+
+// home screen slide notice
+.noticeSlideCover{
+  overflow: hidden;
+}
+
+.noticeText {
+  width: 100%;
+  height: 35px;
+  line-height: 1.6;
+  font-size: $font_R;
+  color: $DARK_GREY_2;
+  padding: 5px 0;
+  @include AnimationRowSlide;
+  @include scrollBarNone1;
+  @include scrollBarNone2;
+
+}
+
+.noticeTextPoint {
+    color: $MAIN_RED
+}
+
+// caution
+.cautionSection {
+  text-align: center;
+  border-top: 1px dashed $LIGHT_GREY_2;
+  padding: 10px 0;
+  margin: 0 21px 100px 21px;
+  > strong {
+      color: $LIGHT_GREY_1;
+  }
+}

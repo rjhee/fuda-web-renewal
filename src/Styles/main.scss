@@ -1,0 +1,13 @@
+@import "./Base/colors";
+@import "./Base/fonts";
+@import "./Base/reset";
+@import "./Base/normalize";
+
+@import "./Components/styleModule";
+@import "./Components/common";
+@import "./Components/home";
+
+
+
+// image 경로값 : import된 scss모듈 안에 있는 이미지경로는 main.scss를 기준으로 설정해야됨.
+// url('../../Assets/Images/icon/home.png');
