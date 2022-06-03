@@ -13,7 +13,54 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 * {
   font-family: Noto_Regular, sans-serif;
 }
+.App {
+  margin: 55px 0 100px 0;
+}
 
+@keyframes fadeinOutIcon {
+  0%{opacity: 0.1}
+  20%{opacity: 0.2}
+  50%{opacity: 0.5}
+  80%{opacity: 0.8}
+  100%{opacity: 1}
+}
+
+// Loading.jsx
+.loadingCover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 500;
+
+  .loadingImg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 50px;
+    height: 50px;
+    animation: fadeinOutIcon 2000ms ease-in-out 500ms infinite;
+  }
+}
+
+.colorBtnCover {
+  text-align: center;
+  width: 100%;
+  min-width: 96px;
+  height: 36px;
+  border-radius: 20px;
+  margin: 2px;
+
+  .text {
+    font-family: Noto_Medium, sans-serif;
+    font-size: $font_RR;
+    color: $WHITE;
+    line-height: 25px;
+  }
+}
 
 // Header.jsx
 .header {
@@ -23,6 +70,8 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   top:0;
   background-color: $WHITE;
   width: 100%;
+  height: 55px;
+  z-index: 100;
 }
 
 .headerCover {
@@ -40,6 +89,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   margin-left: 30px;
   letter-spacing: 0.1rem;
 }
+
 .sideMenuCover {
   display: flex;
   flex-grow: 1;
@@ -185,6 +235,11 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 // home screen slide notice
 .noticeSlideCover{
   overflow: hidden;
+  position: fixed;
+  top: 55px;
+  background-color: $WHITE;
+  width: 100%;
+  z-index: 100;
 }
 
 .noticeText {
@@ -212,5 +267,35 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   margin: 0 21px 100px 21px;
   > strong {
       color: $LIGHT_GREY_1;
+  }
+}
+
+// Title.jsx
+.titleSection{
+  padding: 21px;
+  > .date {
+    color: $REGULAR_GREY;
+    font-size: $font_R;
+    font-family: Noto_Black, sans-serif;
+    padding: 0 10px;
+  }
+  > .textCover {
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 0;
+
+    > .line {
+      width: 3.5px;
+      height: 30px;
+      background-color: red;
+      margin-right: 8px;
+    }
+    > * {
+      font-size: $font_title;
+      color: $REGULAR_GREY;
+    }
+    > .textSecond {
+      font-family: Noto_Light, sans-serif;
+    }
   }
 }

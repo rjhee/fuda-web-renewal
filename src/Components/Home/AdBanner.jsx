@@ -7,8 +7,8 @@ const AdBanner = (props) => {
     const bannerList = props.homeBanner && props.homeBanner.map((item, i)=>
         (
             <li key={i} className='AdBannerCover'>
-                <Link as={Link} to={item.urlPath}>
-                    <img style={{width:width-42}} src={item.imgPath} alt='banner images'/>
+                <Link as={Link} to={item.urlPath} >
+                    <img style={{width:width-42, minWidth:width-42, minHeight:(width-42)/2.18}} src={item.imgPath} alt='banner images'/>
                     <spna className='index'>{i+1} | {props.homeBanner.length}</spna>
                 </Link>
             </li>

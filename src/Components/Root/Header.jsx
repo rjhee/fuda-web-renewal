@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {lang} from "../../Assets/Lang/Lang";
 import {Link} from "react-router-dom";
+import NoticeSlide from "../Home/NoticeSlide";
+import {getNoticeData} from "../../Service/ComunityService";
 
 const Header = () => {
+
+
     return (
         <header className='header'>
             <div className="headerCover">

@@ -43,3 +43,7 @@
   user-select: none;
 
 }
+
+@mixin minScreenWidth(){
+  min-width: 300px;
+}

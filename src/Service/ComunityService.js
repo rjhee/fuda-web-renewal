@@ -18,6 +18,27 @@ export const getPressNum = () => {
     })
 }
 
+export const getNoticeTitle = (count) => {
+    let reqData = {count: count};
+    return request({
+            url: '/community/notice/title',
+            method: 'GET',
+            params: reqData,
+        }
+    )
+}
+
+
+export const getNoticeData = (uid) => {
+    let reqData = {uid: uid};
+    return request({
+            url: '/community/notice/uid',
+            method: 'GET',
+            params: reqData,
+        }
+    )
+}
+
 export  const getNotice = (page) => {
     let reqData = {page: page};
     return request({

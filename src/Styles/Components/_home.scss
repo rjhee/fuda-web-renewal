@@ -1,13 +1,14 @@
 // HomeScreen.jsx
 .HomeScreen {
-  margin: 50px 0 60px 0;
+  overflow: hidden;
+  margin-top: 100px;
 }
 
 .slideBannerCover {
   display: flex;
   flex-direction: row;
-  @include scrollBarNone1;
-  @include scrollBarNone2;
+  //@include scrollBarNone1;
+  //@include scrollBarNone2;
   @include stopTextDragging;
 }
 
@@ -21,8 +22,8 @@
   align-items: center;
   margin: 21px;
   padding:10px 10px 5px 10px;
-  border-radius: 20px;
-  min-width: 300px;
+  border-radius: 15px;
+  @include minScreenWidth;
   @include sectionBoxShadow;
 
   > div {
@@ -32,6 +33,7 @@
   > .title{
     display: flex;
     align-items: flex-end;
+    height: 60px;
     > * {
       margin: 0 4px;
     }
@@ -77,7 +79,6 @@
   }
 }
 
-
 // Winning.jsx
 .winningSection {
   display: flex;
@@ -87,10 +88,10 @@
   justify-content: center;
   align-items: center;
   margin: 21px;
-  padding:10px 5px 5px 5px;
-  border-radius: 20px;
-  min-width: 300px;
+  padding:10px 8px 8px 8px;
+  border-radius: 15px;
   cursor: pointer;
+  @include minScreenWidth;
   @include sectionBoxShadow;
 
   > .cover {
@@ -159,7 +160,7 @@
   justify-content: center;
   align-items: center;
   margin: 21px;
-  min-width: 300px;
+  @include minScreenWidth;
 }
 
 // HomeMenu.jsx
@@ -229,4 +230,150 @@
         }
       }
     }
+}
+
+
+// home menu
+// winningBox.jsx
+.boxSectionCover{
+  padding: 21px;
+  margin-bottom: 20px;
+
+  .boxCover {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 0;
+    border-radius: 15px;
+    padding: 6px 10px 6px 10px;
+    @include minScreenWidth;
+    @include sectionBoxShadow;
+
+    > li {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      justify-content: space-between;
+      border-bottom: 1px solid $BG_GREY;
+      padding: 8px;
+      > span {
+        color: $LIGHT_GREY;
+        font-size: $font_R;
+        width: 25%;
+      }
+      > div {
+        font-size: $font_R;
+        width: 37%;
+        text-align: right;
+        > span {
+          color: $LIGHT_GREY;
+        }
+        > strong {
+          color: $DARK_GREY_1;
+        }
+      }
+    }
+    li:last-child {
+      border: none;
+    }
+  }
+  .titleIcon {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}
+
+.winningBtn {
+  text-align: right;
+  //margin: 0 21x 100px 21px;
+}
+
+// winningListScreen.jsx
+.winningListCover {
+  @include minScreenWidth;
+  .btnCover {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding:0 21px;
+    margin-bottom: 36px;
+    > a {
+        width: 26%;
+    }
+  }
+
+  .indexCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid $LIGHT_GREY_6;
+    padding: 12px;
+    margin: 0 21px 11px 21px;
+  }
+  > span {
+    font-family: Noto_Bold, sans-serif;
+    font-size: $font_R;
+    color: $REGULAR_GREY;
+    font-weight: bold;
+  }
+  .date {
+    width: 25%;
+    text-align: center;
+  }
+  .awards {
+    width: 15%;
+    text-align: center;
+  }
+  .bonus {
+    width: 20%;
+    text-align: right;
+  }
+  .id {
+    width: 35%;
+    text-align: center;
+  }
+}
+
+.listCover {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 1px $LIGHT_GREY_6 solid;
+  margin: 0 21px;
+  padding: 0 13px;
+
+  > li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px $LIGHT_GREY_2 solid;
+    padding: 10px;
+
+    > span {
+      color : $LIGHT_GREY;
+      font-family: Noto_Regular, sans-serif;
+      font-size: $font_R;
+    }
+    .date {
+      width: 25%;
+      text-align: center;
+    }
+    .awards {
+      width: 15%;
+      text-align: center;
+    }
+    .bonus {
+      width: 20%;
+      text-align: right;
+    }
+    .id {
+      width: 35%;
+      text-align: left;
+      margin-left: 10px;
+    }
+  }
 }

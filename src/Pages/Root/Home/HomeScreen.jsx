@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {getJackpot, getWinBig, getWinSuper, getBuyWinUser} from "../../../Service/LottoService";
-import {getBanner} from "../../../Service/ComunityService";
+import {getBanner, getNoticeData} from "../../../Service/ComunityService";
 import NoticeSlide from "../../../Components/Home/NoticeSlide";
 import Accumulate from "../../../Components/Home/Accumulate";
 import Winning from "../../../Components/Home/Winning";
@@ -94,6 +94,11 @@ const HomeScreen = () => {
         }
 
 
+
+        // response = await getNoticeData();
+
+        // console.log('HomeScreen.jsx:98 ->',response.data);
+
     }
 
     function checkPlusDay(type, day) {
@@ -149,8 +154,25 @@ const HomeScreen = () => {
     const AccumulateBanner = () => {
         // TODO 슬라이드 애니메이션 만들기
         // TODO 슬라이드 배너 스크롤 이벤트
+        const [move, setMove] = useState(0)
+        const moveBanner = () => {
+            if(move === 0) {
+                setMove(-width)
+            }
+            else {
+                setMove(0)
+            }
+        }
+        useEffect(()=>{
+            let movingBanner = setInterval(()=>{
+                moveBanner();
+            }, 3000)
+            return(()=>{
+                clearInterval(movingBanner)
+            })
+        },[move])
         return (
-           <section className='slideBannerCover'>
+           <section className='slideBannerCover' style={{ transform: `translateX(${move}px)`}}>
                <Accumulate
                    lotto={bigLotto && bigLotto}
                    jackpot={bigJackpot && bigJackpot}/>
@@ -162,16 +184,18 @@ const HomeScreen = () => {
     }
 
 
+
     useEffect(()=>{
         getData();
         checkedUserType('vip')
+
     },[])
 
     return (
         <div className='HomeScreen'>
             <NoticeSlide/>
             <AccumulateBanner/>
-            <Link to='/winning'>
+            <Link to='/winning/daily'>
                <Winning
                    amount={totalAmount}
                    winner={winMember}/>
