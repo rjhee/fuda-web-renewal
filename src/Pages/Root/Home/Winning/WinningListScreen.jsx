@@ -8,7 +8,8 @@ import WinningListSection from "../../../../Components/Home/Winning/WinningListS
 import {getBuyUserWinTen, getBuyUserWinResultNum} from "../../../../Service/LottoService";
 import {superWinDefine} from "../../../../Assets/Lang/defineWords";
 import {setNumberFormat, hideUseId} from "../../../../Service/commonService";
-import * as LoadingService from "../../../../Service/loadingService";
+import * as LoadingService from "../../../../Service/LoadingService";
+import Pagination from "../../../../Components/Common/Pagination";
 
 const WinningListScreen = () => {
     let { id } = useParams();
@@ -26,6 +27,16 @@ const WinningListScreen = () => {
     let superDataCopy = [];
     let bigDataCopy = [];
     const startDate = '2020.07.2';
+
+    function onPrev() {
+        if(page+1 === 1)return;
+        else setPage(page-1);
+    }
+
+    function onNext() {
+        if(page+1 === lastPage)return;
+        else setPage(page+1);
+    }
 
     async function getData(type, page){
         LoadingService.start();
@@ -74,7 +85,7 @@ const WinningListScreen = () => {
             setBigLotto(false);
             setSuperLotto(true);
         }
-    },[id])
+    },[id, page])
 
 
     return (
@@ -85,9 +96,9 @@ const WinningListScreen = () => {
                 text1={lang().FUDA_LOTTO}
                 text2={lang().LOTTO_RESULT}/>
             <div className='btnCover'>
-                <ColorButton path={'/winning/daily'} text={lang().DAILY_LOTTO} color={dailyLotto ? Color.ORANGE : Color.LIGHT_GREY_1}/>
-                <ColorButton path={'/winning/big'}  text={lang().BIG_LOTTO} color={bigLotto ? Color.DARK_BLUE : Color.LIGHT_GREY_1}/>
-                <ColorButton path={'/winning/super'}  text={lang().SUPER_LOTTO} color={superLotto ? Color.MAIN_RED : Color.LIGHT_GREY_1}/>
+                <ColorButton onClick={()=>setPage(0)} path={'/winning/daily'} text={lang().DAILY_LOTTO} color={dailyLotto ? Color.ORANGE : Color.LIGHT_GREY_1}/>
+                <ColorButton onClick={()=>setPage(0)} path={'/winning/big'}  text={lang().BIG_LOTTO} color={bigLotto ? Color.DARK_BLUE : Color.LIGHT_GREY_1}/>
+                <ColorButton onClick={()=>setPage(0)} path={'/winning/super'}  text={lang().SUPER_LOTTO} color={superLotto ? Color.MAIN_RED : Color.LIGHT_GREY_1}/>
             </div>
             <div className='indexCover'>
                 <span className='date'>{lang().DATE}</span>
@@ -98,6 +109,11 @@ const WinningListScreen = () => {
             <WinningListSection
                 page={page}
                 data={data}/>
+            <Pagination
+                current={page}
+                last={lastPage}
+                onPrev={onPrev}
+                onNext={onNext}/>
         </div>
     );
 };

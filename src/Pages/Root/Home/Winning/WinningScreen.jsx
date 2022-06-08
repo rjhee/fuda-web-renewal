@@ -84,36 +84,38 @@ const WinningScreen = (props) => {
                     thirdAmount={dailyResult.other}/>
             </Link>
             <Link to='/winning/big'>
-            <WinningBox
-                titleImg={bigIcon}
-                firstIndex={lang().JACKPOT}
-                firstUser={bigResult.jackpotUser}
-                firstAmount={bigResult.jackpot}
-                secondIndex={lang().SECOND_PRIZE}
-                secondUser={bigResult.secondUser}
-                secondAmount={bigResult.second}
-                thirdIndex={lang().OTHER_AWARDS}
-                thirdUser={bigResult.otherUser}
-                thirdAmount={bigResult.other}
-                bonusIndex={lang().MILLION_PLUS_CODE}
-                bonusUser={bigResult.bonusUser}
-                bonusAmount={bigResult.bonus}/>
+                <WinningBox
+                    titleImg={bigIcon}
+                    firstIndex={lang().JACKPOT}
+                    firstUser={bigResult.jackpotUser}
+                    firstAmount={bigResult.jackpot}
+                    secondIndex={lang().SECOND_PRIZE}
+                    secondUser={bigResult.secondUser}
+                    secondAmount={bigResult.second}
+                    thirdIndex={lang().OTHER_AWARDS}
+                    thirdUser={bigResult.otherUser}
+                    thirdAmount={bigResult.other}
+                    bonusIndex={lang().MILLION_PLUS_CODE}
+                    bonusUser={bigResult.bonusUser}
+                    bonusAmount={bigResult.bonus}/>
             </Link>
             <Link to='/winning/super'>
-            <WinningBox
-                titleImg={superIcon}
-                firstIndex={lang().JACKPOT}
-                firstUser={superResult.jackpotUser}
-                firstAmount={superResult.jackpot}
-                secondIndex={lang().SECOND_PRIZE}
-                secondUser={superResult.secondUser}
-                secondAmount={superResult.second}
-                thirdIndex={lang().OTHER_AWARDS}
-                thirdUser={superResult.otherUser}
-                thirdAmount={superResult.other}/>
+                <WinningBox
+                    titleImg={superIcon}
+                    firstIndex={lang().JACKPOT}
+                    firstUser={superResult.jackpotUser}
+                    firstAmount={superResult.jackpot}
+                    secondIndex={lang().SECOND_PRIZE}
+                    secondUser={superResult.secondUser}
+                    secondAmount={superResult.second}
+                    thirdIndex={lang().OTHER_AWARDS}
+                    thirdUser={superResult.otherUser}
+                    thirdAmount={superResult.other}/>
             </Link>
             <div className='winningBtn'>
                 <ColorButton
+                    path={'/winning/daily'}
+                    color={Color.MAIN_RED}
                     text={lang().WINNER_LIST}/>
             </div>
             <Caution/>

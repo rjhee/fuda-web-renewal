@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {getJackpot, getWinBig, getWinSuper, getBuyWinUser} from "../../../Service/LottoService";
-import {getBanner, getNoticeData} from "../../../Service/ComunityService";
+import {getBanner, getNoticeData, getNotice} from "../../../Service/ComunityService";
 import NoticeSlide from "../../../Components/Home/NoticeSlide";
 import Accumulate from "../../../Components/Home/Accumulate";
 import Winning from "../../../Components/Home/Winning";
@@ -9,6 +9,7 @@ import HomeMenu from "../../../Components/Home/HomeMenu";
 import AdBanner from "../../../Components/Home/AdBanner";
 import useWindowDimensions from "../../../Styles/Base/windowDimensions";
 import {lang} from "../../../Assets/Lang/Lang";
+import * as LocalStorageService from "../../../Service/LocalStorageService";
 
 import bigTitleImg from "../../../Assets/Images/banner/title_big_aos.png";
 import superTitleImg from "../../../Assets/Images/banner/title_super_aos.png";
@@ -45,10 +46,8 @@ const HomeScreen = () => {
         {name: "FaceBookScreen", title: "官方臉書", urlPath: 'facebook', imgPath: FaceBookIcon},
         {name: "MapScreen", title: "尋找彩券行", urlPath: 'map', imgPath: MapIcon}]);
 
-    const [homeBannerAd, setHomeBannerAd] = useState([]);
-    const [bannerImgUrl, setBannerImgUrl] = useState();
 
-    const getData = async () => {
+    async function getData() {
         let response = await getJackpot();
         let data = response.data;
         setBigJackpot(data.big)
@@ -76,22 +75,8 @@ const HomeScreen = () => {
         setTotalAmount(setNumberFormat(sum));
         setWinMember(setNumberFormat(user))
 
-        let bannerList = [];
-        let bannerImgUrlCopy = [];
-        response = await getBanner();
-        data = response.data;
-        if(data.length === 0 || data === false) {
-            return
-        }else {
-            data.forEach((item, i)=>{
-                let banner = { key: item.uid, imgPath: item.image_url, urlPath: item.target_url_w};
-                let bannerImg = {img :item.image_url, url: item.target_url_w};
-                bannerImgUrlCopy.push(bannerImg);
-                bannerList.push(banner);
-            })
-            setHomeBannerAd(bannerList);
-            setBannerImgUrl(bannerImgUrlCopy);
-        }
+
+
 
 
 
@@ -128,7 +113,7 @@ const HomeScreen = () => {
         return resultDay;
     }
 
-    const checkedUserType = (user) => {
+    function checkedUserType(user) {
         switch (user) {
             case 'free' :
                 setHomeBannerGuide(guideBannerVip);
@@ -139,7 +124,7 @@ const HomeScreen = () => {
         }
     }
 
-    const setNumberFormat = (reward) => {
+    function setNumberFormat(reward) {
         if(reward > 9999 && reward < 10000000){
             return (reward/10000).toFixed(0)+lang().THOUSAND;
         }
@@ -151,7 +136,7 @@ const HomeScreen = () => {
         }
     }
 
-    const AccumulateBanner = () => {
+    function AccumulateBanner() {
         // TODO 슬라이드 애니메이션 만들기
         // TODO 슬라이드 배너 스크롤 이벤트
         const [move, setMove] = useState(0)
@@ -171,6 +156,7 @@ const HomeScreen = () => {
                 clearInterval(movingBanner)
             })
         },[move])
+
         return (
            <section className='slideBannerCover' style={{ transform: `translateX(${move}px)`}}>
                <Accumulate
@@ -184,10 +170,40 @@ const HomeScreen = () => {
     }
 
 
+    async function getNoticeData() {
+        let CURRENT_UID = "noticeCurrentUid";
+        let NEW_UID = "noticeNewUid";
+        let noticeData = await getNotice(0);
+        if (noticeData.data.length === 0 || noticeData.data === false) {
+            return;
+        }
+
+        const savedLastUid = LocalStorageService.get(CURRENT_UID);
+        const gotLastUid = noticeData.data[0].uid;
+        if (savedLastUid === gotLastUid) {
+            return;
+        }
+        else if (!savedLastUid || savedLastUid === 0) {
+            LocalStorageService.set(CURRENT_UID, JSON.stringify(gotLastUid))
+            LocalStorageService.set(NEW_UID, JSON.stringify(10))
+        }
+        else if (savedLastUid < gotLastUid) {
+            const noReadNoticeArr = noticeData.data.filter((item) => {
+                if (savedLastUid < item.uid) return item.uid;
+            })
+            LocalStorageService.set(CURRENT_UID, JSON.stringify(gotLastUid))
+            LocalStorageService.set(NEW_UID, JSON.stringify(noReadNoticeArr.length))
+        }
+        return;
+    }
+
+    useEffect(()=>{
+        getNoticeData();
+    })
 
     useEffect(()=>{
         getData();
-        checkedUserType('vip')
+        checkedUserType('vip');
 
     },[])
 
@@ -195,7 +211,7 @@ const HomeScreen = () => {
         <div className='HomeScreen'>
             <NoticeSlide/>
             <AccumulateBanner/>
-            <Link to='/winning/daily'>
+            <Link to='/winning'>
                <Winning
                    amount={totalAmount}
                    winner={winMember}/>
@@ -206,9 +222,7 @@ const HomeScreen = () => {
                 <HomeMenu/>
             </Link>
             <HomeMenu Icon={menuIcon}/>
-            <AdBanner
-                imgUrl={bannerImgUrl}
-                homeBanner={homeBannerAd}/>
+            <AdBanner/>
             <Caution/>
         </div>
     );

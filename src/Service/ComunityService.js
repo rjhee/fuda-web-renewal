@@ -18,16 +18,13 @@ export const getPressNum = () => {
     })
 }
 
-export const getNoticeTitle = (count) => {
-    let reqData = {count: count};
+export const getBillboard = () => {
     return request({
-            url: '/community/notice/title',
+            url: '/community/billboard',
             method: 'GET',
-            params: reqData,
         }
     )
 }
-
 
 export const getNoticeData = (uid) => {
     let reqData = {uid: uid};
@@ -42,7 +39,7 @@ export const getNoticeData = (uid) => {
 export  const getNotice = (page) => {
     let reqData = {page: page};
     return request({
-            url: '/user/notice',
+            url: '/community/notice',
             method: 'GET',
             params: reqData,
         }
@@ -52,7 +49,7 @@ export  const getNotice = (page) => {
 export  const getNoticeNum = () => {
     let data = '';
     return request({
-            url: '/user/notice_count',
+            url: '/community/notice_count',
             method: 'GET',
             params: data,
         }
@@ -65,6 +62,51 @@ export const getBanner = () => {
             url: '/community/banner',
             method: 'GET',
             params: data,
+        }
+    )
+}
+
+export const getPopup = () => {
+    let data = '';
+    return request({
+            url: '/community/popup',
+            method: 'GET',
+            params: data,
+        }
+    )
+}
+
+export const getStore = () => {
+    let data = '';
+    return request({
+            url: '/community/store',
+            method: 'GET',
+            params: data,
+        }
+    )
+}
+
+export const getStoreDetail = (uid) => {
+    let reqData = {uid: uid};
+    return request({
+            url: '/community/store/detail',
+            method: 'GET',
+            params: reqData,
+        }
+    )
+}
+
+export const getStoreSearchPage = (page, pageCnt, region) => {
+    let reqData = {
+        page: page,
+        pageCnt: pageCnt,
+        region: region,
+    };
+
+    return request({
+            url: '/community/store/list',
+            method: 'GET',
+            params: reqData,
         }
     )
 }

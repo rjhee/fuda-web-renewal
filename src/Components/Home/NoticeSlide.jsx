@@ -1,31 +1,40 @@
 import React, {useEffect, useState} from 'react';
 import {lang} from "../../Assets/Lang/Lang";
-import {getNoticeTitle} from "../../Service/ComunityService";
+import {getBillboard} from "../../Service/ComunityService";
 
 const NoticeSlide = () => {
-    const [title, setTitle] = useState([]);
+    const [wordsCnt, setWordsCnt] = useState(0);
+    const [billboard, setBillboard] = useState([]);
+    const [isFetching, setFetching] = useState(false);
+
+    let billboardRender = [];
     async function getNoticeData(){
-       let response = await getNoticeTitle(3);
-       let data = response.data;
-        let titleArr = [];
-        for(let i = 0; i < data.length; i++){
-            titleArr.push({uid: data[i].uid, title: data[i].title})
+       let response = await getBillboard();
+        let data = response.data;
+        let words = 0;
+        for(let i = 0; i<data.length; i++) {
+            words+= data[i].contents.length;
+            words+= 3;
         }
-        setTitle(titleArr);
-        console.log('NoticeSlide.jsx:15 ->',titleArr);
+        setWordsCnt(words);
+        for(let i = 0; i < data.length; i++){
+            billboardRender.push(
+                    <strong className={i%2 === 0 ? 'noticeTextPoint' : ''}> {data[i].contents} </strong>
+            )
+        }
+        let render = [];
+        setFetching(true);
+        render.push(billboardRender);
+        setBillboard(render);
     }
     useEffect(()=>{
         getNoticeData();
-    },[])
+    },[wordsCnt])
+
     return (
         <aside className='noticeSlideCover'>
            <h1 className='noticeText'>
-               {title.map((item)=>
-                   <>
-                       <strong> {item.title} </strong>
-                       <strong className='noticeTextPoint'> {item.title} </strong>
-                   </>
-               )}
+               {isFetching === false && billboard.length > 0 ? <span>loading</span>: billboard}
            </h1>
             <div className="headerLine"/>
         </aside>

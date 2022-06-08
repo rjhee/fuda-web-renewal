@@ -14,7 +14,7 @@
 }
 
 @mixin AnimationRowSlide (){
-  animation: rowSlide 20s ease-in infinite;
+  animation: rowSlide 5000ms ease-in infinite;
 }
 
 @mixin sectionBoxShadow(){

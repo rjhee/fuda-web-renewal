@@ -17,6 +17,39 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   margin: 55px 0 100px 0;
 }
 
+// pagination.jsx
+.paginationCover {
+  display: flex;
+  padding: 0 21px;
+  margin: 12px 0 30px 0;
+  justify-content: center;
+  align-items: center;
+  > .btnCover{
+    margin: 0;
+    > img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  > .numCover {
+    margin-bottom: 5px;
+    > span {
+      font-size: $font_R;
+      color: $LIGHT_GREY;
+    }
+    > .current {
+      color: $MAIN_RED
+    }
+    > .line {
+      display: inline-block;
+      height: 12px;
+      width: 1px;
+      background-color: $LIGHT_GREY;
+      margin: 0 5px;
+    }
+  }
+}
+
 @keyframes fadeinOutIcon {
   0%{opacity: 0.1}
   20%{opacity: 0.2}
@@ -95,13 +128,20 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   flex-grow: 1;
   justify-content: flex-end;
   margin-right: 12px;
+  a {
+    display: flex;
+    flex-grow: 0;
+    justify-content: flex-end;
+    width: 50px;
+  }
+  button {
+    width: 100%;
+    max-width: 40px;
+    padding: 0 2px;
+  }
+
 }
 
-.sideMenuCover button {
-  width: 20%;
-  max-width: 55px;
-  padding: 0 2px;
-}
 
 .noticeBtnCover {
   position: relative;
@@ -117,12 +157,12 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 .shopBtn {
   background-image: $shopIcon;
-  height: 30px
+  height: 25px
 }
 
 .noticeBtn {
   background-image: $noticeIcon;
-  height: 30px;
+  height: 25px;
   transform: translateY(5px);
 }
 
@@ -130,15 +170,17 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   background-color: $REGULAR_RED;
   border-radius: 50%;
+  border: 2px solid $WHITE;
   position: absolute;
-  right: 2px;
+  right: -6px;
+  top: -6px;
   z-index: 10;
-  font-family: Noto_Bold, sans-serif;
-  font-size: $font_SS;
+  font-family: Noto_Regular, sans-serif;
+  font-size: $font_SSS;
   color: $WHITE;
 }
 
@@ -162,6 +204,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   box-shadow: 1px -2px 25px 17px rgba(191,191,191,0.38);
   border-radius: 20px 20px 0 0;
   background-color: $WHITE;
+  z-index: 60;
 }
 
 .tapCover a {
@@ -233,30 +276,45 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 }
 
 // home screen slide notice
-.noticeSlideCover{
+.noticeSlideCover {
   overflow: hidden;
   position: fixed;
   top: 55px;
   background-color: $WHITE;
   width: 100%;
   z-index: 100;
-}
 
-.noticeText {
-  width: 100%;
-  height: 35px;
-  line-height: 1.6;
-  font-size: $font_R;
-  color: $DARK_GREY_2;
-  padding: 5px 0;
-  @include AnimationRowSlide;
-  @include scrollBarNone1;
-  @include scrollBarNone2;
+  @keyframes rowSlide {
+    from { transform: translateX(300px)}
+    to { transform: translateX(-3000px)}
+  }
 
-}
+  .noticeText {
+    width: 100%;
+    height: 35px;
+    line-height: 1.6;
+    font-size: $font_R;
+    color: $DARK_GREY_2;
+    padding: 5px 0;
+    @include scrollBarNone1;
+    @include scrollBarNone2;
+    //@include AnimationRowSlide;
+    > strong {
+      display: inline-block;
+      //width: 100%;
+      overflow: scroll;
+      flex-direction: row;
+      animation: rowSlide 30000ms ease-in-out infinite;
+      @include scrollBarNone1;
+      @include scrollBarNone2;
+    }
 
-.noticeTextPoint {
-    color: $MAIN_RED
+    > .noticeTextPoint {
+      color: $MAIN_RED;
+      margin:0 20px;
+    }
+  }
+
 }
 
 // caution
