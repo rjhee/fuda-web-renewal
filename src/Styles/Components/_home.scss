@@ -265,7 +265,6 @@
     }
 }
 
-
 // home menu
 // winningBox.jsx
 .boxSectionCover{
@@ -328,7 +327,7 @@
 // winningListScreen.jsx
 .winningListCover {
   @include minScreenWidth;
-  >.btnCover {
+  > .btnCover {
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;
@@ -338,7 +337,8 @@
     padding:0 21px;
     margin-bottom: 36px;
     > a {
-        width: 26%;
+        width: 33%;
+        margin: 0 7px;
     }
   }
 
@@ -416,6 +416,7 @@
 
 // AnalyticsScreen.jsx
 .analyticsCover {
+  @include minScreenWidth;
   padding: 20px 0;
   > .lottoCover{
     display: flex;
@@ -476,8 +477,34 @@
   }
 }
 
+// AnalyticsListScreen.jsx
+.analyticsListCover {
+    @include minScreenWidth;
+   .titleCover {
+    margin-bottom: 35px;
+  }
+   .btnCover {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding:0 21px;
+    margin-bottom: 36px;
+    > a {
+      width: 33%;
+      margin: 0 7px;
+    }
+  }
+  .subBtnCover {
+    display: flex;
+  }
+}
+
 // PressScreen.jsx
 .pressCover {
+  @include minScreenWidth;
     > h1 {
       margin-bottom: 10px;
     }
@@ -540,6 +567,82 @@
        }
      }
   }
+}
+
+// youtubeScreen.jsx
+.youtubeCover {
+  @include minScreenWidth;
+  > .titleCover {
+  }
+  > .contentsCover {
+    margin: 0 21px;
+    > .subTitleCover {
+      font-family: Noto_Light, sans-serif;
+      font-size: $font_RR;
+      font-weight: 400;
+      margin-bottom: 45px;
+      > .subTitlePoint {
+        color: $MAIN_RED;
+      }
+    }
+    > .descCover {
+      position: relative;
+      border: 1px solid $LIGHT_GREY_6;
+      border-radius: 10px;
+      padding: 25px 20px 10px 20px;
+      margin-bottom: 43px;
+      > strong {
+        position: absolute;
+        top: -22%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px;
+        background-color: $WHITE;
+        color: $REGULAR_GREY;
+        font-size: $font_RR;
+      }
+      > p {
+        font-size: $font_MR;
+        color: $LIGHT_GREY;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      > span {
+        display: block;
+        font-size: $font_MR;
+        color: $LIGHT_GREY_6;
+        text-align: center ;
+        border-top: 1px dashed $LIGHT_GREY_6;
+        padding-top: 10px;
+      }
+    }
+    > .youtubeLink {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 100%;
+      font-family: Noto_Medium, sans-serif;
+      font-size: $font_MR;
+      border-radius: 10px;
+      background-color: $MAIN_RED;
+      color: $WHITE;
+      margin-bottom: 15px;
+      transition: background-color 500ms;
+      &:hover {
+        background-color: $LIGHT_RED;
+      }
+    }
+    > .videoCover {
+      border-radius: 10px;
+      overflow: hidden;
+      > iframe {
+        border: none;
+      }
+    }
+  }
+
+
 }
 
 
