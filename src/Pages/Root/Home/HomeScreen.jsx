@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {getJackpot, getWinBig, getWinSuper, getBuyWinUser} from "../../../Service/LottoService";
-import {getBanner, getNoticeData, getNotice} from "../../../Service/ComunityService";
+import {getNotice} from "../../../Service/ComunityService";
 import NoticeSlide from "../../../Components/Home/NoticeSlide";
 import Accumulate from "../../../Components/Home/Accumulate";
 import Winning from "../../../Components/Home/Winning";

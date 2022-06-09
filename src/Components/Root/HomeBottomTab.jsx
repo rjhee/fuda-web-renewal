@@ -13,7 +13,7 @@ const HomeBottomTab = () => {
                 <div/>
                 <span>{lang().FEED}</span>
             </Link>
-            <Link to='/qr' className='QRBtn'>
+            <Link to='/combine' className='QRBtn'>
                 <div/>
                 <span>{lang().CENTER}</span>
             </Link>

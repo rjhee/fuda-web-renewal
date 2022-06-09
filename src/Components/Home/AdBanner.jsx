@@ -19,6 +19,7 @@ const AdBanner = () => {
         if(data.length === 0 || data === false) {
             return
         }else {
+            data.sort((a, b)=> b['uid'] - a['uid'])
             data.forEach((item, i)=>{
                 let banner = { key: item.uid, imgPath: item.image_url, urlPath: item.target_url_w};
                 let bannerImg = {img :item.image_url, url: item.target_url_w};
