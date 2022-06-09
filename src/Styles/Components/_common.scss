@@ -95,8 +95,46 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 }
 
+.circleBtnCover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  .line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: 1px solid $LIGHT_GREY_6;
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: $LIGHT_GREY_6;
+    > .title {
+      font-family: Noto_Medium, sans-serif;
+      font-size: $font_R;
+      line-height: 20px;
+      color: $REGULAR_GREY;
+    }
+  }
+  .subTitle {
+    font-size: $font_S;
+    font-family: Noto_Medium, sans-serif;
+  }
+}
+
 // Header.jsx
 .header {
+  @include minScreenWidth;
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -192,6 +230,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 // HomeBottomTap.jsx
 .tapCover{
+  @include minScreenWidth;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
@@ -330,7 +369,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 // Title.jsx
 .titleSection{
-  padding: 21px;
+  padding: 10px 21px;
   > .date {
     color: $REGULAR_GREY;
     font-size: $font_R;

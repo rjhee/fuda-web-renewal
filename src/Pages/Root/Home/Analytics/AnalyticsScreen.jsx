@@ -12,7 +12,7 @@ const AnalyticsScreen = () => {
     return (
         <div className='analyticsCover'>
             <div className='lottoCover'>
-                <Link to='daily'>
+                <Link to='daily/basic'>
                     <div className='box'>
                         <img src={dailyLotto} alt="daily lotto title image"/>
                         <strong>{lang().STATISTICAL_DATA}</strong>
