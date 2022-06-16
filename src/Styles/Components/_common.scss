@@ -15,6 +15,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 }
 .App {
   margin: 55px 0 100px 0;
+  width: 100%;
 }
 
 // pagination.jsx
@@ -132,6 +133,51 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 }
 
+.fullLoginBtnCover {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  width: 100%;
+  border-radius: 5px;
+  > img {
+      width: 21px;
+      height: auto;
+      margin: 0 12px;
+  }
+  > span {
+    font-family: Noto_Bold, sans-serif;
+    font-size: $font_MR;
+    color: $WHITE;
+    line-height: 18px;
+  }
+}
+
+.emptyLoginBtnCover {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+  height: 38px;
+  width: 100%;
+  border-radius: 5px;
+  > img {
+    width: 21px;
+    height: auto;
+    margin: 0 12px;
+  }
+  > span {
+    font-family: Noto_Bold, sans-serif;
+    font-size: $font_MR;
+    color: red;
+    line-height: 18px;
+  }
+}
+
 // Header.jsx
 .header {
   @include minScreenWidth;
@@ -140,12 +186,15 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   position: fixed;
   top:0;
   background-color: $WHITE;
-  width: 100%;
+  width: 100vw;
+  flex-grow: 1;
+  flex-shrink: 0;
   height: 55px;
   z-index: 100;
 }
 
 .headerCover {
+  min-width: 300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -236,7 +285,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   align-items: flex-end;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 60px;
   padding: 6px 0;
   -webkit-box-shadow: 1px -2px 25px 17px rgba(191,191,191,0.38);

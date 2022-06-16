@@ -1,11 +1,10 @@
 import axios from 'axios';
-import HomeScreen from "../Pages/Root/Home/HomeScreen";
 import {getAccessToken} from "./AuthService";
+import * as LoacalStorageService from "./LocalStorageService"
 const CODE = require('./status-code');
-
-const apiURL = 'https://mobile-dev.fudalotto.com.tw';
+// const apiURL = 'https://mobile-dev.fudalotto.com.tw';
 //  const apiURL = 'http://localhost:3030/';
-// const apiURL = 'http://172.30.1.10:3030';
+const apiURL = 'http://172.30.1.8:3030';
 
 let client = axios.create({
     baseURL: apiURL,
@@ -19,15 +18,13 @@ client.interceptors.response.use(async (res )=>{
     if ( status === CODE.UNAUTHORIZED ){
         console.log('ApiRoot.js: check token ->',' token expired so renew token');
         const originalRequest = config;
-        // let success = await getAccessToken();
-        let success = true;
+        let success = await getAccessToken();
         if ( success === false ){
             //토큰 갱신 실패
             return Promise.reject("refresh token fail");
         }
 
-        // originalRequest.headers['Access-Token'] = await AsyncStorage.getItem('access');
-        originalRequest.headers['Access-Token'] = 'lavumizzang';
+        originalRequest.headers['Access-Token'] = LoacalStorageService.get('access');
         return client(originalRequest);
     }
     else if ( status === CODE.TOO_MANY_REQUEST ){
@@ -68,16 +65,8 @@ const onError = function (error) {
 
 
 //jwt 토큰 가져오기
-
-
 export const setAccessToken = async ( accessToken) => {
-    try {
-        client.defaults.headers.common['Access-Token'] = accessToken;
-        return true;
-    } catch (e) {
-        console.log('read AsyncTokenData error...');
-        return false;
-    }
+    client.defaults.headers.common['Access-Token'] = accessToken;
 };
 
 
@@ -99,3 +88,4 @@ export const checkState = async ()=>{
             throw new Error("Network Error ");
         });
 }
+

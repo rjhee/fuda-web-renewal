@@ -1,10 +1,12 @@
 import React from 'react';
+import {Route, Routes} from "react-router-dom";
+import MyPageScreen from "../Pages/Root/MyPage/MyPageScreen";
 
-const MyPage = () => {
+const MyPage = ({authService}) => {
     return (
-        <div>
-            
-        </div>
+        <Routes>
+            <Route path="/myPage" element={<MyPageScreen authService={authService}/>}/>
+        </Routes>
     );
 };
 

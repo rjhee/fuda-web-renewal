@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import NoticeScreen from "../Pages/Root/Notice/NoticeScreen";
 import ShopScreen from "../Pages/Root/Shop/ShopScreen";
+import MyPage from "./MyPage";
 
 const Root = () => {
     return (

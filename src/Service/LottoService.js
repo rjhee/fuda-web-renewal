@@ -11,6 +11,8 @@ export const getJackpot = () => {
 }
 
 
+
+
 export const getWinBigNumAll = () => {
     let data = '';
     return request({
@@ -151,4 +153,32 @@ export const getQRCode = ( type, numbers )=>{
         method: 'GET',
         params: reqData,
     });
+}
+
+let buyIssueStorage = null;
+export let getBuyIssueData = async () => {
+    if (buyIssueStorage === null) {
+        console.log('LottoInfoStorage.js:getBuyIssueData:40 -> server call');
+        buyIssueStorage = await request({
+            url: '/lotto/buy-issue-list',
+            method: 'GET',
+        }).then();
+    } else {
+        console.log('LottoInfoStorage.js:getBuyIssueData:46 -> inner call');
+    }
+    return buyIssueStorage;
+}
+
+export let getLottoBuyData = async (type, issue) => {
+    let query = {
+        lottoType: type,
+        issue: issue,
+    }
+
+    let result = await request({
+        url: '/lotto/buy-info',
+        method: 'GET',
+        params: query,
+    });
+    return result;
 }

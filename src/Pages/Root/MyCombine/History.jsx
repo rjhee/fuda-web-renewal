@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MypageScreen = () => {
+const History = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const MypageScreen = () => {
     );
 };
 
-export default MypageScreen;
+export default History;

@@ -17,6 +17,9 @@ const keyArray = [
     'qrHistoryListBig',
     'qrHistoryListSuper',
 
+    'refresh',
+    'access'
+
 ]
 
 module.exports = {

@@ -9,9 +9,10 @@ import Home from "./Navigatior/Home";
 import Combine from "./Navigatior/Combine";
 import MyPage from "./Navigatior/MyPage";
 import Root from "./Navigatior/Root";
+import MyPageScreen from "./Pages/Root/MyPage/MyPageScreen";
 
 
-function App() {
+function App({authService}) {
     const [loading, setLoading] = useState(false);
     LoadingService.initialize(setLoading);
     LocalStorageService.initialize();
@@ -26,6 +27,7 @@ function App() {
         <Combine/>
         <MyPage/>
         <Root/>
+        <MyPageScreen authService={authService}/>
         <HomeBottomTab/>
     </div>
   );

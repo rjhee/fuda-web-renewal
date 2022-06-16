@@ -159,6 +159,9 @@ export const lang = () => {
         'USER_ID' : '暱稱',
         'VIEW' : '觀看次數',
         'FORM' : '表單',
+        'MY_FUDA_NUM' : '我的富達號碼',
+        'WAITING' : '等待開獎',
+        'MAKE_QR' : '產生QR code',
 
 
         // modal
