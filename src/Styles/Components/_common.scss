@@ -18,6 +18,10 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 // pagination.jsx
 .paginationCover {
   display: flex;
@@ -444,4 +448,67 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
       font-family: Noto_Light, sans-serif;
     }
   }
+}
+
+// QrCodePopup.jsx
+@mixin responsive-box($height){
+  position: relative;
+  &:before{
+    content: '';
+    display: block;
+    padding-top: $height;
+  }
+}
+.qrPopupCover {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  > .box {
+    width: 80%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    @include responsive-box(100%);
+    border-radius: 15px;
+    background-color: $WHITE;
+    > header {
+      button {
+        position: absolute;
+        top:2%;
+        right:0%;
+        > img {
+          width: 22px;
+          height: auto;
+        }
+      }
+    }
+    > img {
+      position: absolute;
+      top: 47%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      height: 50%;
+    }
+    .downBtn {
+      display: block;
+      width: 120px;
+      height: 30px;
+      border-radius: 20px;
+      border: 2px solid $LIGHT_GREY;
+      margin: 20px auto;
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      color: $LIGHT_GREY;
+      font-size: $font_MR;
+      font-family: Noto_Regular, sans-serif;
+      transform: translateX(-50%);
+    }
+  }
+
 }

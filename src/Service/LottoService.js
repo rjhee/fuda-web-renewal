@@ -182,3 +182,34 @@ export let getLottoBuyData = async (type, issue) => {
     });
     return result;
 }
+
+export let getUserWinResultInfo = async (lotto_type, startIssue, endIssue, page, pageCnt) => {
+
+    let data = {
+        lottoType: lotto_type,
+        start: startIssue,
+        end: endIssue,
+        page: page,
+        pageCnt: pageCnt
+    }
+
+    return await request({
+        url: '/lotto/result-info',
+        method: 'GET',
+        params: data,
+    });
+}
+
+export let getUserWinResultInfoTotal = async (lotto_type, startIssue, endIssue) => {
+    let data = {
+        lottoType: lotto_type,
+        start: startIssue,
+        end: endIssue,
+    }
+
+    return await request({
+        url: '/lotto/result-info/total',
+        method: 'GET',
+        params: data,
+    });
+}

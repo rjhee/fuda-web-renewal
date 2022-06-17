@@ -6,7 +6,7 @@ import {lang} from "../../../../Assets/Lang/Lang";
 import ColorButton from "../../../../Components/Common/ColorButton";
 import WinningListSection from "../../../../Components/Home/Winning/WinningListSection";
 import {getBuyUserWinTen, getBuyUserWinResultNum} from "../../../../Service/LottoService";
-import {superWinDefine} from "../../../../Assets/Lang/defineWords";
+import {superWinDefine} from "../../../../Service/util";
 import {setNumberFormat, hideUseId} from "../../../../Service/commonService";
 import * as LoadingService from "../../../../Service/LoadingService";
 import Pagination from "../../../../Components/Common/Pagination";

@@ -16,6 +16,8 @@ const MyPageScreen = ({authService}) => {
         });
 
     }
+    // TODO
+    // 로그인후 새로고침
     return (
         <div>
             <LoginButton onClick={onLogin} type={'FULL'} color={Color.LIGHT_RED} icon={googleIcon}/>

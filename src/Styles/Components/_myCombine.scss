@@ -1,3 +1,38 @@
+// LottoNumList.jsx
+.lottoListCover,
+.bonusNum{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  flex-grow: 1;
+  width: 100%;
+  > li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    background-color: $LIGHT_GREY_6;
+    border-radius: 50%;
+    color: $REGULAR_GREY;
+    font-size: $font_MR;
+    line-height: 30px;
+    font-family: Noto_Bold, sans-serif;
+    margin: 0 1px;
+  }
+  > img {
+    width: 12px;
+    height: 12px;
+    margin: 0 8px;
+
+  }
+}
+.bonusNum {
+  justify-content: flex-end;
+}
+
 // MyCombineScreen.jsx
 .myCombineMenuCover {
   @include minScreenWidth;
@@ -41,6 +76,7 @@
 
 // Result.jsx
 .resultCover {
+  @include minScreenWidth;
   > header {
     margin-bottom: 30px;
   }
@@ -61,7 +97,7 @@
       }
     }
     > .issueCover {
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       > .optionBtnCover {
         display: flex;
         justify-content: center;
@@ -95,108 +131,7 @@
           }
         }
       }
-      > .selectCover {
-        border-radius: 5px;
-        border: 1px solid $LIGHT_GREY_6;
-        width: 100%;
-        padding: 6px;
-        font-size: $font_MR;
-        color: $LIGHT_GREY;
-        font-family: Noto_Regular;
-      }
-    }
-    > .numberListCover {
-      > h1 {
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 5px;
-        padding: 8px;
-        color: $WHITE;
-        font-size: $font_MR;
-        line-height: 16px;
-        > input {
-          width: 10%;
-          margin-right: 20px;
-        }
-        > span {
-          &:nth-child(2) {
-            width: 60%;
-            margin-right: 20px;
-          }
-          &:last-child {
-            width: 30%;
-          }
-        }
-      }
-      > p {
-        width: 100%;
-        margin-left: 60px;
-        font-size: $font_M;
-        color: $LIGHT_GREY;
-      }
-      > ol {
-        display: flex;
-        flex-direction: column;
-        margin: 0 10px 30px 10px;
-        > li {
-          padding: 12px 0;
-          border-bottom: 1px solid $BG_GREY;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
 
-          > input {
-            width: 10%;
-            margin-right: 20px;
-          }
-          > ul {
-            display: flex;
-            flex-direction: row;
-            width: 60%;
-            margin-right: 20px;
-            > li {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 28px;
-              height: 28px;
-              background-color: $LIGHT_GREY_6;
-              border-radius: 50%;
-              color: $REGULAR_GREY;
-              font-size: $font_MR;
-              line-height: 30px;
-              font-family: Noto_Bold, sans-serif;
-              margin: 0 1px;
-            }
-          }
-          > span {
-            width: 30%;
-            color: $REGULAR_GREY;
-            font-size: $font_MR;
-            font-family: Noto_Bold, sans-serif;
-          }
-        }
-      }
-      > .qrMakeBtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 4px 30px;
-        border-radius: 20px;
-        border: 2px solid $REGULAR_GREY;
-        font-size: $font_MR;
-        color: $REGULAR_GREY;
-        font-family: Noto_Bold, sans-serif;
-        line-height: 18px;
-        margin: 0 auto;
-        > img {
-          width: 18px;
-          height: auto;
-          margin: 0 10px;
-        }
-      }
     }
   }
   > footer {
@@ -204,3 +139,214 @@
   }
 }
 
+// MyNumberList.jsx
+ .numberListCover {
+  >.selectCover {
+    border-radius: 5px;
+    border: 1px solid $LIGHT_GREY_6;
+    width: 100%;
+    padding: 6px;
+    font-size: $font_MR;
+    color: $LIGHT_GREY;
+    margin-bottom: 40px;
+    font-family: Noto_Regular, sans-serif;
+  }
+  >.indexCover {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 8px;
+    color: $WHITE;
+    font-size: $font_MR;
+    line-height: 16px;
+    > input {
+      width: 10%;
+      margin-right: 20px;
+    }
+    > span {
+      &:nth-child(2) {
+        width: 60%;
+        margin-right: 20px;
+      }
+      &:last-child {
+        width: 35%;
+        text-align: center;
+      }
+    }
+  }
+  > p {
+    width: 100%;
+    margin-left: 60px;
+    font-size: $font_M;
+    color: $LIGHT_GREY;
+  }
+  > ol {
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 30px 10px;
+    > li {
+      padding: 12px 0;
+      border-bottom: 1px solid $BG_GREY;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      > input {
+        width: 10%;
+        margin-right: 20px;
+      }
+      > div {
+        display: flex;
+        width: 60%;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+
+      }
+      > span {
+        width: 30%;
+        color: $REGULAR_GREY;
+        font-size: $font_MR;
+        font-family: Noto_Bold, sans-serif;
+        text-align: center;
+      }
+    }
+  }
+  > .qrMakeBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 30px;
+    border-radius: 20px;
+    border: 2px solid $REGULAR_GREY;
+    font-size: $font_MR;
+    color: $REGULAR_GREY;
+    font-family: Noto_Bold, sans-serif;
+    line-height: 18px;
+    margin: 0 auto;
+    > img {
+      width: 18px;
+      height: auto;
+      margin: 0 10px;
+    }
+  }
+}
+
+// MyResultList.jsx
+.myResultCover {
+  > .selectsCover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin-bottom: 40px;
+    >.selectCover {
+      border-radius: 5px;
+      border: 1px solid $LIGHT_GREY_6;
+      width: 42%;
+      height: 70px;
+      padding: 6px;
+      font-size: $font_MR;
+      color: $LIGHT_GREY;
+      margin-right: 10px;
+      font-family: Noto_Regular, sans-serif;
+    }
+    > span {
+      margin-right: 10px;
+    }
+    > .okBtn {
+      border-radius: 4px;
+      border: 2px solid $LIGHT_GREY_6;
+      height: 70px;
+      width: 10%;
+    }
+  }
+  > .titleCover {
+    font-size: $font_R;
+    margin-bottom: 30px;
+    > div {
+      display: flex;
+      flex-grow: 0;
+      flex-shrink: 1;
+      justify-content: space-between;
+      background-color: $BLACK;
+      font-size: $font_R;
+      line-height: 20px;
+      letter-spacing: 0.1rem;
+      padding: 6px 8px;
+      margin-bottom: 5px;
+      strong:first-child {
+        color: #FFF27D;
+        font-family: Noto_Bold, sans-serif;
+      }
+      strong:last-child {
+        color: $WHITE;
+        font-family: Noto_Bold, sans-serif;
+      }
+    }
+    > span {
+      color : $LIGHT_GREY;
+      font-size: $font_M;
+      font-family: Noto_Regular, sans-serif;
+    }
+  }
+  >.indexCover {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 8px;
+    color: $WHITE;
+    font-size: $font_MR;
+    line-height: 16px;
+    span:first-child {
+      width: 65%;
+      text-align: center;
+    }
+    span:last-child {
+      width: 35%;
+      text-align: center;
+    }
+  }
+  > ol {
+    > li {
+      display: flex;
+      padding: 12px 0;
+      border-bottom: 1px solid $BG_GREY;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      > div {
+        display: flex;
+        width: 60%;
+        margin-right: 10px;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        > p {
+          font-size: $font_M;
+          width: 100%;
+          text-align: left;
+          line-height: 15px;
+          margin-bottom: 5px;
+          padding: 0 5px;
+
+        }
+        .bonusNum {
+          justify-content: flex-end;
+        }
+      }
+      > span {
+        width: 30%;
+        color: $REGULAR_GREY;
+        font-size: $font_MR;
+        font-family: Noto_Bold, sans-serif;
+        text-align: center;
+      }
+    }
+  }
+}

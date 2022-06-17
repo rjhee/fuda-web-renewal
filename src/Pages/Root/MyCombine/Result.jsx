@@ -5,11 +5,10 @@ import {Color} from "../../../Styles/Base/color";
 import ColorButton from "../../../Components/Common/ColorButton";
 import {useParams} from "react-router-dom";
 
-import scanIcon from "../../../Assets/Images/icon/icon-QR.png"
 import Caution from "../../../Components/Common/Caution";
-import {getBuyIssueData, getLottoBuyData} from "../../../Service/LottoService";
-import {convertToChineseYear} from "../../../Service/util";
-import ResultList from "../../../Components/MyCombine/ResultList";
+import MyNumberList from "../../../Components/MyCombine/MyNumberList";
+import MyResultList from "../../../Components/MyCombine/MyResultList";
+import {getBuyIssueData} from "../../../Service/LottoService";
 
 
 const Result = (props) => {
@@ -17,63 +16,35 @@ const Result = (props) => {
     const [dailyLotto, setDailyLotto] = useState(false);
     const [bigLotto, setBigLotto] = useState(false);
     const [superLotto, setSuperLotto] = useState(false);
-
     const [lottoIssue, setLottoIssue] = useState([]);
-    const [numberData, setNumberData] = useState([]);
-    const [winNumData, setWinNumData] = useState([]);
-    const [selectedIssue, setSelectedIssue] = useState(0);
+    const [lottoName, setLottoName] = useState('');
     const [ea, setEa] = useState(0);
+
     const [color, setColor] = useState(Color.WHITE);
     const [resultSwitch, setResultSwitch] = useState(false);
 
-    async function getData(type){
-        let result = await getBuyIssueData();
-        let data = result.data;
-        let lottoIssue = data[type];
-        setLottoIssue(lottoIssue)
-    }
-
-   async function handleSelectedIssue(e){
-        let i = e ? e.target.value : 0;
-        setSelectedIssue(i);
-
-        let issue = lottoIssue[i].issue;
-        let result = await getLottoBuyData(id, issue);
-        let data = result.data;
-        let winNumIndex = data.length-1;
-
-        await setWinNum(issue, winNumIndex);
-        setNumberData(data);
-    }
-
-    async function setWinNum(issue, index){
-        let winNum = [];
-        let result = await getLottoBuyData(id, issue);
-        let data = result.data[index][0];
-        for(let i = 0; i < ea; i++){
-            winNum.push(data[`b${i+1}`])
-        }
-        setWinNumData(winNum);
-    }
-
-    function setWinNumColor(num){
-        if(winNumData.indexOf(num) !== -1){
-            return {backgroundColor:Color.LIGHT_RED, color:Color.WHITE};
-        }
-    }
 
     function onResultSwitch(){
         setResultSwitch(!resultSwitch);
     }
 
+    async function getData(type){
+        let result = await getBuyIssueData();
+        let data = result.data;
+        let lottoIssue = data[type];
+        console.log('MyNumberList.jsx:22 ->',lottoIssue);
+        setLottoIssue(lottoIssue)
+    }
+
+    // 로또 타입별로 setting
     useEffect(()=>{
         getData(id);
-        handleSelectedIssue();
         setResultSwitch(true);
         if(id === 'daily'){
             setDailyLotto(true);
             setBigLotto(false);
             setSuperLotto(false);
+            setLottoName(lang().DAILY_LOTTO);
             setEa(5);
             setColor(Color.ORANGE);
         }
@@ -81,6 +52,7 @@ const Result = (props) => {
             setDailyLotto(false);
             setBigLotto(true);
             setSuperLotto(false);
+            setLottoName(lang().BIG_LOTTO);
             setEa(6);
             setColor(Color.DARK_BLUE);
         }
@@ -88,11 +60,13 @@ const Result = (props) => {
             setDailyLotto(false);
             setBigLotto(false);
             setSuperLotto(true);
+            setLottoName(lang().SUPER_LOTTO);
             setEa(6)
             setColor(Color.LIGHT_RED);
         }
     },[id]);
-
+    // TODO
+    // 로또 타입 변경시 MyNumberList 컴포넌트 리셋
     return (
         <section className='resultCover'>
             <header>
@@ -117,27 +91,22 @@ const Result = (props) => {
                             <span>我的成果</span>
                         </button>
                     </div>
-                    <select onChange={handleSelectedIssue} value={selectedIssue} className='selectCover'>
-                        {lottoIssue.map((data, i)=>
-                            <option value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
-                        )}
-                    </select>
+
                 </div>
-                <section className='numberListCover'>
-                    <h1 style={{backgroundColor: color}}>
-                        <input type="checkbox"/>
-                        <span>{lang().MY_FUDA_NUM}</span>
-                        <span>{lang().RESULT}</span>
-                    </h1>
-                    <p>{numberData[selectedIssue]?.regdate}</p>
-                    <ResultList
-                        numberData={numberData}
-                        setWinNumColor={setWinNumColor}/>
-                    <button className='qrMakeBtn'>
-                        <img src={scanIcon} alt=""/>
-                        <span>{lang().MAKE_QR}</span>
-                    </button>
-                </section>
+                {resultSwitch === true ?
+                    <MyNumberList
+                        ea={ea}
+                        type={id}
+                        color={color}
+                        lottoIssue={lottoIssue}/>
+                    :
+                    <MyResultList
+                        ea={ea}
+                        type={id}
+                        color={color}
+                        lottoName={lottoName}
+                        lottoIssue={lottoIssue}/> }
+
             </main>
             <footer>
                 <Caution/>

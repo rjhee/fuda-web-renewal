@@ -162,6 +162,10 @@ export const lang = () => {
         'MY_FUDA_NUM' : '我的富達號碼',
         'WAITING' : '等待開獎',
         'MAKE_QR' : '產生QR code',
+        'DOWN' : '下載',
+        'CHECKING' : '檢查',
+        'WIN_RESULT' : '中獎成果',
+        'WIN_RESULT_DESC' : '此處為搜尋期間的開獎結果與中獎金額',
 
 
         // modal
