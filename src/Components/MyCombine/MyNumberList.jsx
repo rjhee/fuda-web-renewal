@@ -12,7 +12,6 @@ import * as LocalStorageService from "../../Service/LocalStorageService"
 const MyNumberList = (props) => {
     const [winNumData, setWinNumData] = useState([]);
     const [selectedIssue, setSelectedIssue] = useState(0);
-    const [numberData, setNumberData] = useState([]);
     const [regData, setRegData] = useState();
     const [isChecked, setIsChecked] = useState([]);
     const [onQr, setOnQr] = useState(false);
@@ -29,27 +28,35 @@ const MyNumberList = (props) => {
     }
 
     async function handleSelectedIssue(e){
-        let i = e ? e.target.value : 0;
+        let i = (!!e === false) ? 0 : e.target.value;
         setSelectedIssue(i);
 
-        let issue = props?.lottoIssue[i]?.issue??'';
+        let issue = props?.lottoIssue[i]?.issue;
+
         let result = await getLottoBuyData(props.type, issue);
+
         let data = result.data;
         let winNumIndex = data?.length-1;
         let isChecked = [];
-
+        console.log('MyNumberList.jsx:42 ->',winNumIndex);
         for(let i = 0; i < data.length+1; i++){
             isChecked.push(false);
         }
         setIsChecked(isChecked);
-        await setWinNum(issue, winNumIndex);
+        if(!!props.lottoIssue[i].draw_date === true) {
+            await setWinNum(issue, winNumIndex);
+        }else {
+            setWinNumData([]);
+        }
         setRegData(data[0].regdate)
-        setNumberData(data);
+        props?.setBuyData(data);
+        console.log('MyNumberList.jsx:37 ->',data);
     }
 
     function getSelectedCheckBox(e) {
         let isCheckedCopy = [...isChecked];
         let checkbox = e.target.value;
+        console.log('MyNumberList.jsx:53 ->',checkbox);
         if(checkbox === '0'){
                 isCheckedCopy[0] = !isCheckedCopy[0]
             for(let i = 0; i < isCheckedCopy.length; i++){
@@ -61,6 +68,7 @@ const MyNumberList = (props) => {
             if(!!isCheckedCopy[checkbox] === false) {
                isCheckedCopy[0] = false;
             }
+            console.log('MyNumberList.jsx:65 ->',isCheckedCopy);
             setIsChecked(isCheckedCopy)
         }
 
@@ -128,9 +136,9 @@ const MyNumberList = (props) => {
         }
         isChecked.map((num, i)=>{
             if(num === true && 0 < i) {
-                console.log('MyNumberList.jsx:81 ->',numberData[i-1]);
-                numbers.push(getQRLottoArray(props.buyData[i-1]));
-                idxList.push(props.buyData[i-1].idx);
+                console.log('MyNumberList.jsx:81 ->',props?.buyData[i-1]);
+                numbers.push(getQRLottoArray(props?.buyData[i-1]));
+                idxList.push(props?.buyData[i-1].idx);
                 props.buyData.isUse = 'Y';
                 setOnQr(true);
             }
@@ -138,14 +146,14 @@ const MyNumberList = (props) => {
 
         for(let i = 1; i < isChecked.length; i++) {
             if(isChecked[i] === true) {
-                numbers.push(getQRLottoArray(props.buyData[i-1]));
-                idxList.push(props.buyData[i-1].idx);
+                numbers.push(getQRLottoArray(props?.buyData[i-1]));
+                idxList.push(props?.buyData[i-1].idx);
                 props.buyData.isUse = 'Y';
             }
         }
         let savedDate = getLastIssue() // 로컬스토리지에 저장된 날짜
         if ( savedDate !== null ){
-            let newDate = props.buyData[0].regdate;
+            let newDate = props?.buyData[0].regdate;
             savedDate = new Date(savedDate).getTime();
             newDate = new Date(newDate).getTime();
 
@@ -154,11 +162,6 @@ const MyNumberList = (props) => {
             }
         }
 
-        // if(numbers.length === 0) {
-        //     alert('請先勾選號碼');
-        //     return;
-        // }
-        // setQrValue('');
         let result = await getQrString(props.type, numbers, idxList);
        console.log('MyNumberList.jsx:174 ->',result);
         setDataInLocal(result.data[0]);
@@ -180,7 +183,7 @@ const MyNumberList = (props) => {
         const qrHistoryListSuper = LocalStorageService.get('qrHistoryListSuper');
 
         let lottoDate = [];
-        lottoDate = [props.issue, props.buyData[0].regdate];
+        lottoDate = [props.issue, props?.buyData[0].regdate];
 
         switch (props.type){
             case 'daily' :
@@ -206,7 +209,6 @@ const MyNumberList = (props) => {
                 for(let i = 0; i < isChecked.length-1; i++){
                     if(isChecked[i+1] === true){
                         selectedHistoryBig.unshift(props.buyData[i]);
-
                     }
                 }
                 qrHistoryBigCopy.unshift({date: lottoDate, data : selectedHistoryBig, qr: qr});
@@ -221,7 +223,6 @@ const MyNumberList = (props) => {
                 for(let i = 0; i < isChecked.length-1; i++){
                     if(isChecked[i+1] === true){
                         selectedHistorySuper.unshift(props.buyData[i]);
-
                     }
                 }
                 qrHistorySuperCopy.unshift({date: lottoDate, data : selectedHistorySuper, qr: qr});
@@ -236,6 +237,7 @@ const MyNumberList = (props) => {
     useEffect(()=>{
         handleSelectedIssue();
 
+
     },[onQr])
     return (
         <section className='numberListCover'>
@@ -245,7 +247,7 @@ const MyNumberList = (props) => {
                 : null}
             <select onChange={handleSelectedIssue} value={selectedIssue} className='selectCover'>
                 {props.lottoIssue.map((data, i)=>
-                    <option key={i} value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
+                    <option key={i} value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '等待開獎' }</option>
                 )}
             </select>
             <header className='indexCover' style={{backgroundColor: props.color}}>
@@ -254,15 +256,15 @@ const MyNumberList = (props) => {
                 <span>{lang().RESULT}</span>
             </header>
             <p>{convertToChineseYear(regData)}&nbsp;&nbsp;{getJustTime(regData)}</p>
-            <LottoNumRow
-                type={props.type}
-                buyData={props.buyData}
-                color={props.color}
-                isChecked={isChecked}
-                winNumData={winNumData}
-                numberData={numberData}
-                getSelectedCheckBox={getSelectedCheckBox}
-            />
+            {props?.buyData ?
+                <LottoNumRow
+                    type={props.type}
+                    buyData={props?.buyData??[]}
+                    color={props.color}
+                    isChecked={isChecked}
+                    winNumData={winNumData}
+                    getSelectedCheckBox={getSelectedCheckBox}
+            /> : null}
             <button className='qrMakeBtn' onClick={createQrCode}>
                 <img src={scanIcon} alt="scan icon image"/>
                 <span>{lang().MAKE_QR}</span>

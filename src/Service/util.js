@@ -48,11 +48,26 @@ export const getJustTime = (date) => {
         let hours = krDay.getUTCHours();
         let minutes = krDay.getUTCMinutes().toString().padStart(2, '0');
         return `${hours}:${minutes}`
+    }
+}
 
-        // let krDay2 = krDay.toISOString().split("T")[0];
-        // let krDay3 = krDay2.split('-');
-        // krDay3[0] = krDay3[0] - 1911;
-        // let CnDay = krDay3.join('.');
-        // return CnDay;
+export const setWillLotteryDay = (type, date) => {
+    const week = date ? new Date(date).getDay() : null;
+    if(type === 'big'){
+        if (week === 'super') {
+            return 3;
+        }else if(week === 5){
+            return 4;
+        }
+    }
+    else if(type === 'super'){
+        if (week === 'big'){
+            return 3;
+        }else if (week === 4){
+            return 4;
+        }
+    }
+    else if(type === 'daily') {
+        return 1;
     }
 }

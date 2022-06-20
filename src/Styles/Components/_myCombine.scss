@@ -243,6 +243,7 @@
 
 // MyResultList.jsx
 .myResultCover {
+  @include minScreenWidth;
   > .selectsCover {
     display: flex;
     justify-content: space-between;
@@ -353,6 +354,161 @@
         font-size: $font_MR;
         font-family: Noto_Bold, sans-serif;
         text-align: center;
+      }
+    }
+  }
+}
+
+// History.jsx
+.historyCover {
+  @include minScreenWidth;
+  > header {
+    margin-bottom: 30px;
+  }
+  > .contents {
+    padding: 0 21px;
+    > .btnCover {
+      display: flex;
+      flex-grow: 1;
+      flex-shrink: 0;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 36px;
+
+      > a {
+        width: 33%;
+        margin: 0 7px;
+      }
+    }
+    > .issueCover {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px $LIGHT_GREY_6 solid;
+      border-radius: 5px;
+      padding: 8px 0;
+      margin-bottom: 42px;
+
+      > .index {
+        font-size: $font_MR;
+        font-family: Noto_Bold, sans-serif;
+        line-height: 20px;
+      }
+
+      > .issue,
+      > .date {
+        font-size: $font_MR;
+        font-family: Noto_Regular, sans-serif;
+        line-height: 20px;
+        color: $LIGHT_GREY;
+      }
+    }
+
+  }
+}
+
+// HistoryList.jsx
+section {
+  @include minScreenWidth;
+  .groupIndex {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    border-radius: 5px;
+    > span:first-child {
+      font-family: Noto_Bold, sans-serif;
+      font-size: $font-MR;
+      color: $WHITE;
+      width: 80%;
+      text-align: center;
+      margin-left: 30px;
+    }
+    div:last-child {
+      font-family: Noto_Bold, sans-serif;
+      font-size: $font-MR;
+      color: $WHITE;
+      width: 20%;
+      text-align: left;
+      span {
+        font-family: Noto_Bold, sans-serif;
+        font-size: $font-MR;
+        color: $WHITE;
+      }
+    }
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 14px;
+      height: 14px;
+      font-family: Noto_Bold, sans-serif;
+      font-size: $font_M;
+      background-color: $WHITE;
+      border-radius: 50%;
+      margin: 0 4px;
+
+    }
+  }
+}
+
+// HistoryNumRow.jsx
+.historyGroup {
+  @include minScreenWidth;
+  > li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $LIGHT_GREY_2;
+    margin: 0 4px;
+    padding: 0 10px;
+    > .index {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 6px 0;
+        > span {
+          font-size: $font_R;
+          font-family: Noto_Bold, sans-serif;
+          margin: 4px 0;
+        }
+        > button {
+          font-size: $font_M;
+          color: $LIGHT_GREY;
+          border: 2px solid $LIGHT_GREY;
+          border-radius: 20px;
+          padding: 4px 8px;
+          margin: 4px 0;
+        }
+    }
+    > .lottoNum {
+      ul {
+        border-bottom: 1px solid $LIGHT_GREY_2;
+        padding: 18px 0;
+        margin: 0 4px;
+      }
+      ul:last-child {
+        border: none;
+      }
+    }
+    > .purchaseBtn{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 4px 0;
+      > span {
+        font-family: Noto_Bold, sans-serif;
+        color: $LIGHT_GREY;
+      }
+      > input {
+        margin-top: 10px;
       }
     }
   }

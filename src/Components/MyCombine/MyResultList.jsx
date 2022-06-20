@@ -19,7 +19,6 @@ const MyResultList = (props) => {
 
    async  function handleSelectedIssue(e, selectType){
          let i = e ? e.target.value : 0;
-
          if(selectType === 'FROM') {
              setSelectedIssueFrom(i);
          }else {
@@ -31,19 +30,25 @@ const MyResultList = (props) => {
         let fromIssue = lottoIssue[selectedIssueFrom].issue;
         let toIssue = lottoIssue[selectedIssueTo].issue;
 
-
+        console.log('MyResultList.jsx:33 ->',fromIssue);
+        console.log('MyResultList.jsx:34 ->',toIssue);
         if(!!fromIssue === true && !!toIssue === true) {
-            let result = await getUserWinResultInfo(props.type, fromIssue, toIssue, page, 15);
-            let data = result.data;
-            console.log('MyResultList.jsx:38 ->',data);
-            setNumberData(data);
-            for(let i = 0; i < data.length; i++){
-                await setWinNumberList(data[i]);
-            }
+           if(fromIssue <= toIssue){
+               let result = await getUserWinResultInfo(props.type, fromIssue, toIssue, page, 15);
+               let data = result.data;
+               console.log('MyResultList.jsx:38 ->',data);
+               setNumberData(data);
+               for(let i = 0; i < data.length; i++){
+                   await setWinNumberList(data[i]);
+               }
 
-            result = await getUserWinResultInfoTotal(props.type, fromIssue, toIssue)
-            data = result.data[0];
-            setTotalMoney(Number(data['total']));
+               result = await getUserWinResultInfoTotal(props.type, fromIssue, toIssue)
+               data = result.data[0];
+               setTotalMoney(Number(data['total']));
+           }else {
+               alert('시작날짜보다 끝날짜가 더 커야 합니다');
+               return;
+           }
         }
 
     }

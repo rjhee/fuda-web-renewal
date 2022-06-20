@@ -38,11 +38,10 @@ const Result = (props) => {
     }
 
    async function refreshData (){
-        let result = await getLottoBuyData(id, lottoIssue[0].issue);
-        console.log('Result.jsx:42 ->',result);
-           if(result.data !== null) {
-               setBuyData(result.data);
-           }
+        let result = await getLottoBuyData(id, lottoIssue[0]?.issue);
+        if(result.data !== null) {
+            setBuyData(result.data);
+        }
     }
 
     useEffect(()=>{
@@ -80,6 +79,8 @@ const Result = (props) => {
     },[id]);
     // TODO
     // 로또 타입 변경시 MyNumberList 컴포넌트 리셋
+    // 이전 회차 disabled
+    // 툴팁
     return (
         <section className='resultCover'>
             <header>
@@ -113,6 +114,7 @@ const Result = (props) => {
                         color={color}
                         lottoIssue={lottoIssue}
                         buyData={buyData}
+                        setBuyData={setBuyData}
                         refreshData={refreshData}/>
                     :
                     <MyResultList

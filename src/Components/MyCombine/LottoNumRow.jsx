@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import LottoNumList from "./LottoNumList";
 import {lang} from "../../Assets/Lang/Lang";
 import {bigWinDefine, dailyWinDefine, superWinDefine} from "../../Service/util";
@@ -7,13 +7,13 @@ import {Color} from "../../Styles/Base/color";
 
 const LottoNumRow = (props) => {
     function setWinNumColor(i, num){
-        if(props.winNumData.indexOf(num) !== -1){
+        if(props?.winNumData.indexOf(num) !== -1){
             return {backgroundColor:Color.LIGHT_RED, color:Color.WHITE};
         }
     }
 
     function setResultRankText(i) {
-        let price =  props.buyData[i].price;
+        let price =  props?.buyData[i].price;
 
         if(price === 0) {
             return <strong>{lang().WAITING}</strong>;
@@ -49,9 +49,8 @@ const LottoNumRow = (props) => {
     }
 
     function setResultIsQrText(i){
-        let isQr = props.buyData[i].isUse;
-        let idx = props.buyData[i].idx;
-
+        let isQr = props?.buyData[i].isUse;
+        let idx = props?.buyData[i].idx;
         if(isQr === 'Y') {
             return <span style={{color:props.color}}>{lang().QR_MAKE}</span>;
         }else {
@@ -67,6 +66,8 @@ const LottoNumRow = (props) => {
             for(let i = 0; i < historyData.length; i++){
                 for(let j = 0; j < historyData[i].data.length; j++){
                     if(historyData[i].purchased === true){
+                        // TODO
+                        //  안맞음
                         if(historyData[i].data[j].idx === idx){
                             return  <span style={{color:props.color}}> {lang().QR_PURCHASE} </span>;
                         }
@@ -75,16 +76,20 @@ const LottoNumRow = (props) => {
             }
         }
     }
+    useEffect(()=>{
+
+    },[props?.buyData])
+
     return (
         <ol>
-            {props.numberData.map((item,i)=>
-                (i !== props.numberData.length-1 ?
+            {props?.buyData?.map((item,i)=>
+                (i !== props?.buyData?.length-1 ?
                         <li key={i}>
                             <input
                                 type="checkbox"
                                 onClick={(e)=> props.getSelectedCheckBox(e)}
                                 value={i+1} name='number'
-                                checked={props.isChecked[i+1]}/>
+                                defaultChecked={props.isChecked[i+1]}/>
                             <div>
                                 <LottoNumList
                                     b1={item.b1}
