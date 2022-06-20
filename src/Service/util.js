@@ -32,10 +32,27 @@ export let superWinDefine = [
 
 
 export const convertToChineseYear = (date) => {
-    let krDay = new Date(date);
-    let krDay2 = krDay.toISOString().split("T")[0];
-    let krDay3 = krDay2.split('-');
-    krDay3[0] = krDay3[0] - 1911;
-    let CnDay = krDay3.join('.');
-    return CnDay;
+    if(!!date === true){
+        let krDay = new Date(date);
+        let krDay2 = krDay.toISOString().split("T")[0];
+        let krDay3 = krDay2.split('-');
+        krDay3[0] = krDay3[0] - 1911;
+        let CnDay = krDay3.join('.');
+        return CnDay;
+    }
+}
+
+export const getJustTime = (date) => {
+    if(!!date === true){
+        let krDay = new Date(date);
+        let hours = krDay.getUTCHours();
+        let minutes = krDay.getUTCMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`
+
+        // let krDay2 = krDay.toISOString().split("T")[0];
+        // let krDay3 = krDay2.split('-');
+        // krDay3[0] = krDay3[0] - 1911;
+        // let CnDay = krDay3.join('.');
+        // return CnDay;
+    }
 }

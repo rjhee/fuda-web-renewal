@@ -166,6 +166,9 @@ export const lang = () => {
         'CHECKING' : '檢查',
         'WIN_RESULT' : '中獎成果',
         'WIN_RESULT_DESC' : '此處為搜尋期間的開獎結果與中獎金額',
+        'WORK_HARD' : '再接再厲',
+        'QR_MAKE' : 'QR生成完畢',
+        'QR_PURCHASE' : 'QR購買完畢',
 
 
         // modal

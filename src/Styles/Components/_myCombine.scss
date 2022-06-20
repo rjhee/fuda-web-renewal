@@ -206,11 +206,18 @@
 
       }
       > span {
+        display: flex;
+        flex-direction: column;
         width: 30%;
         color: $REGULAR_GREY;
         font-size: $font_MR;
         font-family: Noto_Bold, sans-serif;
         text-align: center;
+        > span {
+          font-size: $font_M;
+          font-family: Noto_Light, sans-serif;
+          margin-top: 5px;
+        }
       }
     }
   }
@@ -319,7 +326,7 @@
       border-bottom: 1px solid $BG_GREY;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around;
       > div {
         display: flex;
         width: 60%;

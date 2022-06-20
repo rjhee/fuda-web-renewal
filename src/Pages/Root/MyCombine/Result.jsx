@@ -8,7 +8,7 @@ import {useParams} from "react-router-dom";
 import Caution from "../../../Components/Common/Caution";
 import MyNumberList from "../../../Components/MyCombine/MyNumberList";
 import MyResultList from "../../../Components/MyCombine/MyResultList";
-import {getBuyIssueData} from "../../../Service/LottoService";
+import {getBuyIssueData,getLottoBuyData} from "../../../Service/LottoService";
 
 
 const Result = (props) => {
@@ -18,6 +18,7 @@ const Result = (props) => {
     const [superLotto, setSuperLotto] = useState(false);
     const [lottoIssue, setLottoIssue] = useState([]);
     const [lottoName, setLottoName] = useState('');
+    const [buyData, setBuyData] = useState({});
     const [ea, setEa] = useState(0);
 
     const [color, setColor] = useState(Color.WHITE);
@@ -35,6 +36,18 @@ const Result = (props) => {
         console.log('MyNumberList.jsx:22 ->',lottoIssue);
         setLottoIssue(lottoIssue)
     }
+
+   async function refreshData (){
+        let result = await getLottoBuyData(id, lottoIssue[0].issue);
+        console.log('Result.jsx:42 ->',result);
+           if(result.data !== null) {
+               setBuyData(result.data);
+           }
+    }
+
+    useEffect(()=>{
+        refreshData();
+    },[lottoIssue])
 
     // 로또 타입별로 setting
     useEffect(()=>{
@@ -98,7 +111,9 @@ const Result = (props) => {
                         ea={ea}
                         type={id}
                         color={color}
-                        lottoIssue={lottoIssue}/>
+                        lottoIssue={lottoIssue}
+                        buyData={buyData}
+                        refreshData={refreshData}/>
                     :
                     <MyResultList
                         ea={ea}

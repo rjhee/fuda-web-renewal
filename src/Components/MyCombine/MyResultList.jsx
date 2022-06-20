@@ -35,9 +35,8 @@ const MyResultList = (props) => {
         if(!!fromIssue === true && !!toIssue === true) {
             let result = await getUserWinResultInfo(props.type, fromIssue, toIssue, page, 15);
             let data = result.data;
-
+            console.log('MyResultList.jsx:38 ->',data);
             setNumberData(data);
-            console.log('MyResultList.jsx:37 ->',data);
             for(let i = 0; i < data.length; i++){
                 await setWinNumberList(data[i]);
             }
@@ -72,6 +71,7 @@ const MyResultList = (props) => {
         }
     }
 
+
     function setRank(price){
        let rank = null;
         if(props.type === 'daily'){
@@ -86,8 +86,13 @@ const MyResultList = (props) => {
         return rank;
     }
 
-    function removeDuplicateDate(prev, next){
-        console.log('MyResultList.jsx:90 ->',next);
+
+    function removeDuplicateDate(prev, current, date){
+        if(prev === current){
+            return '';
+        }else {
+            return convertToChineseYear(date);
+        }
     }
 
 
@@ -106,7 +111,10 @@ const MyResultList = (props) => {
                 <span>~</span>
                 <select onChange={(e)=>handleSelectedIssue(e, 'TO')} value={selectedIssueTo} className='selectCover'>
                     {props.lottoIssue.map((data, i)=>
-                        <option value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
+
+                            <option key={i} value={i}>第 {data.issue}期
+                               {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
+
                     )}
                 </select>
                 <button onClick={getLottoDataList} className='okBtn'>
@@ -128,9 +136,7 @@ const MyResultList = (props) => {
             {numberData.map((item, i)=>
                 <li key={i}>
                    <div>
-                        {/*TODO*/}
-                        {/*중복되는 날짜 제거*/}
-                       <p style={{color:props.color}}>{convertToChineseYear(item.draw_date)}</p>
+                       <p style={{color:props.color}}>{removeDuplicateDate(numberData[i-1]?.issue??'', item.issue, item.draw_date)}</p>
                        <LottoNumList
                            i={i}
                            b1={item.b1}

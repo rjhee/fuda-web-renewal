@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Color} from "../../Styles/Base/color";
 import {lang} from "../../Assets/Lang/Lang";
-import {convertToChineseYear} from "../../Service/util";
-import {getBuyIssueData, getLottoBuyData} from "../../Service/LottoService";
+import {convertToChineseYear, dailyWinDefine, superWinDefine, bigWinDefine, getJustTime} from "../../Service/util";
+import {getBuyIssueData, getLottoBuyData, getQrString} from "../../Service/LottoService";
 import QrCodePopup from "./QrCodePopup";
 import scanIcon from "../../Assets/Images/icon/icon-QR.png";
-import plusIcon from "../../Assets/Images/icon/plus-icon.png"
-import LottoNumList from "./LottoNumList";
+
+import LottoNumRow from "./LottoNumRow";
+import * as LocalStorageService from "../../Service/LocalStorageService"
 
 const MyNumberList = (props) => {
     const [winNumData, setWinNumData] = useState([]);
@@ -15,6 +16,7 @@ const MyNumberList = (props) => {
     const [regData, setRegData] = useState();
     const [isChecked, setIsChecked] = useState([]);
     const [onQr, setOnQr] = useState(false);
+    const [qrValue, setQrValue] = useState();
 
     async function setWinNum(issue, index){
         let winNum = [];
@@ -30,13 +32,12 @@ const MyNumberList = (props) => {
         let i = e ? e.target.value : 0;
         setSelectedIssue(i);
 
-        let issue = props.lottoIssue[i].issue;
+        let issue = props?.lottoIssue[i]?.issue??'';
         let result = await getLottoBuyData(props.type, issue);
         let data = result.data;
-        let winNumIndex = data.length-1;
+        let winNumIndex = data?.length-1;
         let isChecked = [];
 
-        console.log('MyNumberList.jsx:42 ->',data);
         for(let i = 0; i < data.length+1; i++){
             isChecked.push(false);
         }
@@ -46,13 +47,7 @@ const MyNumberList = (props) => {
         setNumberData(data);
     }
 
-    function setWinNumColor(num){
-        if(winNumData.indexOf(num) !== -1){
-            return {backgroundColor:Color.LIGHT_RED, color:Color.WHITE};
-        }
-    }
-
-    function selectCheckBox(e) {
+    function getSelectedCheckBox(e) {
         let isCheckedCopy = [...isChecked];
         let checkbox = e.target.value;
         if(checkbox === '0'){
@@ -70,67 +65,204 @@ const MyNumberList = (props) => {
         }
 
     }
-    function createQrCode(){
+
+    function getLastIssue(){
+        let data = null;
+
+        switch (props.type) {
+            case 'daily':
+                data = LocalStorageService.get('qrHistoryListDaily');
+                break;
+            case 'big':
+                data = LocalStorageService.get('qrHistoryListBig');
+                break;
+            case 'super':
+                data = LocalStorageService.get('qrHistoryListSuper');
+                break;
+        }
+
+        if ( !!data === false ) return null;
+        data = JSON.parse(data);
+        return data[0].date[1];
+    }
+
+    function initLocal(type) {
+        switch (type) {
+            case 'daily':
+                LocalStorageService.set('qrHistoryListDaily', '');
+                break;
+            case 'big':
+                LocalStorageService.set('qrHistoryListBig', '');
+                break;
+            case 'super':
+                LocalStorageService.set('qrHistoryListSuper', '');
+                break;
+        }
+    }
+
+    function getQRLottoArray(lottoList) {
+        let data =[];
+        data.push(lottoList.b1);
+        data.push(lottoList.b2);
+        data.push(lottoList.b3);
+        data.push(lottoList.b4);
+        data.push(lottoList.b5);
+
+        if(props.type !== 'daily'){
+            data.push(lottoList.b6);
+        }
+
+        if(props.type === 'super') {
+            data.push(lottoList.sn);
+        }
+
+        return data;
+    }
+
+    async function createQrCode(){
+       let numbers = [];
+       let idxList = [];
+
         if(isChecked.indexOf(true) === -1){
-            alert('請先勾選號碼');
+            alert('請先勾選號碼');  return;
         }
         isChecked.map((num, i)=>{
             if(num === true && 0 < i) {
                 console.log('MyNumberList.jsx:81 ->',numberData[i-1]);
+                numbers.push(getQRLottoArray(props.buyData[i-1]));
+                idxList.push(props.buyData[i-1].idx);
+                props.buyData.isUse = 'Y';
                 setOnQr(true);
             }
         })
+
+        for(let i = 1; i < isChecked.length; i++) {
+            if(isChecked[i] === true) {
+                numbers.push(getQRLottoArray(props.buyData[i-1]));
+                idxList.push(props.buyData[i-1].idx);
+                props.buyData.isUse = 'Y';
+            }
+        }
+        let savedDate = getLastIssue() // 로컬스토리지에 저장된 날짜
+        if ( savedDate !== null ){
+            let newDate = props.buyData[0].regdate;
+            savedDate = new Date(savedDate).getTime();
+            newDate = new Date(newDate).getTime();
+
+            if(savedDate < newDate){
+                initLocal(props.type);
+            }
+        }
+
+        // if(numbers.length === 0) {
+        //     alert('請先勾選號碼');
+        //     return;
+        // }
+        // setQrValue('');
+        let result = await getQrString(props.type, numbers, idxList);
+       console.log('MyNumberList.jsx:174 ->',result);
+        setDataInLocal(result.data[0]);
+        if(result.data !== null) {
+            setQrValue(result.data[0]);
+            setOnQr(true);
+            props.refreshData();
+        }
+        else {
+            return false;
+        }
+    }
+
+    function setDataInLocal(qr){
+        if(isChecked.indexOf(true) === -1) return;
+
+        const qrHistoryListDaily = LocalStorageService.get('qrHistoryListDaily');
+        const qrHistoryListBig = LocalStorageService.get('qrHistoryListBig');
+        const qrHistoryListSuper = LocalStorageService.get('qrHistoryListSuper');
+
+        let lottoDate = [];
+        lottoDate = [props.issue, props.buyData[0].regdate];
+
+        switch (props.type){
+            case 'daily' :
+                let selectedHistoryDaily = [];
+                const qrHistoryDaily = qrHistoryListDaily ? JSON.parse(qrHistoryListDaily) : [];
+                let qrHistoryDailyCopy = [...qrHistoryDaily];
+
+                for(let i = isChecked.length-1; i > -1; i--){
+                    if(isChecked[i+1] === true){
+                        selectedHistoryDaily.unshift(props.buyData[i]);
+                    }
+                }
+
+                qrHistoryDailyCopy.unshift({date: lottoDate, data : selectedHistoryDaily, qr: qr});
+                LocalStorageService.set('qrHistoryListDaily', JSON.stringify(qrHistoryDailyCopy));
+                break;
+
+            case 'big' :
+                let selectedHistoryBig = [];
+                const qrHistoryBig = qrHistoryListBig ? JSON.parse(qrHistoryListBig) : [];
+                let qrHistoryBigCopy = [...qrHistoryBig];
+
+                for(let i = 0; i < isChecked.length-1; i++){
+                    if(isChecked[i+1] === true){
+                        selectedHistoryBig.unshift(props.buyData[i]);
+
+                    }
+                }
+                qrHistoryBigCopy.unshift({date: lottoDate, data : selectedHistoryBig, qr: qr});
+                LocalStorageService.set('qrHistoryListBig', JSON.stringify(qrHistoryBigCopy));
+                break;
+
+            case 'super' :
+                let selectedHistorySuper = [];
+                const qrHistorySuper = qrHistoryListSuper ? JSON.parse(qrHistoryListSuper) : [];
+                let qrHistorySuperCopy = [...qrHistorySuper];
+
+                for(let i = 0; i < isChecked.length-1; i++){
+                    if(isChecked[i+1] === true){
+                        selectedHistorySuper.unshift(props.buyData[i]);
+
+                    }
+                }
+                qrHistorySuperCopy.unshift({date: lottoDate, data : selectedHistorySuper, qr: qr});
+                LocalStorageService.set('qrHistoryListSuper', JSON.stringify(qrHistorySuperCopy));
+                break;
+
+        }
+
+
     }
 
     useEffect(()=>{
         handleSelectedIssue();
+
     },[onQr])
     return (
-
         <section className='numberListCover'>
             <h1 className='hidden'>QR code generate page</h1>
-            {onQr === true ? <QrCodePopup setOnQr={setOnQr}/> : null}
+            {onQr === true ?
+                <QrCodePopup setOnQr={setOnQr} value={qrValue}/>
+                : null}
             <select onChange={handleSelectedIssue} value={selectedIssue} className='selectCover'>
                 {props.lottoIssue.map((data, i)=>
-                    <option value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
+                    <option key={i} value={i}>第 {data.issue}期  {data?.draw_date ? convertToChineseYear(data.draw_date)+'三' : '' }</option>
                 )}
             </select>
             <header className='indexCover' style={{backgroundColor: props.color}}>
-                <input type="checkbox" value={0} onClick={(e)=> selectCheckBox(e)} checked={isChecked[0]}/>
+                <input type="checkbox" value={0} onClick={(e)=> getSelectedCheckBox(e)} checked={isChecked[0]}/>
                 <span>{lang().MY_FUDA_NUM}</span>
                 <span>{lang().RESULT}</span>
             </header>
-            <p>{regData}</p>
-            <ol>
-                {numberData.map((item,i)=>
-                    (i !== numberData.length-1 ?
-                        <li>
-                            <input
-                                type="checkbox"
-                                onClick={(e)=> selectCheckBox(e)}
-                                value={i+1} name='number'
-                                checked={isChecked[i+1]}/>
-                            <div>
-                                <LottoNumList
-                                    b1={item.b1}
-                                    b2={item.b2}
-                                    b3={item.b3}
-                                    b4={item.b4}
-                                    b5={item.b5}
-                                    b6={item.b6 ? item.b6 : false}
-                                    sn={item.sn ? item.sn : false}
-                                    setColor={setWinNumColor}
-                                    setSnColor={setWinNumColor}/>
-                            </div>
-                            <span>{lang().WAITING}</span>
-                        {/* TODO */}
-                        {/*    1. QR생성후 'QR생성완료' 문구추가*/}
-                        {/*    2. 구매체크 후 '구매완료' 문구추가*/}
-
-                        </li>
-                        : null
-                    ))}
-            </ol>
+            <p>{convertToChineseYear(regData)}&nbsp;&nbsp;{getJustTime(regData)}</p>
+            <LottoNumRow
+                type={props.type}
+                buyData={props.buyData}
+                color={props.color}
+                isChecked={isChecked}
+                winNumData={winNumData}
+                numberData={numberData}
+                getSelectedCheckBox={getSelectedCheckBox}
+            />
             <button className='qrMakeBtn' onClick={createQrCode}>
                 <img src={scanIcon} alt="scan icon image"/>
                 <span>{lang().MAKE_QR}</span>

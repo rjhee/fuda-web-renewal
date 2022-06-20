@@ -213,3 +213,18 @@ export let getUserWinResultInfoTotal = async (lotto_type, startIssue, endIssue) 
         params: data,
     });
 }
+
+export let getQrString = async (type,numbers, idxList) => {
+
+    let data = {
+        type: type,
+        numbers:numbers,
+        idxList:idxList,
+    }
+
+    return await request({
+        url: '/lotto/qrcode',
+        method: 'GET',
+        params: data,
+    });
+}
