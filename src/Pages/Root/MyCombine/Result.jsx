@@ -18,7 +18,7 @@ const Result = (props) => {
     const [superLotto, setSuperLotto] = useState(false);
     const [lottoIssue, setLottoIssue] = useState([]);
     const [lottoName, setLottoName] = useState('');
-    const [buyData, setBuyData] = useState({});
+    const [buyData, setBuyData] = useState([]);
     const [ea, setEa] = useState(0);
 
     const [color, setColor] = useState(Color.WHITE);

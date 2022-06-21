@@ -80,6 +80,8 @@ const LottoNumRow = (props) => {
 
     },[props?.buyData])
 
+
+
     return (
         <ol>
             {props?.buyData?.map((item,i)=>

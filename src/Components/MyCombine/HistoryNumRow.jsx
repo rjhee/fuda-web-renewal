@@ -44,13 +44,13 @@ const HistoryNumRow = (props) => {
 
     return (
         <ol className='historyGroup'>
-            {props.historyData.map((items, i)=>
+            {props?.historyData?.map((items, i)=>
               <li>
                   {onQr === true ?
                       <QrCodePopup setOnQr={setOnQr} value={qrCode}/>
                       : null}
                   <div className='index'>
-                      <span style={{color: props.color}}>{props.historyData.length-i}{lang().TEAM}</span>
+                      <span style={{color: props.color}}>{props?.historyData?.length-i}{lang().TEAM}</span>
                       <button className='qrBtn' onClick={()=> {
                           setOnQr(true);
                           setQrCode(items.qr);

@@ -30,13 +30,11 @@ const MyResultList = (props) => {
         let fromIssue = lottoIssue[selectedIssueFrom].issue;
         let toIssue = lottoIssue[selectedIssueTo].issue;
 
-        console.log('MyResultList.jsx:33 ->',fromIssue);
-        console.log('MyResultList.jsx:34 ->',toIssue);
         if(!!fromIssue === true && !!toIssue === true) {
            if(fromIssue <= toIssue){
                let result = await getUserWinResultInfo(props.type, fromIssue, toIssue, page, 15);
                let data = result.data;
-               console.log('MyResultList.jsx:38 ->',data);
+
                setNumberData(data);
                for(let i = 0; i < data.length; i++){
                    await setWinNumberList(data[i]);
