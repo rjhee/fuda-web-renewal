@@ -81,6 +81,8 @@ const Result = (props) => {
     // 로또 타입 변경시 MyNumberList 컴포넌트 리셋
     // 이전 회차 disabled
     // 툴팁
+    // 「狀態」之勾選為提供會員自行紀錄之用，
+    // 本平台並未經營任何彩券販售或兌換行為。
     return (
         <section className='resultCover'>
             <header>

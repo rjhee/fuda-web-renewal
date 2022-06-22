@@ -13,10 +13,13 @@ const Combine = () => {
 
     return (
         <Routes>
-            <Route exact path="/" element={<HomeScreen/>}/>
-            <Route path={COMBINE} element={<MyCombineScreen pathResult={COMBINE+RESULT} pathHistory={COMBINE+HISTORY}/>}/>
-            <Route path={COMBINE+RESULT+ID} element={<Result path={COMBINE+RESULT}/>}/>
-            <Route path={COMBINE+HISTORY+ID} element={<History path={COMBINE+HISTORY}/>}/>
+            <Route path={COMBINE}
+                   element={
+                <MyCombineScreen
+                    pathResult={COMBINE + RESULT}
+                    pathHistory={COMBINE+HISTORY}/>}/>
+            <Route path={COMBINE + RESULT + ID} element={<Result path={COMBINE + RESULT}/>}/>
+            <Route path={COMBINE + HISTORY + ID} element={<History path={COMBINE + HISTORY}/>}/>
         </Routes>
     );
 };

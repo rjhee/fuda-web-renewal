@@ -11,7 +11,7 @@ import YoutubeScreen from "../Pages/Root/Home/Youtube/YoutubeScreen";
 const Home = () => {
     return (
         <Routes>
-            <Route exact path="/" element={<HomeScreen/>}/>
+            <Route path="/" element={<HomeScreen/>}/>
             <Route path="/winning" element={<WinningScreen/>}/>
             <Route path="/winning/:id" element={<WinningListScreen/>}/>
             <Route path="/analytics" element={<AnalyticsScreen/>}/>

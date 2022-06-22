@@ -1,12 +1,13 @@
 import React from 'react';
 import {Color} from "../../Styles/Base/color";
-import iconImg from "../../Assets/Images/icon/google_icon.png"
+
 
 const LoginButton = (props) => {
     const buttonType = props.type === 'FULL' ? 'fullLoginBtnCover' : 'emptyLoginBtnCover';
     let buttonStyle = {};
     let font = {};
     let icon = props.icon ? props.icon : '';
+    let text = props.text ? props.text : 'Google帳號登入';
 
     if(props.type === 'FULL') {
         buttonStyle = {backgroundColor: props.color , border: 'none'};
@@ -21,8 +22,10 @@ const LoginButton = (props) => {
             onClick={props.onClick}
             className={buttonType}
             style={buttonStyle}>
-            <img src={icon} alt="icon image"/>
-            <span style={font}>{props.text}Google帳號登入</span>
+            {props.icon ?
+                <img src={icon} alt="icon image"/>
+            : null}
+            <span style={font}>{text}</span>
         </button>
     );
 };
