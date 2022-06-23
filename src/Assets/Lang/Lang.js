@@ -67,6 +67,8 @@ export const lang = () => {
         'RECENTLY' : '最近',
         'NO_SHOW' : '期未出現',
         'ANNOUNCEMENT' : '公告',
+        'ALREADY_MEMBER' : '您已經是會員嗎',
+        'CHECK' : '查看',
 
         //---------Content Text-----------
         'FIGURE' : 'The Figures Inc.',
@@ -81,7 +83,7 @@ export const lang = () => {
         'TERMS' : '使用條款',
         'PRIVACY_POLICY' : '隱私權政策',
         'CONTINUE' : '繼續',
-        '18+' : '18歲以上',
+        '18+' : '本服務僅限18歲以上者加入',
         'AGREE_TERMS' : '我同意以下條款',
         'AGREE_TERMS_MUST' : '同意使用條款 (必填) ',
         'PRIVACY_POLICY_MUST' : '同意隱私權政策 (必填)',
@@ -132,7 +134,7 @@ export const lang = () => {
         'RE_ENTER_PW' : '請再輸入一次密碼',
         'ENTER_CELL' : '請輸入電話號碼',
         'ENTER_C_NUM': '請輸入驗證號碼',
-        'ONLY_18': '本服務僅限18歲以上者加入',
+        'ONLY_18': '我同意以下條款',
         'RECEIVE_C_NUM_4': '您將會收到4位數的驗證號碼',
         'MORE': 'MORE +',
 

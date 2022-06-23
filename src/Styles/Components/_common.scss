@@ -149,7 +149,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   border-radius: 5px;
   margin-bottom: 10px;
   > img {
-      width: 21px;
+      width: 24px;
       height: auto;
       margin: 0 12px;
   }
@@ -520,3 +520,93 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 
 }
+
+// TextButton.jsx
+.textBtnCover {
+  a {
+    margin: 0 4px;
+    button {
+      color: $REGULAR_GREY;
+    }
+  }
+}
+
+// RoundButton.jsx
+.roundBtnCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  border: 1px solid $REGULAR_GREY;
+  border-radius: 20px;
+
+  button {
+    line-height: 2rem;
+    font-size: $font-MR;
+  }
+}
+
+// CheckBoxWithText.jsx
+.checkBoxWithText {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+  > .checkboxCover {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    > .checkboxLabel {
+      display: flex;
+      flex-direction: row;
+      > .checked {
+        background-image: url("../../Assets/Images/icon/check.png");
+        background-position:  center -50%;
+        background-size:  cover;
+        background-repeat: no-repeat;
+      }
+      > .checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border: 2px solid $REGULAR_GREY;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+      > .text {
+        color: $REGULAR_GREY;
+        margin-bottom: 4px;
+        > strong {
+          margin-right: 10px;
+          font-size: $font_MR;
+          line-height: 1;
+          margin-bottom: 10px;
+          height: 17px;
+        }
+      }
+      > span {
+        color : $LIGHT_GREY_1;
+      }
+    }
+    > span {
+      height: 17px;
+      button {
+        color: $MAIN_RED;
+        font-size: $font_MR;
+        line-height: 1;
+
+      }
+    }
+  }
+  > .subText {
+    font-size: $font_M;
+    color : $LIGHT_GREY_1;
+    text-indent: 30px;
+    margin: 5px 0;
+  }
+}
+
+

@@ -7,6 +7,7 @@
   text-align: center;
 }
 
+// LongInput.jsx
 .longInput {
   width: 100%;
   background-color: $LIGHT_GREY_4;
@@ -24,10 +25,11 @@
   }
 }
 
+// LoginScreen.jsx
 .loginScreenCover {
   padding: 21px;
   > h1 {
-    margin-bottom: 50px;
+    margin:20px 0 50px 0;
   }
   > .inputGroup {
     margin-bottom: 30px;
@@ -38,18 +40,8 @@
     align-items: center;
     font-size: 14px;
     margin-bottom: 60px;
-    a:first-child {
-      margin: 0 4px;
-      button {
-        color: $REGULAR_GREY;
-      }
-    }
-    a:last-child {
-      margin: 0 4px;
-      button {
-        color: $MAIN_RED;
-      }
-    }
+
+
   }
   > .line {
     position: relative;
@@ -66,3 +58,135 @@
     }
   }
 }
+
+// FindFwScreen.jsx
+.findFwCover {
+  padding: 21px;
+  > h1 {
+    margin:20px 0 50px 0;
+  }
+  > p {
+    text-align: center;
+    color: $REGULAR_GREY;
+    font-size: $font_MR;
+    margin-bottom: 80px;
+  }
+  > .inputGroup {
+    margin-bottom: 30px;
+  }
+}
+
+// SignUpScreen.jsx
+.signUpCover {
+  padding: 21px;
+  > h1 {
+    margin:20px 0 50px 0;
+  }
+  > .btnGroup {
+    margin-bottom: 50px;
+  }
+  > .textBtnGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+    > div {
+      color: $REGULAR_GREY;
+    }
+  }
+  > .roundBtnGroup {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+// SignUpEnterInform
+.signUpFormCover {
+  padding: 21px;
+  > h1 {
+    margin:20px 0 50px 0;
+  }
+  >.checkboxCover {
+    border-top: 2px dashed $LIGHT_GREY_6;
+    border-bottom: 2px dashed $LIGHT_GREY_6;
+    padding: 15px 0 0 5px;
+    margin-bottom: 30px;
+  }
+  > .timer{
+    display: block;
+    font-size: $font-M;
+    color: $REGULAR_GREY;
+    text-align: right;
+    padding: 5px;
+    line-height: 1.5;
+  }
+  > p {
+    font-size: $font-M;
+    color: $REGULAR_GREY;
+    text-align: center;
+    padding: 5px;
+    line-height: 1.5;
+  }
+}
+
+// SignUpAgreeCheckbox.jsx
+
+// PolicyModal.jsx
+.policyModalCover {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  > .box {
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 90%;
+    height: 90vh;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    background-color: $WHITE;
+    > h1 {
+      //position:fixed;
+      button {
+        position: absolute;
+        top:2%;
+        right:2%;
+        > img {
+          width: 22px;
+          height: auto;
+        }
+      }
+    }
+    > .contentsCover {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 85%;
+      padding: 10px 20px;
+      overflow-y: scroll;
+      strong {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: $font_M;
+        font-family: Noto_Bold, sans-serif;
+        color: $REGULAR_GREY;
+        margin-bottom: 20px;
+      }
+      p {
+        display: flex;
+        font-size: $font_M;
+        color: $REGULAR_GREY;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+    }
+  }
+
+}
+
+//
