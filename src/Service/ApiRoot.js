@@ -76,6 +76,10 @@ export const request = async function (options) {
         .catch(onError);
 };
 
+export const removeAccessToken = () => {
+    client.defaults.headers.common['Access-Token'] = null;
+};
+
 
 export const checkState = async ()=>{
 
