@@ -209,3 +209,14 @@ export async function SNSlogout() {
     }
 
 }
+
+export const getUserData = () => {
+    if ( !!userData === false ){
+        return {
+            grade : 'FREE',
+            uid : 0,
+            name : 'Fuda lotto'
+        }
+    }
+    return userData;
+}

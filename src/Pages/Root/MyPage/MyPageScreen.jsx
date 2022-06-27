@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import LoginButton from "../../../Components/Common/LoginButton";
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -9,14 +9,77 @@ import AnalyzeBar from "../../../Components/MyPage/AnalyzeBar";
 import PromptModal from "../../../Components/Common/PromptModal";
 import NaviList from "../../../Components/MyPage/NaviList";
 import InfoBox from "../../../Components/MyPage/InfoBox";
+import * as UserService from "../../../Service/UserService";
+
 
 
 const MyPageScreen = (props) => {
     let navigate = useNavigate();
     let googleSignInClient = null;
     const [onModal, setOnModal] = useState(false);
-    const [barValue, setBarValue] = useState(0);
+    const [winData, setWinData] = useState(null);
+    const [currentValue, setCurrentValue] = useState(30);
+    const [maxValue, setMaxValue] = useState(100);
+    const [per, setPer] = useState(0);
 
+    const [isInput, setInput] = useState(false);
+    const [inputValue, setInputValue] = useState(100000);
+
+    let updateMaxValue = async (value) =>{
+        let check = /^[0-9]+$/;
+        if (!check.test(value)) {
+            alert("僅能輸入數字");
+            return false ;
+        }
+
+        if(value < currentValue) {
+            value = currentValue;
+        }
+
+        if(value.toString().length > 20) {
+            alert('數字過大'); //값이 너무 큽니다.
+            return false ;
+        }
+        setMaxValue(value);
+        await UserService.setGoal(value)
+        return true;
+    }
+    async function updateMaxValueNum(){
+        let success = await updateMaxValue(inputValue);
+        if (success){
+            setInput(false);
+        }
+    }
+
+    useEffect(()=>{
+        UserService.getGoal().then(r=>{
+            console.log('AnalyzeBar.jsx:22 ->',r);
+            if( r.data !== null && r.data[0] !== null && r.data[0].goal !== null) {
+                setMaxValue(r.data[0].goal);
+                setInputValue(r.data[0].goal)
+            }
+            else {
+                setMaxValue(10000);
+            }
+        })
+    },[isInput]);
+
+    useEffect(()=>{
+        if(winData !== null) {
+            let sum = winData.big_sum + winData.daily_sum + winData.super_sum;
+            setCurrentValue(sum);
+            console.log('MyPageScreen.jsx:71 ->',sum);
+        }
+    }, [winData]);
+
+    useEffect(()=>{
+        if(currentValue > maxValue) {
+            return;
+        }
+        let perNum = (currentValue/maxValue)*100;
+        setPer(perNum);
+
+    },[ currentValue,maxValue ]);
     let logoutProcess = () => {
         AuthService.logout().then((result)=>{
             // TODO
@@ -27,11 +90,11 @@ const MyPageScreen = (props) => {
     }
     return (
         <section className='myPageScreenCover'>
-            {onModal === true ? <PromptModal on={onModal} setOn={setOnModal} value={barValue} setValue={setBarValue}/> : null}
+            {onModal === true ? <PromptModal on={onModal} setOn={setOnModal} value={maxValue} setValue={setMaxValue}/> : null}
             <div className='infoCover'>
                 <UserInfoCard/>
-                <AnalyzeCard/>
-                <AnalyzeBar value={barValue} onClick={setOnModal}/>
+                <AnalyzeCard setWinData={setWinData}/>
+                <AnalyzeBar per={per} maxValue={maxValue} onClick={setOnModal}/>
             </div>
             <NaviList
                 myPagePath={props.myPagePath}
