@@ -22,10 +22,11 @@ const MyPageScreen = (props) => {
     const [maxValue, setMaxValue] = useState(100);
     const [per, setPer] = useState(0);
 
-    const [isInput, setInput] = useState(false);
     const [inputValue, setInputValue] = useState(100000);
 
     let updateMaxValue = async (value) =>{
+        // TODO
+        // max value 업데이트 안되는거 확인
         let check = /^[0-9]+$/;
         if (!check.test(value)) {
             alert("僅能輸入數字");
@@ -44,12 +45,6 @@ const MyPageScreen = (props) => {
         await UserService.setGoal(value)
         return true;
     }
-    async function updateMaxValueNum(){
-        let success = await updateMaxValue(inputValue);
-        if (success){
-            setInput(false);
-        }
-    }
 
     useEffect(()=>{
         UserService.getGoal().then(r=>{
@@ -62,7 +57,7 @@ const MyPageScreen = (props) => {
                 setMaxValue(10000);
             }
         })
-    },[isInput]);
+    },[]);
 
     useEffect(()=>{
         if(winData !== null) {
@@ -90,7 +85,17 @@ const MyPageScreen = (props) => {
     }
     return (
         <section className='myPageScreenCover'>
-            {onModal === true ? <PromptModal on={onModal} setOn={setOnModal} value={maxValue} setValue={setMaxValue}/> : null}
+            {onModal === true ?
+                <PromptModal
+                    on={onModal}
+                    setOn={setOnModal}
+                    value={maxValue}
+                    setValue={setMaxValue}
+                    setInputValue={setInputValue}
+                    updateValue={async()=> {
+                        let success = await updateMaxValue(inputValue);
+                        console.log('MyPageScreen.jsx:96 ->',success);}}/>
+                : null}
             <div className='infoCover'>
                 <UserInfoCard/>
                 <AnalyzeCard setWinData={setWinData}/>

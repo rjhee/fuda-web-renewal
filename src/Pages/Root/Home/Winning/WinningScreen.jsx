@@ -64,12 +64,14 @@ const WinningScreen = (props) => {
 
 
     return (
-        <div>
-            <Title
-                day={startDate}
-                color={Color.MAIN_RED}
-                text1={lang().FUDA_LOTTO}
-                text2={lang().LOTTO_RESULT}/>
+        <section className='winningScreenCover'>
+            <h1>
+                <Title
+                    day={startDate}
+                    color={Color.MAIN_RED}
+                    text1={lang().FUDA_LOTTO}
+                    text2={lang().LOTTO_RESULT}/>
+            </h1>
             <Link to='/winning/daily'>
                 <WinningBox
                     titleImg={dailyIcon}
@@ -119,7 +121,7 @@ const WinningScreen = (props) => {
                     text={lang().WINNER_LIST}/>
             </div>
             <Caution/>
-        </div>
+        </section>
     );
 };
 

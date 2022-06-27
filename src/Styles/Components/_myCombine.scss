@@ -77,8 +77,9 @@
 // Result.jsx
 .resultCover {
   @include minScreenWidth;
-  > header {
-    margin-bottom: 30px;
+  > h1 {
+    padding: 0 21px;
+    margin-bottom: 10px;
   }
   > .contents {
     padding: 21px;
@@ -362,8 +363,9 @@
 // History.jsx
 .historyCover {
   @include minScreenWidth;
-  > header {
-    margin-bottom: 30px;
+  > h1 {
+    padding: 0 21px;
+    margin-bottom: 20px;
   }
   > .contents {
     padding: 0 21px;

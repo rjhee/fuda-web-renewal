@@ -8,7 +8,7 @@ const YoutubeScreen = () => {
 const { height, width } = useWindowDimensions();
     return (
         <section className='youtubeCover'>
-            <h1 className='titleCover'>
+            <h1>
                 <Title text1={lang().YOUTUBE} color={Color.MAIN_RED}/>
             </h1>
             <div className='contentsCover'>

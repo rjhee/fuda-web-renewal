@@ -8,7 +8,7 @@ import AnalyzeTotalValue from "./AnalyzeTotalValue";
 import * as UserService from "../../Service/UserService"
 
 const AnalyzeCard = (props) => {
-    const [toggleOn, setToggleOn] = useState(false);
+    const [toggleOn, setToggleOn] = useState(true);
     const [title, setTitle] = useState(lang().TOTAL_MONEY);
     const [winData, setWinData] = useState(null);
 
@@ -84,7 +84,7 @@ const AnalyzeCard = (props) => {
         <section className='analyzeCardCover'>
             <h1>
                 <Title size={'small'} color={Color.MAIN_RED} text1={title}/>
-                <ToggleButton on={toggleOn} setOn={setToggleOn} left={lang().AMOUNT_S} right={lang().FREQUENCY}/>
+                <ToggleButton on={toggleOn} setOn={setToggleOn} right={lang().AMOUNT_S} left={lang().FREQUENCY}/>
             </h1>
             <div className='pieChartCover'>
                 <div className='chart'>

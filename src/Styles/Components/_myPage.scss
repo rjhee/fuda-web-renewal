@@ -205,7 +205,7 @@
       > .minNum {
         position: absolute;
         top: 18px;
-        left: 0;
+        left: 2px;
         font-family: 'Noto Sans TC';
         font-style: normal;
         font-weight: 400;
@@ -223,7 +223,7 @@
       }
       > .maxNum {
         position: absolute;
-        right: -4px;
+        right: -23px;
         top: 18px;
         font-family: 'Noto Sans TC';
         font-style: normal;
@@ -350,15 +350,17 @@
     border-bottom: 1px dashed #DADADA;
   }
   > footer {
-    font-family: 'Noto Sans TC';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 22px;
-    text-align: center;
-    color: #7B7B7B;
     padding: 15px 0;
-      span {
+    text-align: center;
+      > button {
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 22px;
+        text-align: center;
+        color: #7B7B7B;
+        padding: 0;
         &:last-child:before {
           display: inline-block;
           content: '|';

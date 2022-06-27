@@ -89,9 +89,9 @@ const History = (props) => {
     },[id]);
     return (
         <section className='historyCover'>
-            <header>
+            <h1>
                 <Title text1={lang().MAKE_QR} color={Color.MAIN_RED}/>
-            </header>
+            </h1>
             <main className='contents'>
                 <div className='btnCover'>
                     <ColorButton path={props.path+'/daily'} text={lang().DAILY_LOTTO} color={dailyLotto ? Color.ORANGE : Color.LIGHT_GREY_1}/>

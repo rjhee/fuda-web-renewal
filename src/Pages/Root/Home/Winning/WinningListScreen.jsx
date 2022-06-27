@@ -89,12 +89,14 @@ const WinningListScreen = () => {
 
 
     return (
-        <div className='winningListCover'>
-            <Title
-                day={startDate}
-                color={Color.MAIN_RED}
-                text1={lang().FUDA_LOTTO}
-                text2={lang().LOTTO_RESULT}/>
+        <section className='winningListCover'>
+            <h1>
+                <Title
+                    day={startDate}
+                    color={Color.MAIN_RED}
+                    text1={lang().FUDA_LOTTO}
+                    text2={lang().LOTTO_RESULT}/>
+            </h1>
             <div className='btnCover'>
                 <ColorButton onClick={()=>setPage(0)} path={'/winning/daily'} text={lang().DAILY_LOTTO} color={dailyLotto ? Color.ORANGE : Color.LIGHT_GREY_1}/>
                 <ColorButton onClick={()=>setPage(0)} path={'/winning/big'}  text={lang().BIG_LOTTO} color={bigLotto ? Color.DARK_BLUE : Color.LIGHT_GREY_1}/>
@@ -114,7 +116,7 @@ const WinningListScreen = () => {
                 last={lastPage}
                 onPrev={onPrev}
                 onNext={onNext}/>
-        </div>
+        </section>
     );
 };
 

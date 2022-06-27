@@ -13,7 +13,6 @@ const UserInfoCard = (props) => {
 
     let refreshUserData = async function(){
         let userInfo = await AuthService.getUserData();
-        console.log('UserInfoCard.js:userInfo ->',userInfo);
         setGrade(userInfo['grade']);
         setName(userInfo['name']);
         setUid(userInfo['uid'])
@@ -54,8 +53,6 @@ const UserInfoCard = (props) => {
             let day = date.getDate();
             let month = date.getMonth() + 1;
             let year = date.getFullYear() - 2022 + 111;
-
-            console.log('UserInfoCard.js:stringDate ->',date, day, month, year);
             return `${year}.${month}.${day}`;
         }
 

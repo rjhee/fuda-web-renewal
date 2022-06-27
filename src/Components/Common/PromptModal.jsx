@@ -8,6 +8,7 @@ const PromptModal = (props) => {
             console.log('PromptModal.jsx:8 ->',targeted);
         if(targeted === 'ok') {
             props.setValue(inputValue);
+            props.setInputValue(inputValue);
             props.setOn(false);
         }else if(targeted !== 'longInput'){
             props.setOn(false);
@@ -23,7 +24,7 @@ const PromptModal = (props) => {
                 </div>
                 <div className='btnCover'>
                     <button className='cancel'>取消</button>
-                    <button className='ok'>確認</button>
+                    <button className='ok' onClick={props.updateValue}>確認</button>
                 </div>
             </div>
         </section>

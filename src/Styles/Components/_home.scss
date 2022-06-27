@@ -324,8 +324,17 @@
   margin: 0 21px 100px 21px;
 }
 
+// WinningScreen.jsx
+.winningScreenCover {
+ > h1 {
+   padding:0 21px;
+ }
+}
 // winningListScreen.jsx
 .winningListCover {
+  > h1 {
+    padding: 0 21px;
+  }
   @include minScreenWidth;
   > .btnCover {
     display: flex;
@@ -506,7 +515,8 @@
 .pressCover {
   @include minScreenWidth;
     > h1 {
-      margin-bottom: 10px;
+      padding: 0 21px;
+      margin-bottom: 20px;
     }
    .pressBox{
     border-radius: 15px;
@@ -572,7 +582,8 @@
 // youtubeScreen.jsx
 .youtubeCover {
   @include minScreenWidth;
-  > .titleCover {
+  > h1 {
+    padding: 0 21px;
   }
   > .contentsCover {
     margin: 0 21px;

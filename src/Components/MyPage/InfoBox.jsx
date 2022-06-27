@@ -1,10 +1,16 @@
 import React, {useState} from 'react';
 import Title from "../Common/Title";
 import {Color} from "../../Styles/Base/color";
+import {lang} from "../../Assets/Lang/Lang";
+import PolicyModal from "../Modal/PolicyModal";
+import {policyContents, termsContents} from "../../Service/util";
 
 
 const InfoBox = () => {
     const [version, setVersion] = useState('3.0.6');
+    const [onTerms, setOnTerms] = useState(false);
+    const [onPolicy, setOnPolicy] = useState(false);
+
     return (
         <section className='infoBoxCover'>
             <h1>
@@ -39,9 +45,13 @@ const InfoBox = () => {
                 <span>ver.{version} (目前已是最新版本)</span>
             </div>
             <footer>
-                <span>使用條款</span>
-                <span>隱私權政策</span>
+                <button onClick={()=>setOnTerms(true)}>{lang().TERMS}</button>
+                <button onClick={()=>setOnPolicy(true)}>{lang().PRIVACY_POLICY}</button>
             </footer>
+            {onTerms === true ?
+                <PolicyModal title={lang().TERMS} contents={termsContents} setOn={setOnTerms}/> : null}
+            {onPolicy === true ?
+                <PolicyModal title={lang().PRIVACY_POLICY} contents={policyContents} setOn={setOnPolicy}/> : null}
         </section>
     );
 };
