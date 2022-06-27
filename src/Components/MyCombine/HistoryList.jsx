@@ -4,7 +4,7 @@ import HistoryNumRow from "./HistoryNumRow";
 
 const HistoryList = (props) => {
     return (
-        <section>
+        <section className='historyListCover'>
             <div className='groupIndex' style={{backgroundColor: props.color}}>
                 <span>{lang().GENERATED_QR_G}</span>
                 <div>

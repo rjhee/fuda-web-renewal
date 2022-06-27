@@ -178,8 +178,8 @@ export const sendPhoneAuth = (email, phone) => {
     });
 }
 
-export async function googleLogin(providerName) {
-    const authProvider = new firebase.auth[`${providerName}AuthProvider`]();
+export async function googleLogin() {
+    const authProvider = new firebase.auth.GoogleAuthProvider();
 
     let result  = await firebaseApp.auth().signInWithPopup(authProvider);
     console.log('AuthService.js:185 ->',result);

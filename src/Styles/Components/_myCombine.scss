@@ -409,7 +409,7 @@
 }
 
 // HistoryList.jsx
-section {
+.historyListCover {
   @include minScreenWidth;
   .groupIndex {
     display: flex;

@@ -425,7 +425,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 // Title.jsx
 .titleSection{
-  padding: 10px 21px;
+  //padding: 10px 0;
   > .date {
     color: $REGULAR_GREY;
     font-size: $font_R;
@@ -609,4 +609,128 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 }
 
+// UserIdWithIcon.jsx
+.userIdWithIcon {
+  display: flex;
+  align-items: center;
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  .userId {
+    font-family: Noto_Medium, sans-serif;
+    font-size: 15px;
+    color: $REGULAR_GREY;
+    line-height: 20px;
+  }
 
+}
+
+// ToggleButton.jsx
+.toggleButtonCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96px;
+  height: 24px;
+  background: #C4C4C4;
+  border-radius: 22.8571px;
+  box-shadow: inset 0px -1.14286px 4.57143px rgba(0, 0, 0, 0.25), inset 0px 1.14286px 4.57143px rgba(0, 0, 0, 0.25);
+  div {
+    width: 35.82px;
+    height: 16.34px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 11.4286px;
+    line-height: 18px;
+    color: #4D4D4D;
+    text-align: center;
+  }
+  > .toggleOn {
+    width: 47.76px;
+    height: 17.6px;
+    font-size: 11.4286px;
+    line-height: 18px;
+    background: #F1F1F1;
+    border-radius: 8.67051px;
+  }
+}
+
+// PromptModalCover.jsx
+.promptModalCover {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 100;
+  > .box {
+    &:before {
+      padding-top: 10%;
+    }
+    width: 80%;
+    top:50%;
+    left:50%;
+    padding:0 21px 21px 21px;
+    transform: translate(-50%,-50%);
+    @include responsive-box(20%);
+    border-radius: 15px;
+    background-color: $WHITE;
+    > h1 {
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 150%;
+      /* identical to box height, or 27px */
+
+      text-align: center;
+      margin-bottom: 20px;
+      color: #7B7B7B;
+    }
+    > .inputCover {
+      position: relative;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 220%;
+      margin-bottom: 20px;
+      /* identical to box height, or 29px */
+      text-align: right;
+      color: #656565;
+      > span {
+        position: absolute;
+        top: 4px;
+        right: 10px;
+      }
+    }
+    > .btnCover {
+      text-align: center;
+      button {
+        width: 68px;
+        height: 27px;
+        border-radius: 20px;
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 22px;
+        /* identical to box height */
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0 5px;
+      }
+      > .cancel {
+        background: #7B7B7B;
+      }
+      > .ok {
+        background: #FF6565;
+      }
+    }
+  }
+
+}

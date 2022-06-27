@@ -21,7 +21,7 @@ const Login = () => {
 
     let navigate = useNavigate();
     function onGoogleLogin (){
-       AuthService.googleLogin('Google')
+       AuthService.googleLogin()
            .then((result)=> {
                uid = result.user.uid;
                email = result.user.email;

@@ -69,6 +69,7 @@ export const lang = () => {
         'ANNOUNCEMENT' : '公告',
         'ALREADY_MEMBER' : '您已經是會員嗎',
         'CHECK' : '查看',
+        'TOTAL_MONEY':'總中獎金額',
 
         //---------Content Text-----------
         'FIGURE' : 'The Figures Inc.',
@@ -286,6 +287,7 @@ export const lang = () => {
         'SHOP' :'商城',
         'FUDA_COIN': 'FC',
         'EXCHANGE': '兌換',
+        'FREQUENCY': '次數',
 
         'TOTAL_WIN':'總中獎次數',
 

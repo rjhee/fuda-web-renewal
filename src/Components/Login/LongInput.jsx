@@ -11,6 +11,7 @@ const LongInput = (props) => {
 
     return (
         <input
+            autoFocus={true}
             className='longInput'
             type={type}
             placeholder={placeHolder}
