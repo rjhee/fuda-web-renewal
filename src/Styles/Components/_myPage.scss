@@ -6,6 +6,16 @@
   }
 }
 
+// myPageScreenForGuestCover.jsx
+.myPageScreenForGuestCover {
+  > .loginBtn {
+    padding: 21px 21px 11px 21px;
+     button {
+      border-radius: 20px;
+    }
+  }
+}
+
 // UserInfoCard.jsx
 .userInfoCardCover {
   padding: 4px 16px;
@@ -106,6 +116,8 @@
         margin-bottom: 4px;
         > strong {
           display: flex;
+          flex-shrink: 0;
+          flex-grow: 1;
           align-items: center;
           font-family: 'Noto Sans TC';
           font-style: normal;
@@ -271,8 +283,9 @@
   border-bottom: 4px solid #EBEBEB;
   padding: 0 21px;
   > li {
-    > a {
+    > button {
       display: flex;
+      width: 100%;
       justify-content: space-between;
       align-items:  center;
       height: 50px;
@@ -303,7 +316,7 @@
     }
   }
   li:last-child {
-    > a {
+    > button {
       border-bottom : none;
     }
   }
@@ -367,5 +380,289 @@
           padding: 0 6px;
         }
       }
+  }
+}
+
+//userInfoEditReLoginScreen.jsx
+.userInfoEditReLoginCover {
+  padding: 10px 21px;
+    > h1 {
+      margin-bottom: 10px;
+    }
+    > p {
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 220%;
+      color: #595959;
+      margin-bottom: 20px;
+    }
+  > .inputCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > label {
+      flex-shrink: 0;
+      flex-grow: 1;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 220%;
+      color: #656565;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+  }
+  > .btnCover {
+    display: flex;
+    button {
+      width: 50%;
+      flex-grow: 0;
+      flex-shrink: 1;
+    }
+    button:first-child {
+     margin-right: 8px;
+    }
+  }
+}
+
+// NaviUserInfoEditScreen.jsx
+.userInfoEditCover {
+  padding: 10px 21px;
+  > h1 {
+    margin-bottom: 10px;
+  }
+  > ul {
+    @include sectionBoxShadow;
+    border-radius: 15px;
+    padding: 8px 21px;
+    margin-bottom: 50px;
+    > li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #DADADA;
+      > .infoCover {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        padding: 12px 0;
+        > span {
+          text-align: center;
+          font-family: 'Noto Sans TC';
+          font-style: normal;
+          font-weight: 700;
+          font-size: 18px;
+          line-height: 26px;
+          color: #656565;
+          width: 40px;
+          margin-right: 15px;
+        }
+        > strong {
+          font-family: 'Noto Sans TC';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 22px;
+          color: #656565;
+        }
+      }
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+  }
+  > p {
+    text-align: center;
+    border-top: 1px dashed $LIGHT_GREY_2;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    color: $LIGHT_GREY_1;
+  }
+}
+
+// UserInfoEditNameChangeScreen.jsx
+// userInfoEditNameChangeScreen.jsx
+.userInfoEditNameChangeCover,
+.userInfoEditPhoneChangeCover,
+.userInfoEditPwChangeCover,
+.userInfoEditSignOutCover,
+.userInfoEditSignOutReasonCover {
+  padding: 10px 21px;
+  > h1 {
+    margin-bottom: 10px;
+  }
+   > .inputCover:nth-child(3)  {
+    > .timer {
+      position: absolute;
+      top: 12%;
+      right: 38%;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 220%;
+      /* identical to box height, or 29px */
+
+      text-align: right;
+
+      color: #A6A6A6;
+    }
+  }
+  > .inputCover {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+    > label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      flex-shrink: 0;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 220%;
+      color: #656565;
+      margin-right: 6px;
+      margin-bottom: 10px;
+    }
+    > input {
+      margin-right: 6px;
+    }
+    > button {
+      flex-grow: 1;
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+  }
+  > .descCover {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #B2B2B2;
+    border-top: 1px dashed $LIGHT_GREY_2;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  > .btnCover {
+    display: flex;
+    button {
+      width: 50%;
+      flex-grow: 0;
+      flex-shrink: 1;
+    }
+    button:first-child {
+      margin-right: 8px;
+    }
+  }
+}
+
+.userInfoEditPwChangeCover {
+  > .inputCover {
+    > label {
+      width: 70px;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.userInfoEditSignOutCover,
+.userInfoEditSignOutReasonCover {
+  > .descCover:nth-child(2) {
+    > ol {
+      padding-left:21px;
+      > li {
+        list-style-type: decimal;
+      }
+    }
+  }
+  > .descCover:nth-child(3) {
+    > ul {
+      @include sectionBoxShadow;
+      border-radius: 15px;
+      padding: 8px 21px;
+      margin-bottom: 10px;
+      > li {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        border-bottom: 1px dashed #DADADA;
+        padding: 12px 0;
+          > span {
+            text-align: center;
+            font-family: 'Noto Sans TC';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 26px;
+            color: #656565;
+            width: 40px;
+            margin-right: 15px;
+          }
+          > strong {
+            font-family: 'Noto Sans TC';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 22px;
+            color: #656565;
+          }
+      }
+       li:last-child {
+         border-bottom: none;
+       }
+    }
+  }
+  > .descCover {
+    border-top: none;
+    margin: 0;
+    position: relative;
+    > .line {
+      display: block;
+      width: 100%;
+      border-bottom: 2px $LIGHT_GREY_6 solid;
+      margin-bottom: 30px;
+    }
+    > p {
+      position: absolute;
+      top:0;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 220%;
+      color: #595959;
+      width: fit-content;
+      background-color: $WHITE;
+      padding-right: 20px;
+    }
+  }
+  > .btnCover {
+    margin-top: 40px;
+    > button {
+      border-radius: 20px;
+    }
+  }
+}
+
+.userInfoEditSignOutReasonCover {
+ .checkBoxWithText {
+   border-top: 1px dashed $LIGHT_GREY_2;
+   padding: 8px;
+   margin: 0;
+ }
+  > .checkbox {
+    .checkBoxWithText:last-child {
+      border-bottom: 1px dashed $LIGHT_GREY_2;
+    }
   }
 }

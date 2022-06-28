@@ -1,11 +1,11 @@
 import React from 'react';
 
-const NaviUserInfoEdit = () => {
+const NaviCouponScreen = () => {
     return (
         <div>
-            
+
         </div>
     );
 };
 
-export default NaviUserInfoEdit;
+export default NaviCouponScreen;

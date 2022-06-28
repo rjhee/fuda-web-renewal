@@ -734,3 +734,20 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 
 }
+
+// LineButtonCover.jsx
+.LineButtonCover {
+  border-radius: 20px;
+  border: 2px solid $LIGHT_GREY;
+  padding: 2px 18px;
+  > span {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+    color: #7B7B7B;
+
+  }
+}

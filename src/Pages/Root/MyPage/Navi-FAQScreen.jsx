@@ -1,11 +1,11 @@
 import React from 'react';
 
-const NaviCoupon = () => {
+const NaviFAQScreen = () => {
     return (
         <div>
-
+            
         </div>
     );
 };
 
-export default NaviCoupon;
+export default NaviFAQScreen;

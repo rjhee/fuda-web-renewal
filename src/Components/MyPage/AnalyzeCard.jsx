@@ -92,8 +92,8 @@ const AnalyzeCard = (props) => {
                         lineWidth={55}
                         data={[
                             { title: 'daily', value: rate[0], color: Color.REGULAR_ORANGE },
-                            { title: 'big', value: rate[1], color: Color.LIGHT_RED },
-                            { title: 'super', value: rate[2], color: Color.LIGHT_BLUE },
+                            { title: 'big', value: rate[1], color: Color.LIGHT_BLUE },
+                            { title: 'super', value: rate[2], color: Color.LIGHT_RED },
                         ]}
                     />
                 </div>

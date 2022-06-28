@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NaviPaymentInfo = () => {
+const NaviPaymentInfoScreen = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const NaviPaymentInfo = () => {
     );
 };
 
-export default NaviPaymentInfo;
+export default NaviPaymentInfoScreen;

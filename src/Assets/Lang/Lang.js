@@ -297,6 +297,11 @@ export const lang = () => {
 
         'SET_GOAL': '設立目標',
 
+        'SIGN_OUT': '登出',
+        'CHANGE': '變更',
+        'PHONE': '手機號碼',
+        'PASSWORD': '密碼',
+        'ACCOUNT': '帳號',
         'ACCOUNT_SETTING': '帳號設定',
         'NOTIFICATION_SETTING': '通知設定',
         'PAYMENT_SETTING': '付款資訊',

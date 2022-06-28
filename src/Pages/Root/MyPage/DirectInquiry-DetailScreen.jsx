@@ -1,6 +1,6 @@
 import React from 'react';
 
-const q = () => {
+const DirectInquiryDetailScreen = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const q = () => {
     );
 };
 
-export default q;
+export default DirectInquiryDetailScreen;

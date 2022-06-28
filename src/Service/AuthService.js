@@ -220,3 +220,14 @@ export const getUserData = () => {
     }
     return userData;
 }
+
+export const isGuest = () => {
+    console.log('AuthService.js:225 ->',userData);
+    if( !!userData === false ){
+        return true;
+    }
+    else if ( userData.uid === 0) {
+        return true;
+    }
+    else return false;
+}

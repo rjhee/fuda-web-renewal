@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NaviDirectInquiry = () => {
+const NaviRecipetLottoScreen = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const NaviDirectInquiry = () => {
     );
 };
 
-export default NaviDirectInquiry;
+export default NaviRecipetLottoScreen;

@@ -27,6 +27,7 @@ const MyPageScreen = (props) => {
     let updateMaxValue = async (value) =>{
         // TODO
         // max value 업데이트 안되는거 확인
+
         let check = /^[0-9]+$/;
         if (!check.test(value)) {
             alert("僅能輸入數字");
@@ -63,7 +64,6 @@ const MyPageScreen = (props) => {
         if(winData !== null) {
             let sum = winData.big_sum + winData.daily_sum + winData.super_sum;
             setCurrentValue(sum);
-            console.log('MyPageScreen.jsx:71 ->',sum);
         }
     }, [winData]);
 
@@ -75,6 +75,8 @@ const MyPageScreen = (props) => {
         setPer(perNum);
 
     },[ currentValue,maxValue ]);
+
+
     let logoutProcess = () => {
         AuthService.logout().then((result)=>{
             // TODO

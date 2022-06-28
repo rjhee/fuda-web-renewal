@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NaviNotificationSetting = () => {
+const DirectInquiryWriteScreen = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const NaviNotificationSetting = () => {
     );
 };
 
-export default NaviNotificationSetting;
+export default DirectInquiryWriteScreen;
