@@ -666,3 +666,190 @@
     }
   }
 }
+
+//notificationDetail.jsx
+.notificationDetailCover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed #DADADA;
+  padding: 10px;
+  > .textCover {
+    display: flex;
+    flex-direction: column;
+    > h1 {
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 220%;
+      color: #595959;
+    }
+    > span {
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 150%;
+      color: #A6A6A6;
+
+    }
+  }
+}
+
+// NaviNotificationSettingScreen.jsx
+.naviNotificationSettingCover {
+  padding: 10px 21px;
+  > h1 {
+    margin-bottom: 10px;
+  }
+  > .btnCover {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 36px;
+  }
+}
+
+// notificationNumber.jsx
+.notificationNumberCover {
+  text-align: center;
+  padding-bottom: 40px;
+}
+// notificationNumberTime.jsx
+.notificationNumberTimeCover {
+  margin-bottom: 60px;
+  position: relative;
+  > h1 {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 220%;
+    text-align: center;
+    color: #595959;
+    margin-bottom: 30px;
+    > strong {
+      color: #D52323;
+    }
+  }
+  > h2 {
+    position: absolute;
+    top: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    color: #595959;
+    padding: 0 10px;
+    background-color: $WHITE;
+  }
+  > ul {
+    border: 1px solid #C2C2C2;
+    border-radius: 10px;
+    padding: 40px 20px 10px 20px;
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      > img {
+        margin-bottom: 20px;
+      }
+    }
+    li:nth-child(1) {
+      border-bottom: 1px dashed $LIGHT_GREY_6;
+      > img {
+        width: 82.96px;
+        height: 34.64px;
+      }
+    }
+    li:nth-child(2) {
+      border-bottom: 1px dashed $LIGHT_GREY_6;
+      > img {
+        width: 77.56px;
+        height: 40px;
+      }
+    }
+    li:nth-child(3) {
+      > img {
+        width: 87.52px;
+        height: 36.47px;
+      }
+    }
+  }
+}
+
+// notificationNumberGroupScreen.jsx
+.notificationNumberGroupCover {
+  position: relative;
+  margin-bottom: 40px;
+  > h1 {
+    position: absolute;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    color: #595959;
+    padding: 0 10px;
+    background-color: $WHITE;
+  }
+  > ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid #C2C2C2;
+    border-radius: 10px;
+    padding: 40px 20px 10px 20px;
+    li {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      > img {
+        margin-bottom: 20px;
+      }
+      > select {
+        border-radius: 5px;
+        border: 1px solid $LIGHT_GREY_6;
+        width: 100%;
+        padding: 6px;
+        font-size: $font_MR;
+        color: $LIGHT_GREY;
+        font-family: Noto_Regular, sans-serif;
+      }
+    }
+    li:nth-child(1) {
+      > img {
+        width: 82.96px;
+        height: 34.64px;
+      }
+    }
+    li:nth-child(2) {
+      > img {
+        width: 77.56px;
+        height: 40px;
+      }
+    }
+    li:nth-child(3) {
+      > img {
+        width: 87.52px;
+        height: 36.47px;
+      }
+    }
+  }
+}
