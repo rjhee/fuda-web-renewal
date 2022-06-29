@@ -18,6 +18,7 @@ import UserInfoEditSignOutScreen from "../Pages/Root/MyPage/UserInfoEdit-SignOut
 import DirectInquiryDetailScreen from "../Pages/Root/MyPage/DirectInquiry-DetailScreen";
 import DirectInquiryWriteScreen from "../Pages/Root/MyPage/DirectInquiry-WriteScreen";
 
+
 const MyPage = () => {
     const MAIN = '/myPage';
     const NO_USER = '/noUser';
@@ -39,6 +40,8 @@ const MyPage = () => {
     const DETAIL = '/detail:id';
     const WRITE = '/write';
 
+    const LOGIN = '/login';
+
 
     return (
         <Routes>
@@ -54,10 +57,12 @@ const MyPage = () => {
                     qnaPath={QNA}/>}/>
             <Route path={MAIN + NO_USER} element={
                 <MyPageScreenForGuest
+                    guestPath={MAIN + NO_USER}
+                    userPath={MAIN}
                     myPagePath={MAIN + NO_USER}
                     receiptPath={RECEIPT}
                     faqPath={FAQ}/>}/>
-            <Route path={MAIN + USER} element={<NaviUserInfoEditScreen/>}/>
+            <Route path={MAIN + USER} element={<NaviUserInfoEditScreen reLoginPath={MAIN + USER + RE_LOGIN}/>}/>
             <Route path={MAIN + NOTIFICATION} element={<NaviNotificationSettingScreen/>}/>
             <Route path={MAIN + PAYMENT} element={<NaviPaymentInfoScreen/>}/>
             <Route path={MAIN + COUPON} element={<NaviCouponScreen/>}/>
@@ -65,12 +70,12 @@ const MyPage = () => {
             <Route path={MAIN + FAQ} element={<NaviFAQ/>}/>
             <Route path={MAIN + QNA} element={<NaviDirectInquiryScreen/>}/>
 
+            <Route path={MAIN + USER + RE_LOGIN} element={<UserInfoEditReLoginScreen/>}/>
             <Route path={MAIN + USER + NAME} element={<UserInfoEditNameChangeScreen/>}/>
             <Route path={MAIN + USER + PHONE} element={<UserInfoEditPhoneChangeScreen/>}/>
             <Route path={MAIN + USER + PW} element={<UserInfoEditPwChangeScreen/>}/>
-            <Route path={MAIN + USER + RE_LOGIN} element={<UserInfoEditReLoginScreen/>}/>
             <Route path={MAIN + USER + SIGN_OUT} element={<UserInfoEditSignOutScreen/>}/>
-            <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen/>}/>
+            <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen mainPath={MAIN} loginPath={LOGIN}/>}/>
 
             <Route path={MAIN + QNA + DETAIL} element={<DirectInquiryDetailScreen/>}/>
             <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen/>}/>

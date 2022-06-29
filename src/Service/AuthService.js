@@ -231,3 +231,10 @@ export const isGuest = () => {
     }
     else return false;
 }
+
+export const getUserSimple = () =>{
+    return request({
+        url: '/user/simple',
+        method: 'GET',
+    });
+}

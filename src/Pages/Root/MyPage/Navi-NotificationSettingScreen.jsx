@@ -2,7 +2,7 @@ import React from 'react';
 import Title from "../../../Components/Common/Title";
 import {Color} from "../../../Styles/Base/color";
 import ColorButton from "../../../Components/Common/ColorButton";
-import NotificationDetail from "../../../Components/MyPage/NotificationDetail";
+
 import NotificationList from "../../../Components/MyPage/NotificationList";
 import NotificationNumber from "../../../Components/MyPage/NotificationNumber";
 

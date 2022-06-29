@@ -548,24 +548,29 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 // CheckBoxWithText.jsx
 .checkBoxWithText {
+    cursor: pointer;
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
   > .checkboxCover {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
 
     > .checkboxLabel {
+      cursor: pointer;
       display: flex;
       flex-direction: row;
       > .checked {
+        cursor: pointer;
         background-image: url("../../Assets/Images/icon/check.png");
         background-position:  center -50%;
         background-size:  cover;
         background-repeat: no-repeat;
       }
       > .checkbox {
+        cursor: pointer;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -576,9 +581,11 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
         margin-right: 10px;
       }
       > .text {
+        cursor: pointer;
         color: $REGULAR_GREY;
         margin-bottom: 4px;
         > strong {
+          cursor: pointer;
           margin-right: 10px;
           font-size: $font_MR;
           line-height: 1;

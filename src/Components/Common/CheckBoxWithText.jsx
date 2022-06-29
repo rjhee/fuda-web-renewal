@@ -21,10 +21,9 @@ const CheckBoxWithText = (props) => {
     },[])
 
     return (
-        <div className='checkBoxWithText'>
+        <div className='checkBoxWithText' onClick={()=> props.onClick(props.i) ? props.onClick(props.i) : null}>
             <div className='checkboxCover'>
-
-                <input className='hidden' type="checkbox" id={`checkbox_${props.i}`} onClick={(e)=>checkedInput(e)} />
+                <input className='hidden' type="checkbox" id={`checkbox_${props.i}`} onClick={(e)=>props.setChecked ? checkedInput(e) : null} />
                 <label htmlFor={`checkbox_${props.i}`} className='checkboxLabel'>
                 <div className={`checkbox  ${props.checked === true ? 'checked' : ''} `}/>
                     <p className='text'>

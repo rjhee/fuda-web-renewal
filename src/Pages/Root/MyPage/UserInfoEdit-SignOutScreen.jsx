@@ -1,12 +1,42 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import Title from "../../../Components/Common/Title";
 import {lang} from "../../../Assets/Lang/Lang";
 import {Color} from "../../../Styles/Base/color";
 import LongInput from "../../../Components/Login/LongInput";
 import LoginButton from "../../../Components/Common/LoginButton";
 import CheckBoxWithText from "../../../Components/Common/CheckBoxWithText";
+import {useNavigate} from "react-router-dom";
+import {getUserSimple} from "../../../Service/AuthService";
 
-const UserInfoEditSignOutScreen = () => {
+const UserInfoEditSignOutScreen = (props) => {
+    let navigate = useNavigate();
+    const[sign, setSign] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    function getUserInfo(){
+        getUserSimple().then(r=>{
+            console.log('Navi-UserInfoEditScreen.jsx:34 ->',r.data);
+            if(r.data !== null) {
+                setName(r.data[0].name);
+                setEmail(r.data[0].email);
+            }
+        });
+    }
+    let signOut = () => {
+        if(sign === true) {
+            navigate('reason');
+        }else {
+            alert('請確認註銷會員之使用條款'); // 회원탈퇴 약관에 동의해주세요
+        }
+    }
+
+    let cancel = () =>{
+        navigate(-1);
+    }
+
+    useEffect(()=>{
+        getUserInfo();
+    },[])
     return (
         <section className='userInfoEditSignOutCover'>
             <h1>
@@ -36,18 +66,26 @@ const UserInfoEditSignOutScreen = () => {
                 <ul>
                     <li className='infoCover'>
                         <span>暱稱</span>
-                        <strong>test</strong>
+                        <strong>{name}</strong>
                     </li>
                     <li className='infoCover'>
                         <span>帳號</span>
-                        <strong>test@test.com</strong>
+                        <strong>{email}</strong>
                     </li>
                 </ul>
             </div>
-            <CheckBoxWithText text={'我已了解並同意所有須知'}/>
+            <div className='checkboxCover'>
+                <CheckBoxWithText
+                    checked={sign} setChecked={setSign}
+                    text={'我已了解並同意所有須知'}/>
+            </div>
             <div className='btnCover'>
-                <LoginButton text={'確認'} color={Color.MAIN_RED}/>
-                <LoginButton text={'取消'} color={Color.LIGHT_GREY}/>
+                <LoginButton
+                    onClick={signOut}
+                    text={'確認'} color={Color.MAIN_RED}/>
+                <LoginButton
+                    onClick={cancel}
+                    text={'取消'} color={Color.LIGHT_GREY}/>
             </div>
         </section>
     );

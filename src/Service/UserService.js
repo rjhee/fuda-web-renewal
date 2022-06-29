@@ -212,3 +212,4 @@ export const setGoal = (value) =>{
         params: reqData,
     });
 }
+

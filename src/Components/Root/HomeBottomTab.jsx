@@ -4,17 +4,7 @@ import {Link} from 'react-router-dom';
 import * as AuthService from "../../Service/AuthService";
 
 const HomeBottomTab = () => {
-    let guest = AuthService.isGuest();
-    const [MY_PAGE, setMY_PAGE] = useState('/myPage');
 
-    useEffect(()=>{
-        console.log('HomeBottomTab.jsx:11 ->',guest);
-        if(guest){
-            setMY_PAGE('/myPage/noUser');
-        }else {
-            setMY_PAGE('/myPage');
-        }
-    },[guest, MY_PAGE])
 
     return (
         <section className="tapCover">
@@ -34,7 +24,7 @@ const HomeBottomTab = () => {
                 <div/>
                 <span>{lang().MINI_GAME}</span>
             </Link>
-            <Link to={MY_PAGE} className='myPageBtn'>
+            <Link to='/myPage/noUser' className='myPageBtn'>
                 <div/>
                 <span>{lang().MY_PAGE}</span>
             </Link>

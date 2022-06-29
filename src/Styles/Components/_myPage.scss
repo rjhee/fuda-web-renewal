@@ -465,7 +465,7 @@
           font-style: normal;
           font-weight: 400;
           font-size: 15px;
-          line-height: 22px;
+          line-height: 15px;
           color: #656565;
         }
       }
@@ -572,6 +572,12 @@
       width: 70px;
       justify-content: flex-start;
     }
+  }
+}
+
+.userInfoEditSignOutCover{
+  .checkboxCover {
+    padding: 0 10px;
   }
 }
 
