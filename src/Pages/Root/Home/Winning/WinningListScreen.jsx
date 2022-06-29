@@ -17,9 +17,6 @@ const WinningListScreen = () => {
     const [bigLotto, setBigLotto] = useState(false);
     const [superLotto, setSuperLotto] = useState(false);
     const [data, setData] = useState([]);
-    const [superData, setSuperData] = useState([]);
-    const [bigData, setBigData] = useState([]);
-    const [dailyData, setDailyData] = useState([]);
     const [page, setPage] = useState(0);
     const [lastPage, setLastPage] = useState(0);
 

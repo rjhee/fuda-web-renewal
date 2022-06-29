@@ -12,24 +12,23 @@ import Root from "./Navigatior/Root";
 import Login from "./Navigatior/Login";
 
 
+
 function App() {
     const [loading, setLoading] = useState(false);
     LoadingService.initialize(setLoading);
     LocalStorageService.initialize();
 
-
-
-  return (
-    <div className="App">
-        <Loading on={loading}/>
-        <Header/>
-        <Home/>
-        <Combine/>
-        <MyPage/>
-        <Login/>
-        <Root/>
-        <HomeBottomTab/>
-    </div>
+      return (
+        <div className="App">
+            <Loading on={loading}/>
+            <Header/>
+            <Home/>
+            <Combine/>
+            <MyPage/>
+            <Login/>
+            <Root/>
+            <HomeBottomTab/>
+        </div>
   );
 }
 

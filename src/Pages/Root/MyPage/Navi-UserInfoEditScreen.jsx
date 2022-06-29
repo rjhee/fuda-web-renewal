@@ -7,6 +7,7 @@ import LineButton from "../../../Components/Common/LineButton";
 import {getUserSignType} from "../../../Service/UserService";
 import {getUserSimple} from "../../../Service/AuthService";
 const NaviUserInfoEditScreen = (props) => {
+
     let navigate = useNavigate();
     const [userInfo, setUserInfo] = useState([
         {key:lang().USER_ID, value: 'test', isBtn: true, path: '/'},

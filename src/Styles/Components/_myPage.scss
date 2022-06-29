@@ -859,3 +859,143 @@
     }
   }
 }
+
+// GradeText.jsx
+.gradeTextCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  height: 32px;
+  background-color: $LIGHT_GREY_2;
+  margin-bottom: 30px;
+  > h1 {
+    font-size: 15px;
+    color: $LIGHT_GREY;
+  }
+  > h2 {
+    font-size: 15px;
+    color: $MAIN_RED;
+  }
+}
+
+// NavPaymentInfoScreen.jsx
+.paymentInfoCover {
+  padding: 10px 21px;
+  > h1 {
+    margin-bottom: 20px;
+  }
+  > header {
+    height: 38px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid $LIGHT_GREY_2;
+    margin-bottom: 30px;
+
+    > h1,h2 {
+      font-size: 15px;
+      color: $REGULAR_GREY;
+      font-weight: bold;
+      width: 50%;
+      text-align: center;
+    }
+    > div {
+      width: 1px;
+      height: 25px;
+      background-color: $LIGHT_GREY_2;
+      margin: 0 4px;
+    }
+  }
+  > .list {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $LIGHT_GREY_2;
+    margin-bottom: 30px;
+    padding: 4px 0;
+      > .vipRenderCover {
+        width: 100%;
+        font-size: 13px;
+        color: $MAIN_RED;
+        padding: 6px 0;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px solid $LIGHT_GREY_2;
+        &:last-child {
+          border-bottom: none;
+        }
+    }
+  }
+  > .receiptHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $REGULAR_RED;
+    border-radius: 15px;
+    height: 38px;
+    margin-bottom: 30px;
+    > li {
+      font-weight: bold;
+      font-size: 14px;
+      color: $WHITE;
+      text-align: center;
+      width: 24%;
+    }
+  }
+  > .receiptBody,
+  .receiptHeader{
+    .name {
+      width: 32%;
+    }
+    .money {
+      width: 18%
+    }
+    .date {
+      width: 25%;
+    }
+    .order {
+      width: 22%;
+    }
+  }
+
+  > .receiptBody {
+    border-radius: 15px;
+    border: 1px solid $LIGHT_GREY_2;
+    margin-bottom: 10px;
+    > li {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid $LIGHT_GREY_2;
+      padding: 8px 0;
+      > ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        > li {
+          font-size: 13px;
+          color: $LIGHT_GREY;
+          text-align: center;
+          margin-left: 4px;
+        }
+      }
+    }
+    > .noData {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 0;
+      width: 100%;
+      font-family: 'Noto Sans TC';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 120%;
+      color: #7B7B7B;
+    }
+  }
+}

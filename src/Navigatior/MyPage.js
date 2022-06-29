@@ -19,7 +19,7 @@ import DirectInquiryDetailScreen from "../Pages/Root/MyPage/DirectInquiry-Detail
 import DirectInquiryWriteScreen from "../Pages/Root/MyPage/DirectInquiry-WriteScreen";
 
 
-const MyPage = () => {
+const MyPage = (props) => {
     const MAIN = '/myPage';
     const NO_USER = '/noUser';
     const USER = '/userEdit';
@@ -29,6 +29,7 @@ const MyPage = () => {
     const RECEIPT = '/receipt';
     const FAQ = '/faq';
     const QNA = '/qna';
+    const ID = '/:id';
 
 
     const NAME = '/name';
@@ -39,8 +40,10 @@ const MyPage = () => {
     const REASON = '/reason';
     const DETAIL = '/detail:id';
     const WRITE = '/write';
+    const LIST = '/list';
 
     const LOGIN = '/login';
+
 
 
     return (
@@ -49,7 +52,7 @@ const MyPage = () => {
                 <MyPageScreen
                     myPagePath={MAIN}
                     userPath={USER}
-                    notificationPath={NOTIFICATION}
+                    notificationPath={NOTIFICATION+LIST}
                     paymentPath={PAYMENT}
                     couponPath={COUPON}
                     receiptPath={RECEIPT}
@@ -62,8 +65,8 @@ const MyPage = () => {
                     myPagePath={MAIN + NO_USER}
                     receiptPath={RECEIPT}
                     faqPath={FAQ}/>}/>
-            <Route path={MAIN + USER} element={<NaviUserInfoEditScreen reLoginPath={MAIN + USER + RE_LOGIN}/>}/>
-            <Route path={MAIN + NOTIFICATION} element={<NaviNotificationSettingScreen/>}/>
+            <Route path={MAIN + USER} element={<NaviUserInfoEditScreen  reLoginPath={MAIN + USER + RE_LOGIN}/>}/>
+            <Route path={MAIN + NOTIFICATION + ID} element={<NaviNotificationSettingScreen path={MAIN + NOTIFICATION}/>}/>
             <Route path={MAIN + PAYMENT} element={<NaviPaymentInfoScreen/>}/>
             <Route path={MAIN + COUPON} element={<NaviCouponScreen/>}/>
             <Route path={MAIN + RECEIPT} element={<NaviReceiptLotto/>}/>

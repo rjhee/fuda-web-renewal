@@ -86,7 +86,10 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
 
 .colorBtnCover {
   text-align: center;
-  width: 100%;
+  //width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding: 0 8px;
   min-width: 96px;
   height: 36px;
   border-radius: 20px;
@@ -584,6 +587,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
         cursor: pointer;
         color: $REGULAR_GREY;
         margin-bottom: 4px;
+        text-align: left;
         > strong {
           cursor: pointer;
           margin-right: 10px;
