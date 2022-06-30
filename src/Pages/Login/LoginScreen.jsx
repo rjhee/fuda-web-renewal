@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {lang} from "../../Assets/Lang/Lang";
 import {Color} from "../../Styles/Base/color";
 import TitleBig from "../../Components/Login/TitleBig";
@@ -12,6 +12,7 @@ import * as AuthService from "../../Service/AuthService";
 
 const LoginScreen = (props) => {
     // 1) 첫번째 화면
+    const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [userPw, setUserPw] = useState('');
 
@@ -29,7 +30,8 @@ const LoginScreen = (props) => {
 
 
         if (result === true) {
-            console.log('LoginScreen.jsx:33 ->',result);
+            console.log('로그인 결과 : ',result);
+            navigate('/');
         }else {
             alert('login failed');
         }

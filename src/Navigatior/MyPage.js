@@ -71,7 +71,7 @@ const MyPage = (props) => {
             <Route path={MAIN + USER} element={<NaviUserInfoEditScreen  reLoginPath={MAIN + USER + RE_LOGIN}/>}/>
             {/*view 완료*/}
             <Route path={MAIN + NOTIFICATION + ID} element={<NaviNotificationSettingScreen path={MAIN + NOTIFICATION}/>}/>
-            {/*view 완료*/}
+            {/*view 완료, feat 테스트*/}
             <Route path={MAIN + PAYMENT} element={<NaviPaymentInfoScreen/>}/>
             {/*view 완료*/}
             <Route path={MAIN + COUPON} element={<NaviCouponScreen/>}/>
@@ -95,7 +95,7 @@ const MyPage = (props) => {
             <Route path={MAIN + USER + SIGN_OUT} element={<UserInfoEditSignOutScreen/>}/>
             {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen mainPath={MAIN} loginPath={LOGIN}/>}/>
-
+            {/*view 완료*/}
             <Route path={MAIN + QNA + DETAIL} element={<DirectInquiryDetailScreen/>}/>
             {/*view 완료*/}
             <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen/>}/>

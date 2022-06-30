@@ -4,7 +4,7 @@ import * as LoacalStorageService from "./LocalStorageService"
 const CODE = require('./status-code');
 // const apiURL = 'https://mobile-dev.fudalotto.com.tw';
 //  const apiURL = 'http://localhost:3030/';
-const apiURL = 'http://172.30.1.84:3030';
+const apiURL = 'http://172.30.1.75:3030';
 
 let client = axios.create({
     baseURL: apiURL,

@@ -29,3 +29,29 @@ export const getUserReciptHistoryCnt = () => {
         method: 'GET',
     });
 }
+
+export const usedCoupon = (coupon) => {
+    let reqData = {
+        coupon: coupon
+    };
+
+    return request({
+        url: '/shop/coupon/check',
+        method: 'POST',
+        data: reqData,
+    });
+}
+
+export const getCouponHistory = (start, count) => {
+    let reqData = {
+        start: start,
+        count: count,
+    };
+
+
+    return request({
+        url: '/shop/coupon/history',
+        method: 'POST',
+        data: reqData,
+    });
+}
