@@ -25,6 +25,28 @@
   }
 }
 
+// longFileInput.jsx
+.fileInputCover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: $LIGHT_GREY_4;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  color: $LIGHT_GREY_1;
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 5px;
+  > input {
+    display: none;
+  }
+  > img {
+    width: 28.24px;
+    height: auto;
+  }
+}
+
 // LoginScreen.jsx
 .loginScreenCover {
   padding: 21px;

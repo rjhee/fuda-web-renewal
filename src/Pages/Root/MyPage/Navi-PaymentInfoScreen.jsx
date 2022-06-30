@@ -4,6 +4,7 @@ import {Color} from "../../../Styles/Base/color";
 import GradeText from "../../../Components/MyPage/GradeText";
 import {getUserVipHistory,getUserReceiptHistory, getUserReciptHistoryCnt,  } from "../../../Service/PaymentService";
 import {convertToChineseYear} from "../../../Service/util";
+import Pagination from "../../../Components/Common/Pagination";
 
 const NaviPaymentInfoScreen = () => {
     const [vipRenderObj, setVipRenderObj] = useState([]);
@@ -146,7 +147,7 @@ const NaviPaymentInfoScreen = () => {
             <GradeText/>
             <header>
                 <h1>會籍</h1>
-                <div></div>
+                <div/>
                 <h2>會員期間</h2>
             </header>
             <div className='list'>
@@ -161,6 +162,7 @@ const NaviPaymentInfoScreen = () => {
             <ul className='receiptBody'>
                 {receiptRenderObj}
             </ul>
+            <Pagination current={0} last={1}/>
         </section>
     );
 };

@@ -742,8 +742,6 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   }
 }
 
-
-
 // PromptModalCover.jsx
 .promptModalCover {
   position: fixed;
@@ -826,6 +824,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   border-radius: 20px;
   border: 2px solid $LIGHT_GREY;
   padding: 2px 18px;
+  max-height: 30px;
   > span {
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -835,5 +834,26 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     text-align: center;
     color: #7B7B7B;
 
+  }
+}
+
+// Textarea.jsx
+.textareaCover {
+  > textarea {
+    width: 100%;
+    height: 200px;
+    background-color: $LIGHT_GREY_4;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    color: $LIGHT_GREY_1;
+    font-size: 13px;
+    line-height: 1.4;
+    border-radius: 5px;
+    resize: none;
+
+    &::placeholder {
+      color: $LIGHT_GREY_1;
+      font-size: 13px;
+    }
   }
 }

@@ -38,7 +38,7 @@ const MyPage = (props) => {
     const RE_LOGIN = '/reLogin';
     const SIGN_OUT = '/signOut';
     const REASON = '/reason';
-    const DETAIL = '/detail:id';
+    const DETAIL = '/detail';
     const WRITE = '/write';
     const LIST = '/list';
 
@@ -48,6 +48,7 @@ const MyPage = (props) => {
 
     return (
         <Routes>
+            {/* view 완료, feat 완료*/}
             <Route path={MAIN} element={
                 <MyPageScreen
                     myPagePath={MAIN}
@@ -58,6 +59,7 @@ const MyPage = (props) => {
                     receiptPath={RECEIPT}
                     faqPath={FAQ}
                     qnaPath={QNA}/>}/>
+            {/* view 완료, feat 완료*/}
             <Route path={MAIN + NO_USER} element={
                 <MyPageScreenForGuest
                     guestPath={MAIN + NO_USER}
@@ -65,22 +67,37 @@ const MyPage = (props) => {
                     myPagePath={MAIN + NO_USER}
                     receiptPath={RECEIPT}
                     faqPath={FAQ}/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER} element={<NaviUserInfoEditScreen  reLoginPath={MAIN + USER + RE_LOGIN}/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + NOTIFICATION + ID} element={<NaviNotificationSettingScreen path={MAIN + NOTIFICATION}/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + PAYMENT} element={<NaviPaymentInfoScreen/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + COUPON} element={<NaviCouponScreen/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + RECEIPT} element={<NaviReceiptLotto/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + FAQ} element={<NaviFAQ/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + QNA} element={<NaviDirectInquiryScreen/>}/>
 
+
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + RE_LOGIN} element={<UserInfoEditReLoginScreen/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + NAME} element={<UserInfoEditNameChangeScreen/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + PHONE} element={<UserInfoEditPhoneChangeScreen/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + PW} element={<UserInfoEditPwChangeScreen/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + SIGN_OUT} element={<UserInfoEditSignOutScreen/>}/>
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen mainPath={MAIN} loginPath={LOGIN}/>}/>
 
             <Route path={MAIN + QNA + DETAIL} element={<DirectInquiryDetailScreen/>}/>
+            {/*view 완료*/}
             <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen/>}/>
         </Routes>
     );
