@@ -1116,6 +1116,9 @@
 // NaviRecipetLottoScreen.jsx
 .receiptLottoCover {
   padding: 10px 21px;
+  .redValue {
+    color: $MAIN_RED;
+  }
   > h1 {
     margin-bottom: 50px;
   }
@@ -1124,6 +1127,7 @@
     border-radius: 10px;
     position: relative;
     padding: 40px 10px 0 10px;
+    margin-bottom: 60px;
     > header {
         position: absolute;
         left: 50%;
@@ -1163,17 +1167,25 @@
           margin-right: 20px;
         }
         > div {
+          display: block;
+          flex-grow: 1;
+          text-align: left;
           > strong {
             display: flex;
-            border-top: 1px solid #E6E6E6;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            &:first-child {
-              padding-top: 0;
-              border-top: none;
-            }
-            &:last-child {
-              padding-bottom: 0;
+            flex-direction: column;
+            letter-spacing: 0.4px;
+            > div {
+              border-top: 1px solid #E6E6E6;
+              padding-top: 8px;
+              padding-bottom: 8px;
+              &:first-child {
+                padding-top: 0;
+                border-top: none;
+              }
+              &:last-child {
+                padding-bottom: 0;
+              }
+
             }
           }
         }
@@ -1190,7 +1202,8 @@
   }
   > ul {
     > li {
-    padding: 6px 0;
+      padding: 6px 0;
+      border-top: 1px dashed #DADADA;
       > div {
         display: flex;
         align-items: flex-start;
@@ -1218,7 +1231,7 @@
 
         }
       }
-      border-top: 1px dashed #DADADA;
+
       > .question {
         > strong {
           background-color: $MAIN_RED;
@@ -1246,6 +1259,9 @@
           color: #7B7B7B;
         }
       }
+    }
+    li:last-child {
+      border-bottom: 1px dashed #DADADA;
     }
   }
 }

@@ -13,13 +13,8 @@ const NaviPaymentInfoScreen = () => {
     const [maxPage, setMaxPage] = useState(5);
     const pageCount = 5;
 
-    const [isFetching, setIsFetching] = useState(false);
 
     let key = 1;
-    let getKey = () => {
-        return key++
-    };
-
     useEffect(() => {
         getData().then();
     }, [currentPage]);

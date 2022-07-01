@@ -15,7 +15,6 @@ const NaviCouponScreen = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [maxPage, setMaxPage] = useState(1);
 
-    const [noData, setNoData] = useState(false);
     const [data, setData] = useState([]);
 
     const pageCount = 10;
@@ -41,17 +40,12 @@ const NaviCouponScreen = () => {
                 console.log('Navi-CouponScreen.jsx:25 ->',result.data);
             if(result.data !== null) {
                 setData(result.data);
-                setNoData(false);
-            }else {
-                setNoData(true);
             }
         });
     }
         useEffect(() => {
             getData().then();
-            return (()=>{
-                setNoData(false);
-            })
+
         }, [currentPage]);
 
         return (
@@ -72,7 +66,7 @@ const NaviCouponScreen = () => {
                     <h1>兌換品項</h1>
                     <h2>兌換日期</h2>
                 </header>
-                {noData === true ?
+                {data.length === 0 ?
                     <p>目前沒有兌換紀錄</p> :
                     <ul>
                         {data.map((item)=>

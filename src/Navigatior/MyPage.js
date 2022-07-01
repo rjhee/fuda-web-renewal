@@ -73,14 +73,14 @@ const MyPage = (props) => {
             <Route path={MAIN + NOTIFICATION + ID} element={<NaviNotificationSettingScreen path={MAIN + NOTIFICATION}/>}/>
             {/*view 완료, feat 테스트*/}
             <Route path={MAIN + PAYMENT} element={<NaviPaymentInfoScreen/>}/>
-            {/*view 완료*/}
+            {/*view 완료, feat 완료*/}
             <Route path={MAIN + COUPON} element={<NaviCouponScreen/>}/>
-            {/*view 완료*/}
+            {/*view 완료*, feat 완료*/}
             <Route path={MAIN + RECEIPT} element={<NaviReceiptLotto/>}/>
-            {/*view 완료*/}
+            {/*view 완료*, feat 완료*/}
             <Route path={MAIN + FAQ} element={<NaviFAQ/>}/>
-            {/*view 완료*/}
-            <Route path={MAIN + QNA} element={<NaviDirectInquiryScreen/>}/>
+            {/*view 완료* , feat 완료*/}
+            <Route path={MAIN + QNA} element={<NaviDirectInquiryScreen detailPath={MAIN + QNA + DETAIL} writePath={MAIN + QNA + WRITE}/>}/>
 
 
             {/*view 완료, feat 완료*/}
@@ -95,8 +95,8 @@ const MyPage = (props) => {
             <Route path={MAIN + USER + SIGN_OUT} element={<UserInfoEditSignOutScreen/>}/>
             {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen mainPath={MAIN} loginPath={LOGIN}/>}/>
-            {/*view 완료*/}
-            <Route path={MAIN + QNA + DETAIL} element={<DirectInquiryDetailScreen/>}/>
+            {/*view 완료* ,feat 완료*/}
+            <Route path={MAIN + QNA + DETAIL + ID} element={<DirectInquiryDetailScreen/>}/>
             {/*view 완료*/}
             <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen/>}/>
         </Routes>
