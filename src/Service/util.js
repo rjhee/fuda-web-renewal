@@ -148,6 +148,12 @@ export const policyContents = [
 
 ];
 
+export const showTooltip = (setTooltip) => {
+    setTooltip(true);
+    setTimeout(()=>{
+        setTooltip(false);
+    },800)
+}
 
 export const convertToChineseYear = (date) => {
     if(!!date === true){

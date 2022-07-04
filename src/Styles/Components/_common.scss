@@ -302,75 +302,81 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   border-radius: 20px 20px 0 0;
   background-color: $WHITE;
   z-index: 60;
-}
+  > a, button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    padding: 0;
+    margin-bottom: 5px;
+    > div {
+      display: block;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    > span {
+      font-family: Noto_Bold, sans-serif;
+      color: $LIGHT_GREY;
+      font-size: $font_S;
 
-.tapCover a {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 20%;
-  padding: 0;
-  margin-bottom: 5px;
-}
+    }
+  }
 
-.tapCover a div {
-  display: block;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
-  width: 100%;
-  margin-bottom: 5px;
-}
+  .homeBtn,
+  .feedBtn,
+  .miniGameBtn,
+  .myPageBtn {
+    .bg {
+      filter: opacity(0.5) drop-shadow(0 0 0 $BLACK);
+      &:hover {
+        @include hoverIconColor;
+      }
+    }
 
-.tapCover span {
-  font-family: Noto_Bold, sans-serif;
-  color: $LIGHT_GREY;
-  font-size: $font_S;
+  }
+  .homeBtn {
+    .bg{
+      background-image: $homeIcon;
+      height: 25px;
+    }
+  }
+  .feedBtn {
+    .bg{
+      background-image: $feedIcon;
+      height: 22px;
+    }
+  }
 
-}
+  .QRBtn {
+    .bg{
+      background-image: $QRIcon;
+      height: 46px;
+    }
+  }
 
-.homeBtn,
-.feedBtn,
-.miniGameBtn,
-.myPageBtn {
-  &:hover {
-    @include hoverIconColor;
+  .miniGameBtn {
+    .bg{
+      background-image: $miniGameIcon;
+      height: 25px;
+    }
+  }
+
+  .myPageBtn {
+    .bg{
+      background-image: $myPageIcon;
+      height: 25px;
+    }
   }
 }
 
-.homeBtn div,
-.feedBtn div,
-.miniGameBtn div,
-.myPageBtn div {
-  filter: opacity(0.5) drop-shadow(0 0 0 $BLACK);
 
-}
 
-.homeBtn div{
-  background-image: $homeIcon;
-  height: 25px;
-}
 
-.feedBtn div{
-  background-image: $feedIcon;
-  height: 22px;
-}
 
-.QRBtn div{
-  background-image: $QRIcon;
-  height: 46px;
-}
-
-.miniGameBtn div{
-  background-image: $miniGameIcon;
-  height: 25px;
-}
-
-.myPageBtn div{
-  background-image: $myPageIcon;
-  height: 25px;
-}
 
 // home screen slide notice
 .noticeSlideCover {
@@ -854,6 +860,47 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     &::placeholder {
       color: $LIGHT_GREY_1;
       font-size: 13px;
+    }
+  }
+}
+
+// Tooltip.jsx
+.tooltipCover {
+  position: absolute;
+  width: fit-content;
+  padding: 4px;
+  z-index: 2000;
+  min-width: 160px;
+  text-align: center;
+  > .background {
+    position: relative;
+    background-color: $REGULAR_RED;
+    border-radius: 4px;
+    color: $WHITE;
+    padding: 10px;
+    > .arrowUp,
+    > .arrowDown {
+      position:absolute;
+
+      width: 15px;
+      height: 15px;
+      background-color:$REGULAR_RED;
+      transform: rotate(45deg);
+      border-radius: 2px;
+    }
+     > .arrowUp {
+       top: -5px;
+       left: 50%;
+    }
+    > .arrowDown {
+      bottom: -5px;
+      left: 50%;
+    }
+    > p {
+      > span {
+        font-weight: bold;
+        font-size: 16px;
+      }
     }
   }
 }

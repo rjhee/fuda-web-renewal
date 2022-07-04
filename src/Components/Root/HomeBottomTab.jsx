@@ -1,31 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {lang} from "../../Assets/Lang/Lang";
 import {Link} from 'react-router-dom';
-import * as AuthService from "../../Service/AuthService";
+import Tooltip from "../Common/Tooltip";
+import {showTooltip} from "../../Service/util";
 
 const HomeBottomTab = () => {
+    const [tooltipMiniGame, setTooltipMiniGame] = useState(false);
 
 
     return (
         <section className="tapCover">
             <Link as={Link} to='/' className='homeBtn'>
-                <div/>
+                <div className='bg'/>
                 <span>{lang().HOME}</span>
             </Link>
             <Link as={Link} to='/feed' className='feedBtn'>
-                <div/>
+                <div className='bg'/>
                 <span>{lang().FEED}</span>
             </Link>
             <Link to='/combine' className='QRBtn'>
-                <div/>
+                <div className='bg'/>
                 <span>{lang().CENTER}</span>
             </Link>
-            <Link to='/game'  className='miniGameBtn'>
-                <div/>
+            <button onClick={()=>showTooltip(setTooltipMiniGame)}  className='miniGameBtn' style={{position: 'relative'}}>
+                {tooltipMiniGame === true ?  <Tooltip down={true}  top={'-75px'} left={'-55%'}/> : null}
+                <div className='bg'/>
                 <span>{lang().MINI_GAME}</span>
-            </Link>
+            </button>
             <Link to='/myPage/noUser' className='myPageBtn'>
-                <div/>
+                <div className='bg'/>
                 <span>{lang().MY_PAGE}</span>
             </Link>
         </section>

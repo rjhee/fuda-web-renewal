@@ -28,6 +28,7 @@ import MapIcon from "../../../Assets/Images/icon/map.png";
 
 import {Link} from "react-router-dom";
 import Caution from "../../../Components/Common/Caution";
+import Tooltip from "../../../Components/Common/Tooltip";
 
 const HomeScreen = () => {
     const { height, width } = useWindowDimensions();
