@@ -22,7 +22,8 @@ const NaviPaymentInfoScreen = () => {
     let getData = async () => {
         await getUserVipHistory().then(r => {
 
-            console.log('PaymentInfoScreen.js::35 ->',r);
+            console.log('NaviPaymentInfoScreen.js::25 ->',r);
+
 
             let data = [];
             if (r.data !== null && r.data.length !== 0) {
@@ -60,12 +61,17 @@ const NaviPaymentInfoScreen = () => {
     }
 
 
+
+
+
+
     let getVipText = (data, index, length) => {
         console.log('PaymentInfoScreen.js:getVipText:93 ->',data.start_date);
         console.log('PaymentInfoScreen.js:getVipText:94 ->',data.end_date);
 
         let nowDate = new Date();
-        let now = new Date(data.start_date) <= nowDate && new Date(data.end_date) >= nowDate
+        let now = new Date(data.start_date) <= nowDate && new Date(data.end_date) >= nowDate;
+
         console.log('PaymentInfoScreen.js:getVipText:85 ->', now);
 
         let grade = data.grade;
@@ -74,12 +80,22 @@ const NaviPaymentInfoScreen = () => {
         }else if(data.grade.toLowerCase() === 'gold'){
             grade = '黃金會員';
         }
+
+        function currentGrade(){
+            if(now === true && index === 0) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+
+
         return (
             <div className='vipRenderCover'>
-                <span className='grade'>
-                    {grade} {now === true ? '(使用中)':''}
+                <span className='grade' style={currentGrade() === true ? {color:Color.MAIN_RED} : {}}>
+                    {grade} {currentGrade() === true ? '(使用中)':''}
                 </span>
-                <span className='date'>
+                <span className='date' style={currentGrade() === true ? {color:Color.MAIN_RED} : {}}>
                     {`${convertToChineseYear(data.start_date)} ~ ${convertToChineseYear(data.end_date)}`}
                 </span>
             </div>
