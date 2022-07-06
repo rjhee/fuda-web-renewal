@@ -5,7 +5,8 @@ const CircleButton = (props) => {
         <button className='circleBtnCover'>
             <div className='line' style={props.color ? {borderColor:props.color} : null}>
                 <div className='circle' style={props.color ? {backgroundColor:props.color} : null}>
-                    <strong className='title'>{props.title ? props.title : 'Title'}</strong>
+                    {/*<strong className='title'>{props.title ? props.title : 'Title'}</strong>*/}
+                    <img className={props.color ? 'clickedImg' : ''} src={props.titleImg ? props.titleImg : ''} alt="Title" style={props.iconSize}/>
                 </div>
             </div>
             <p className='subTitle'>{props.subTitle ? props.subTitle : 'subTitle'}</p>

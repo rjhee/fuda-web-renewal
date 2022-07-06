@@ -14,7 +14,7 @@ const HomeBottomTab = () => {
                 <div className='bg'/>
                 <span>{lang().HOME}</span>
             </Link>
-            <Link as={Link} to='/feed' className='feedBtn'>
+            <Link as={Link} to='/feed/all' className='feedBtn'>
                 <div className='bg'/>
                 <span>{lang().FEED}</span>
             </Link>

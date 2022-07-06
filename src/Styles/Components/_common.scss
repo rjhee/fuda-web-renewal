@@ -107,7 +107,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 60px;
+  width: 65px;
   .line{
     display: flex;
     justify-content: center;
@@ -126,6 +126,13 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     height: 44px;
     border-radius: 50%;
     background-color: $LIGHT_GREY_6;
+    > img {
+      width: 30px;
+    }
+    .clickedImg {
+      filter: opacity(1) drop-shadow(0 0 0 #7B0000);
+      transition: filter 200ms ease-in;
+    }
     > .title {
       font-family: Noto_Medium, sans-serif;
       font-size: $font_R;
@@ -372,11 +379,6 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     }
   }
 }
-
-
-
-
-
 
 // home screen slide notice
 .noticeSlideCover {
@@ -902,5 +904,18 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
         font-size: 16px;
       }
     }
+  }
+}
+
+// UserIcon.jsx
+.userIconCover {
+  > img {
+    width: 19px;
+    height: 19px;
+  }
+  > span {
+    font-size: 15px;
+    color: $REGULAR_GREY;
+    margin-left: 5px;
   }
 }

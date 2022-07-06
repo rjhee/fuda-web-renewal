@@ -1,0 +1,124 @@
+// FeedCircleBtn.jsx
+.feedCircleBtnCover {
+  display: flex;
+  overflow-y: scroll;
+  @include scrollBarNone1;
+  @include scrollBarNone2;
+  width: 100%;
+  border-bottom: 3px solid $BG_GREY;
+  padding-bottom: 20px;
+}
+
+// FeedScreenCover.jsx
+.feedScreenCover {
+  > h1 {
+    padding: 10px 21px;
+    margin-bottom: 20px;
+  }
+}
+
+// FeedContents.jsx
+.feedContentsCover {
+  padding: 21px;
+  display: flex;
+  flex-direction: column;
+}
+
+// FeedCard.jsx
+.feedCardCover {
+  border: 1px solid $LIGHT_GREY_6;
+  padding: 10px 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  > header {
+    > .title {
+        margin-bottom: 10px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        color: #656565;
+        text-align: left;
+      }
+    > .subTitle {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 15px;
+      color: #C4C4C4;
+    }
+  }
+  > .main {
+    border-top: dashed 1px $LIGHT_GREY_6;
+    border-bottom: dashed 1px $LIGHT_GREY_6;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    color: #656565;
+    margin-bottom: 10px;
+    min-height: 130px;
+  }
+  > .halfImg {
+    display: flex;
+    > p {
+      width: 48%;
+      margin-right: 10px;
+    }
+    > .img {
+      //background-image: url('../../Assets/Images/icon/comment-icon.png');
+      width: 48%;
+      background-color: $LIGHT_GREY_5;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+  > .fullImg {
+    border-top: dashed 1px $LIGHT_GREY_6;
+    border-bottom: dashed 1px $LIGHT_GREY_6;
+    padding: 10px 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 150%;
+    color: #656565;
+    margin-bottom: 10px;
+  }
+  > footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > .btnCover {
+      display: flex;
+      align-items: center;
+      > .heart {
+        > img {width: 16px;}
+      }
+      > .comment {
+        > img {width: 15px;}
+      }
+      > button {
+        padding: 0 2px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        > img {
+          width: 15px;
+          margin:0 2px;
+        }
+        > span {
+          font-size: 11px;
+          color: #7B7B7B;
+          margin:0 2px;
+        }
+      }
+    }
+    > .category {
+      font-size: 11px;
+      color: #656565;
+      background-color: $LIGHT_GREY_5;
+      padding: 4px 10px;
+      border-radius: 15px;
+    }
+  }
+}

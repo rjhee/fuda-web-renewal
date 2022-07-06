@@ -10,6 +10,7 @@ import Combine from "./Navigatior/Combine";
 import MyPage from "./Navigatior/MyPage";
 import Root from "./Navigatior/Root";
 import Login from "./Navigatior/Login";
+import Feed from "./Navigatior/Feed";
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <Home/>
             <Combine/>
             <MyPage/>
+            <Feed/>
             <Login/>
             <Root/>
             <HomeBottomTab/>
