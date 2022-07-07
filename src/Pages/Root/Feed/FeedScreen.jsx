@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Title from "../../../Components/Common/Title";
 import FeedCircleBtn from "../../../Components/Feed/FeedCircleBtn";
-import FeedContents from "../../../Components/Feed/FeedContents";
+import FeedCardLists from "../../../Components/Feed/FeedCardLists";
 import {lang} from "../../../Assets/Lang/Lang";
 import {useParams} from "react-router-dom";
 import {Color} from "../../../Styles/Base/color";
@@ -70,15 +70,19 @@ const FeedScreen = (props) => {
             }
             console.log('FeedScreen.jsx: value.key->',value.key);
             console.log('FeedScreen.jsx:59 guest : ->',guest);
-            console.log('FeedScreen.jsx:72 ->',Number(value.key) === 0);
+            console.log('FeedScreen.jsx:72 ->', result.data);
+            if(result.data === null) {
+                setFeedLastUid(0);
+                setFeedListData([]);
+            }
 
             if(Number(value.key) === 0){
-                setFeedLastUid(result.data.all[result.data.all.length-1]['uid']);
-                setFeedListData(result.data.all);
+                setFeedLastUid(result?.data?.all[result?.data?.all?.length-1]['uid']);
+                setFeedListData(result?.data?.all);
 
             }else {
-                setFeedLastUid(result.data[result.data.length-1]['uid']);
-                setFeedListData(result.data);
+                setFeedLastUid(result?.data[result?.data?.length-1]['uid']);
+                setFeedListData(result?.data);
             }
 
 
@@ -112,7 +116,11 @@ const FeedScreen = (props) => {
                 <Title text1={currentTitle} color={Color.MAIN_RED}/>
             </h1>
             <FeedCircleBtn data={buttonData}/>
-            <FeedContents data={feedListData} path={currentFeedPath + props.detailPath}/>
+            {feedListData.length === 0
+                ? <div className='noNewsYet'>
+                    <span>目前無訊息</span>
+                </div>
+                : <FeedCardLists data={feedListData} category={currentTitle} path={currentFeedPath + props.detailPath}/>}
             <Pagination current={page} onPrev={onPrev} onNext={onNext}/>
         </section>
     );

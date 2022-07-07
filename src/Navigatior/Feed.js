@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import FeedScreen from "../Pages/Root/Feed/FeedScreen";
-import FeedContents from "../Components/Feed/FeedContents";
+import FeedCardLists from "../Components/Feed/FeedCardLists";
 import FeedCardDetailScreen from "../Pages/Root/Feed/FeedCardDetailScreen";
 
 const Feed = () => {

@@ -198,13 +198,15 @@ export const setWillLotteryDay = (type, date) => {
 
 export const getImageUrl = (url) => {
     // console.log('util.js:getImageUrl:3 ->',url);
-    if (url === undefined || url.length === 0) {
-        return url;
-    }
+    if(url){
+        if (url === undefined || url.length === 0) {
+            return url;
+        }
 
-    if (url.toString().indexOf('ncloudstorage') !== -1) {
-        return url;
-    }
+        if (url.toString().indexOf('ncloudstorage') !== -1) {
+            return url;
+        }
 
+    }
     return `https://sg.object.ncloudstorage.com/fuda-v2/${url}`;
 }
