@@ -3,11 +3,15 @@ import {Route, Routes} from "react-router-dom";
 import FeedScreen from "../Pages/Root/Feed/FeedScreen";
 import FeedCardLists from "../Components/Feed/FeedCardLists";
 import FeedCardDetailScreen from "../Pages/Root/Feed/FeedCardDetailScreen";
+import FeedLottoList from "../Pages/Root/Feed/FeedLottoList";
+import FeedCardLottoDetailScreen from "../Pages/Root/Feed/FeedCardLottoDetailScreen";
+import FeedCardEventDetailScreen from "../Pages/Root/Feed/FeedCardEventDetailScreen";
 
 const Feed = () => {
     const FEED = '/feed';
     const ID = '/:id';
     const DETAIL = '/detail';
+    const LOTTO = '/lotto';
 
     const ALL = '/all';
     const OFFICIAL = '/official';
@@ -34,8 +38,14 @@ const Feed = () => {
                     winnerSharePath={FEED + WINNER_SHARE}
                     wishBoardPath={FEED + WISH_BOARD}
                     mailPath={FEED + MAIL}
+                    lottoListPath={FEED + RESULT}
                 />}/>
             <Route path={FEED + ID + DETAIL + ID} element={<FeedCardDetailScreen/>}/>
+
+            <Route path={FEED + ID + ID} element={<FeedLottoList detailPath={FEED + RESULT}/>}/>
+            <Route path={FEED + ID + ID + ID} element={<FeedCardLottoDetailScreen/>}/>
+
+            <Route path={FEED + ID + DETAIL + ID} element={<FeedCardEventDetailScreen/>}/>
             {/*<Route path="/feed/" element={<FeedContents/>}/>*/}
         </Routes>
     );

@@ -8,6 +8,7 @@ import {Color} from "../../../Styles/Base/color";
 import {getPublicFeedListGuest, getPublicFeedList } from "../../../Service/FeedService"
 import {isGuest} from "../../../Service/AuthService"
 import Pagination from "../../../Components/Common/Pagination";
+import LottoButton from "../../../Components/Feed/LottoButton";
 
 const FeedScreen = (props) => {
     let { id } = useParams();
@@ -46,7 +47,6 @@ const FeedScreen = (props) => {
                 setCurrentKey(data.key);
                 setCurrentFeedPath(data.path);
                 getFeedData(buttonData[data.key], isGuest(), true);
-                console.log('FeedScreen.jsx:44 key->', data.key);
             } else {
                 data.on = false;
             }
@@ -106,7 +106,6 @@ const FeedScreen = (props) => {
 
     useEffect(()=>{
         onMenu();
-        // console.log('FeedScreen.jsx:88 ->',currentFeedType);
         console.log('FeedScreen.jsx:89 ->',feedListData);
     },[id,  currentKey])
 
@@ -116,11 +115,18 @@ const FeedScreen = (props) => {
                 <Title text1={currentTitle} color={Color.MAIN_RED}/>
             </h1>
             <FeedCircleBtn data={buttonData}/>
+            <LottoButton
+                data={feedListData}
+                lottoListPath={props.lottoListPath}
+                category={currentTitle}/>
             {feedListData.length === 0
                 ? <div className='noNewsYet'>
                     <span>目前無訊息</span>
                 </div>
-                : <FeedCardLists data={feedListData} category={currentTitle} path={currentFeedPath + props.detailPath}/>}
+                : <FeedCardLists
+                    data={feedListData}
+                    category={currentTitle}
+                    path={currentFeedPath}/>}
             <Pagination current={page} onPrev={onPrev} onNext={onNext}/>
         </section>
     );

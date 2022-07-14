@@ -118,8 +118,7 @@ const FeedCard = (props) => {
             <div className='main'>
 
                 {props.data.img_url !== ''
-                    ?
-                    <>
+                    ? <>
                         <p>
                             {setContents(props.data.contents)}
                         </p>
@@ -127,8 +126,7 @@ const FeedCard = (props) => {
                             <img src={getImageUrl(props.data.img_url)} alt='board contents image'/>
                         </div>
                     </>
-                    :
-                    <>
+                    : <>
                         <p style={{width:'100%'}}>
                             {setContents(props.data.contents)}
                         </p>
