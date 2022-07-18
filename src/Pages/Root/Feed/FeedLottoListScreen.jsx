@@ -9,7 +9,7 @@ import Pagination from "../../../Components/Common/Pagination";
 import {getLottoFeed} from "../../../Service/FeedService"
 import FeedCardLists from "../../../Components/Feed/FeedCardLists";
 
-const FeedLottoList = (props) => {
+const FeedLottoListScreen = (props) => {
     let today = new Date();
     const location = useLocation();
     const navigate = useNavigate();
@@ -99,7 +99,7 @@ const FeedLottoList = (props) => {
         setType(location.state?.type);
         setLottoStyles(location.state?.type)
         getBoardData();
-        console.log('FeedLottoList.jsx:102 ->',location.state?.type);
+        console.log('FeedLottoListScreen.jsx:102 ->',location.state?.type);
     },[type, currentMonth])
 
 
@@ -121,4 +121,4 @@ const FeedLottoList = (props) => {
     );
 };
 
-export default FeedLottoList;
+export default FeedLottoListScreen;

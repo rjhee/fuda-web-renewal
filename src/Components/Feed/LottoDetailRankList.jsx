@@ -1,12 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {dailyWinDefine, bigWinDefine, superWinDefine} from "../../Service/util";
 import {useParams} from "react-router-dom";
+import {getLottoDetail} from "../../Service/LottoService";
 
 const LottoDetailRankList = (props) => {
     const [resultData, setResultData] = useState([]);
-
+    const [rankData, setRankData] = useState([]);
     let { id } = useParams();
-    let data = props?.data;
+
+
+    async function getData() {
+        let result = await getLottoDetail(props.lotto_type, props.issue);
+        let data = result.data[0];
+        setRankData(data);
+    }
 
     function setData(){
         let result = [];
@@ -15,8 +22,8 @@ const LottoDetailRankList = (props) => {
                 result.push({
                     rank: dailyWinDefine[i - 1].rate,
                     limitWinner: dailyWinDefine[i - 1].match,
-                    winner: data['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-                    money: data['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+                    winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+                    money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
                 });
             }
         } else if (props.lotto_type === 'big') {
@@ -25,15 +32,15 @@ const LottoDetailRankList = (props) => {
                     result.push({
                         rank: bigWinDefine[i - 1].rate,
                         limitWinner: bigWinDefine[i - 1].match,
-                        winner: data['win_cnt_n'] + '注',
-                        money: data['win_mny_n'] + '元'
+                        winner: rankData['win_cnt_n'] + '注',
+                        money: rankData['win_mny_n'] + '元'
                     });
                 } else {
                     result.push({
                         rank: bigWinDefine[i - 1].rate,
                         limitWinner: bigWinDefine[i - 1].match,
-                        winner: data['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-                        money: data['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+                        winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+                        money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
                     });
                 }
             }
@@ -42,8 +49,8 @@ const LottoDetailRankList = (props) => {
                 result.push({
                     rank: superWinDefine[i - 1].rate,
                     limitWinner: superWinDefine[i - 1].match,
-                    winner: data['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-                    money: data['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+                    winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+                    money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
                 });
             }
         }
@@ -51,10 +58,13 @@ const LottoDetailRankList = (props) => {
     }
 
     useEffect(()=>{
-        setData();
-        console.log('LottoDetailRankList.jsx:1 ->',props.data);
-        console.log('LottoDetailRankList.jsx:2 ->',resultData);
+        getData();
     },[id])
+
+    useEffect(()=>{
+        setData();
+
+    },[rankData])
     return (
         <ul className='rank'>
             <li className='rankHeader'>
@@ -63,15 +73,13 @@ const LottoDetailRankList = (props) => {
                 <strong className='winnerCount'>中獎注數</strong>
                 <strong className='winMoney'>獎金</strong>
             </li>
-            {resultData.length !== 0
-                ? resultData.map((items,i)=>
+            {resultData.map((items,i)=>
                     <li className={i === 0 ? 'pointLow' : ''}>
                         <strong className='rankText'>{items.rank}</strong>
                         <strong className='winningNumCount'>{items.limitWinner}</strong>
                         <strong className='winnerCount'>{items.winner}</strong>
                         <strong className='winMoney'>{items.money}</strong>
-                    </li>)
-                : <></>}
+                    </li>)}
         </ul>
 
     );

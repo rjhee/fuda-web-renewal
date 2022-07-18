@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import heartIcon from "../../Assets/Images/icon/hart-icon.png"
 import commentIcon from "../../Assets/Images/icon/comment-icon.png"
-import {getImageUrl} from "../../Service/util";
+import {bigWinDefine, dailyWinDefine, getImageUrl, superWinDefine} from "../../Service/util";
 import {convertToChineseYear, getJustTime} from "../../Service/util";
 import UserIdWithIcon from "../Common/UserIdWithIcon";
 import {Color} from "../../Styles/Base/color";
 import HeartBtn from "../Common/HeartBtn";
 import CommentBtn from "../Common/CommentBtn";
+import {getLottoDetail} from "../../Service/LottoService";
+import {useParams} from "react-router-dom";
 
 const FeedCard = (props) => {
     // feed type
@@ -16,8 +18,13 @@ const FeedCard = (props) => {
     // 4. lotto
     // 5. mail
     // 6. only text + no writer
+    let { id } = useParams();
+    const [boardType, setBoardType] = useState('');
+    const [lottoType, setLottoType] = useState('');
+    const [issue, setIssue] = useState('');
     const [feedType, setFeedType] = useState('');
-
+    const [resultData, setResultData] = useState([]);
+    const [rankData, setRankData] = useState([]);
 
     function setTitle(title){
         if(feedType === 'lotto'){
@@ -68,7 +75,65 @@ const FeedCard = (props) => {
         }
     }
 
+    async function getLottoWinnerData() {
+        let result = await getLottoDetail(lottoType, issue);
+        let data = result.data[0];
+        console.log('FeedCard.jsx:81 ->',data);
+    }
+
+    // function setLottoWinnerData(){
+    //     let result = [];
+    //     if (lottoType === 'daily') {
+    //         for (let i = 1; i <= dailyWinDefine.length; i++) {
+    //             result.push({
+    //                 rank: dailyWinDefine[i - 1].rate,
+    //                 limitWinner: dailyWinDefine[i - 1].match,
+    //                 winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+    //                 money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+    //             });
+    //         }
+    //     } else if (lottoType === 'big') {
+    //         for (let i = 1; i <= bigWinDefine.length; i++) {
+    //             if (i === bigWinDefine.length) {
+    //                 result.push({
+    //                     rank: bigWinDefine[i - 1].rate,
+    //                     limitWinner: bigWinDefine[i - 1].match,
+    //                     winner: rankData['win_cnt_n'] + '注',
+    //                     money: rankData['win_mny_n'] + '元'
+    //                 });
+    //             } else {
+    //                 result.push({
+    //                     rank: bigWinDefine[i - 1].rate,
+    //                     limitWinner: bigWinDefine[i - 1].match,
+    //                     winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+    //                     money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+    //                 });
+    //             }
+    //         }
+    //     } else if (lottoType === 'super') {
+    //         for (let i = 1; i <= superWinDefine.length; i++) {
+    //             result.push({
+    //                 rank: superWinDefine[i - 1].rate,
+    //                 limitWinner: superWinDefine[i - 1].match,
+    //                 winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
+    //                 money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
+    //             });
+    //         }
+    //     }
+    //     setResultData(result);
+    // }
     useEffect(()=>{
+        getLottoWinnerData();
+    },[id])
+
+    useEffect(()=>{
+        // setLottoWinnerData();
+
+    },[rankData])
+
+    useEffect(()=>{
+        setBoardType(props.data.type);
+        console.log('FeedCard.jsx:136 ->',props.data.type);
         switch (props.data.type){
             case 1 :
                 setFeedType('noWriter');
@@ -81,6 +146,8 @@ const FeedCard = (props) => {
                 break;
             case 4 :
                 setFeedType('lotto');
+                setLottoType(props.lotto_type);
+                setIssue(props.issue);
                 break;
             case 5 :
                 setFeedType('halfImgType');
@@ -116,7 +183,6 @@ const FeedCard = (props) => {
                 </div>
             </header>
             <div className='main'>
-
                 {props.data.img_url !== ''
                     ? <>
                         <p>
@@ -132,11 +198,14 @@ const FeedCard = (props) => {
                         </p>
                     </>
                 }
-                <div className='count'>
-                    <span className='text'>頭獎</span>
-                    <span className='num'>0 位</span>
-                    <span className='money'>8,000,000 元</span>
-                </div>
+                {boardType === 4
+                    ?
+                    <div className='count'>
+                        <span className='text'>頭獎</span>
+                        <span className='num'>0 位</span>
+                        <span className='money'>8,000,000 元</span>
+                    </div>
+                    : null}
             </div>
             <footer>
                 <div className='btnCover'>

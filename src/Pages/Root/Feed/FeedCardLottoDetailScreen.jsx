@@ -21,7 +21,7 @@ const FeedCardLottoDetailScreen = (props) => {
     const [titleText, setTitleText] = useState('');
     const [lottoArr, setLottoArr] = useState([]);
 
-    const [lottoRankData, setLottoRankData] = useState([]);
+
 
     let data = location?.state;
     let category = location?.state?.category;
@@ -59,11 +59,7 @@ const FeedCardLottoDetailScreen = (props) => {
         }
     }
 
-    async function getData() {
-        let result = await getLottoDetail(lotto_type, issue);
-        let data = result.data[0];
-        setLottoRankData(data);
-    }
+
 
     useEffect(()=>{
         let userUid = getUserData().uid;
@@ -71,7 +67,7 @@ const FeedCardLottoDetailScreen = (props) => {
         console.log('FeedCardLottoDetailScreen.jsx:51 ->',contents);
         createLottoArr();
         setTitleColorEachLotto();
-        getData();
+
     },[titleText])
 
     return (
@@ -99,7 +95,7 @@ const FeedCardLottoDetailScreen = (props) => {
 
                         )}
                     </ul>
-                    <LottoDetailRankList lotto_type={lotto_type} data={lottoRankData}/>
+                    <LottoDetailRankList lotto_type={lotto_type} issue={issue}/>
                 </p>
             </div>
             <footer>

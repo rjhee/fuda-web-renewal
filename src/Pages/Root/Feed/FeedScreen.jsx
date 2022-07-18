@@ -115,10 +115,12 @@ const FeedScreen = (props) => {
                 <Title text1={currentTitle} color={Color.MAIN_RED}/>
             </h1>
             <FeedCircleBtn data={buttonData}/>
-            <LottoButton
-                data={feedListData}
-                lottoListPath={props.lottoListPath}
-                category={currentTitle}/>
+            {feedListData[0].type === 4
+            ? <LottoButton
+                    data={feedListData}
+                    lottoListPath={props.lottoListPath}
+                    category={currentTitle}/>
+            : null}
             {feedListData.length === 0
                 ? <div className='noNewsYet'>
                     <span>目前無訊息</span>
