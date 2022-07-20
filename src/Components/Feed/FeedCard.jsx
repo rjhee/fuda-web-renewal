@@ -23,8 +23,8 @@ const FeedCard = (props) => {
     const [lottoType, setLottoType] = useState('');
     const [issue, setIssue] = useState('');
     const [feedType, setFeedType] = useState('');
-    const [resultData, setResultData] = useState([]);
-    const [rankData, setRankData] = useState([]);
+    const [winner, setWinner] = useState(0);
+    const [winMoney, setWinMoney] = useState(0);
 
     function setTitle(title){
         if(feedType === 'lotto'){
@@ -77,63 +77,24 @@ const FeedCard = (props) => {
 
     async function getLottoWinnerData() {
         let result = await getLottoDetail(lottoType, issue);
-        let data = result.data[0];
-        console.log('FeedCard.jsx:81 ->',data);
+        let data = result?.data[0];
+        setWinner(data['win_cnt_1']);
+        setWinMoney(data['win_mny_1']);
+
     }
 
-    // function setLottoWinnerData(){
-    //     let result = [];
-    //     if (lottoType === 'daily') {
-    //         for (let i = 1; i <= dailyWinDefine.length; i++) {
-    //             result.push({
-    //                 rank: dailyWinDefine[i - 1].rate,
-    //                 limitWinner: dailyWinDefine[i - 1].match,
-    //                 winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-    //                 money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
-    //             });
-    //         }
-    //     } else if (lottoType === 'big') {
-    //         for (let i = 1; i <= bigWinDefine.length; i++) {
-    //             if (i === bigWinDefine.length) {
-    //                 result.push({
-    //                     rank: bigWinDefine[i - 1].rate,
-    //                     limitWinner: bigWinDefine[i - 1].match,
-    //                     winner: rankData['win_cnt_n'] + '注',
-    //                     money: rankData['win_mny_n'] + '元'
-    //                 });
-    //             } else {
-    //                 result.push({
-    //                     rank: bigWinDefine[i - 1].rate,
-    //                     limitWinner: bigWinDefine[i - 1].match,
-    //                     winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-    //                     money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
-    //                 });
-    //             }
-    //         }
-    //     } else if (lottoType === 'super') {
-    //         for (let i = 1; i <= superWinDefine.length; i++) {
-    //             result.push({
-    //                 rank: superWinDefine[i - 1].rate,
-    //                 limitWinner: superWinDefine[i - 1].match,
-    //                 winner: rankData['win_cnt_' + i]?.toLocaleString('ko-KR') + '注',
-    //                 money: rankData['win_mny_' + i]?.toLocaleString('ko-KR') + '元'
-    //             });
-    //         }
-    //     }
-    //     setResultData(result);
-    // }
     useEffect(()=>{
-        getLottoWinnerData();
+        if(feedType === 'lotto'){
+            getLottoWinnerData();
+        }
     },[id])
 
     useEffect(()=>{
-        // setLottoWinnerData();
 
-    },[rankData])
+    },[])
 
     useEffect(()=>{
         setBoardType(props.data.type);
-        console.log('FeedCard.jsx:136 ->',props.data.type);
         switch (props.data.type){
             case 1 :
                 setFeedType('noWriter');
@@ -146,8 +107,8 @@ const FeedCard = (props) => {
                 break;
             case 4 :
                 setFeedType('lotto');
-                setLottoType(props.lotto_type);
-                setIssue(props.issue);
+                setLottoType(props.data.member_grade);
+                setIssue(props.data.title);
                 break;
             case 5 :
                 setFeedType('halfImgType');
@@ -202,14 +163,14 @@ const FeedCard = (props) => {
                     ?
                     <div className='count'>
                         <span className='text'>頭獎</span>
-                        <span className='num'>0 位</span>
-                        <span className='money'>8,000,000 元</span>
+                        <span className='num'>{winner.toLocaleString('kr')} 位</span>
+                        <span className='money'>{winMoney.toLocaleString('kr')} 元</span>
                     </div>
                     : null}
             </div>
             <footer>
                 <div className='btnCover'>
-                    <HeartBtn count={props.data.likeCnt}/>
+                    <HeartBtn count={props.data.likeCnt} board_uid={props.data.uid}/>
                     <CommentBtn count={props.data.commentCnt}/>
                 </div>
                 <span className='category'># {props.category}</span>

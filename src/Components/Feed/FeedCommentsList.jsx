@@ -5,6 +5,7 @@ import {getCommentList} from "../../Service/FeedService";
 import {getJustTime, convertToChineseYear} from "../../Service/util";
 import {getUserData} from "../../Service/AuthService";
 import Pagination from "../Common/Pagination";
+import FeedComment from "./FeedComment";
 
 const FeedCommentsList = (props) => {
     const[page, setPage] = useState(0);
@@ -16,19 +17,18 @@ const FeedCommentsList = (props) => {
 
         let result = await getCommentList(props.data?.uid, pageCount * page, pageCount);
         let data = result.data;
-
         if(result.data !== null){
             setCommentData(data);
         }
     }
-    function getCommentCount(){
+    function getCommentDataCount(){
         if(!!props.data?.comment === true) {
             setLastPage(Math.ceil(parseInt(props.data?.comment)/5));
         }
     }
 
     useEffect(()=>{
-        getCommentCount();
+        getCommentDataCount();
         getData();
     },[page])
 
@@ -42,6 +42,7 @@ const FeedCommentsList = (props) => {
         else setPage(page+1);
     }
 
+
     return (
         <section className='commentsListCover'>
             <h1 style={{backgroundColor: props.titleColor}}>回覆</h1>
@@ -49,17 +50,14 @@ const FeedCommentsList = (props) => {
                 <ul>
                     {commentData.length !== 0
                         ? commentData.map((item)=>
-                            <li>
-                                <div className='title'>
-                                    <UserIdWithIcon member_grade={item.member_grade}
-                                                    member_name={item.member_name}/>
-                                    {props.userUid === item.member_uid
-                                        ? <button className='settingBtn'/>
-                                        : null}
-                                </div>
-                                <p className='contents'>{item.comment}</p>
-                                <span className='date'>{convertToChineseYear(item.reg_date)}&nbsp;&nbsp;{getJustTime(item.reg_date)}</span>
-                            </li>)
+                            <FeedComment
+                                setMode={props.setMode}
+                                getCommentData={props.getCommentData}
+                                item={item}
+                                isMine={props.isMine}
+                                wishBoardPath={props.wishBoardPath}
+                                winnerSharePath={props.winnerSharePath}
+                                board_type={props.data.type}/>)
                         : <li className='noData'>目前沒有留言</li>}
                 </ul>
                 <Pagination onPrev={onPrev} onNext={onNext} current={page} last={lastPage}/>

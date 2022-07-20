@@ -14,6 +14,7 @@ const LongInput = (props) => {
             autoFocus={true}
             className='longInput'
             type={type}
+            value={props.value}
             placeholder={placeHolder}
             onChange={onChange}/>
     );

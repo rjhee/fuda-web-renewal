@@ -6,12 +6,16 @@ import FeedCardDetailScreen from "../Pages/Root/Feed/FeedCardDetailScreen";
 import FeedLottoListScreen from "../Pages/Root/Feed/FeedLottoListScreen";
 import FeedCardLottoDetailScreen from "../Pages/Root/Feed/FeedCardLottoDetailScreen";
 import FeedCardEventDetailScreen from "../Pages/Root/Feed/FeedCardEventDetailScreen";
+import FeedWinningWriteScreen from "../Pages/Root/Feed/FeedWinningWriteScreen";
+import FeedWriteScreen from "../Pages/Root/Feed/FeedWriteScreen";
 
 const Feed = () => {
     const FEED = '/feed';
     const ID = '/:id';
     const DETAIL = '/detail';
     const LOTTO = '/lotto';
+    const WRITE = '/write';
+    const LOTTO_TYPE = '/:lotto';
 
     const ALL = '/all';
     const OFFICIAL = '/official';
@@ -40,12 +44,14 @@ const Feed = () => {
                     mailPath={FEED + MAIL}
                     lottoListPath={FEED + RESULT}
                 />}/>
-            <Route path={FEED + ID + DETAIL + ID} element={<FeedCardDetailScreen/>}/>
+            <Route path={FEED + ID + ID} element={<FeedCardDetailScreen winnerSharePath={FEED + WINNER_SHARE} wishBoardPath={FEED + WISH_BOARD} writePath={WRITE}/>}/>
 
-            <Route path={FEED + ID + ID} element={<FeedLottoListScreen detailPath={FEED + RESULT}/>}/>
+            <Route path={FEED + ID + LOTTO_TYPE} element={<FeedLottoListScreen detailPath={FEED + RESULT}/>}/>
             <Route path={FEED + ID + ID + ID} element={<FeedCardLottoDetailScreen/>}/>
 
             <Route path={FEED + ID + DETAIL + ID} element={<FeedCardEventDetailScreen/>}/>
+            <Route path={FEED + ID + WRITE} element={<FeedWriteScreen/>}/>
+            <Route path={FEED + ID + WRITE + ID} element={<FeedWriteScreen/>}/>
             {/*<Route path="/feed/" element={<FeedContents/>}/>*/}
         </Routes>
     );

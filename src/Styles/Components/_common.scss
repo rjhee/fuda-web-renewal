@@ -842,12 +842,12 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     line-height: 22px;
     text-align: center;
     color: #7B7B7B;
-
   }
 }
 
 // Textarea.jsx
 .textareaCover {
+    position: relative;
   > textarea {
     width: 100%;
     height: 200px;
@@ -864,6 +864,13 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
       color: $LIGHT_GREY_1;
       font-size: 13px;
     }
+  }
+  > .commentLength {
+    position: absolute;
+    bottom:10%;
+    right: 2%;
+    color: $LIGHT_GREY_1;
+    font-size: 13px;
   }
 }
 

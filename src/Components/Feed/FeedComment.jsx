@@ -1,13 +1,50 @@
-import React from 'react';
-import Textarea from "../Common/Textarea";
+import React, {useEffect, useState} from 'react';
+import UserIdWithIcon from "../Common/UserIdWithIcon";
+import {convertToChineseYear, getJustTime} from "../../Service/util";
+import DotBtn from "./DotBtn";
+import DotBtnMenu from "./DotBtnMenu";
+import {deleteComment, deleteFeed} from "../../Service/FeedService";
 
-const FeedComment = () => {
+
+const FeedComment = (props) => {
+    const [menuOn, setMenuOn] = useState(false);
+
+    async function deleteCommentData(){
+        let answer = window.confirm('您確認要刪除嗎?');
+        if(answer) {
+            // TODO await 랑 then 같이? 물어보기
+            await deleteComment(props.item.uid).then(r => {
+                window.location.reload();
+            });
+        }
+        else {
+            return null;
+        }
+
+
+    }
+
+    function clickEditBtn(){
+        props.setMode('edit');
+        props.getCommentData(props.item);
+        setMenuOn(false);
+    }
+
     return (
-        <div>
-            <Textarea placeHolder={'請在此填寫您的留言\n' +
-                '\n' +
-                '如果您的貼文內容是捏造的，誹謗的，不准確的，辱罵性的，粗俗的，憤恨的，騷擾性的，淫穢的，褻瀆性的，性暗示的，威脅性的，侵犯個人隱私的，或以其他方式違反任何法律的，您的貼文將可能被移除。'}/>
-        </div>
+        <li>
+            {menuOn === true
+                ? <DotBtnMenu onDelete={deleteCommentData} onEdit={clickEditBtn}/>
+                : null}
+            <div className='title'>
+                <UserIdWithIcon member_grade={props.item.member_grade}
+                                member_name={props.item.member_name}/>
+                {props.isMine(props.item.member_uid)
+                    ? <DotBtn grey={true} menuOn={menuOn} setMenuOn={setMenuOn}/>
+                    : null}
+            </div>
+            <p className='contents'>{props.item.comment}</p>
+            <span className='date'>{convertToChineseYear(props.item.up_date)}&nbsp;&nbsp;{getJustTime(props.item.up_date)}</span>
+        </li>
     );
 };
 

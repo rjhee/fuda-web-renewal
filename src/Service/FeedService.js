@@ -1,6 +1,7 @@
 import {request} from "./ApiRoot";
 
 
+
 export const getLottoDrawDate = (lotto_type, issue) => {
     let reqData = {
         lotto_type: lotto_type,

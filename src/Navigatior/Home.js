@@ -7,6 +7,7 @@ import AnalyticsScreen from "../Pages/Root/Home/Analytics/AnalyticsScreen";
 import AnalyticsListScreen from "../Pages/Root/Home/Analytics/AnalyticsListScreen";
 import PressScreen from "../Pages/Root/Home/Press/PressScreen";
 import YoutubeScreen from "../Pages/Root/Home/Youtube/YoutubeScreen";
+import AnalyticsDailyTable from "../Pages/Root/Home/Analytics/AnalyticsDailyTable";
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <Route path="/winning" element={<WinningScreen/>}/>
             <Route path="/winning/:id" element={<WinningListScreen/>}/>
             <Route path="/analytics" element={<AnalyticsScreen/>}/>
+            <Route path="/analytics/table" element={<AnalyticsDailyTable/>}/>
             <Route path="/analytics/:id" element={<AnalyticsListScreen/>}/>
             <Route path="/press" element={<PressScreen/>}/>
             <Route path="/youtube" element={<YoutubeScreen/>}/>

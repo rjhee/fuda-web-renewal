@@ -1,37 +1,24 @@
 import React, {useEffect, useState} from 'react';
-import Title from "../Common/Title";
 import {Color} from "../../Styles/Base/color";
 import {convertToChineseYear, getImageUrl, getJustTime} from "../../Service/util";
 import HeartBtn from "../Common/HeartBtn";
 import CommentBtn from "../Common/CommentBtn";
-import {useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import UserIdWithIcon from "../Common/UserIdWithIcon";
-import FeedComment from "./FeedComment";
-import LineButton from "../Common/LineButton";
-import FeedCommentsList from "./FeedCommentsList";
-import {getUserData} from "../../Service/AuthService";
+import DotBtnMenu from "./DotBtnMenu";
+import {deleteFeed} from "../../Service/FeedService";
+import DotBtn from "./DotBtn";
+import WinnerData from "./WinnerData";
 
 const FeedDetailContents = (props) => {
-    const location = useLocation();
-    const [userUid, setUserUid] = useState(null);
+    const navigate = useNavigate();
     const [titleColor, setTitleColor] = useState(Color.LIGHT_RED);
-
-    let data = location.state;
-    let category = location.state?.category;
-    let title = location.state?.title;
-    let reg_date = location.state?.reg_date;
-    let member_grade = location.state?.member_grade;
-    let member_name = location.state?.member_name;
-    let contents = location.state?.contents;
-    let img_url = location.state?.img_url;
-    let heart = location.state?.heart;
-    let comment = location.state?.comment;
-
+    const [menuOn, setMenuOn] = useState(false);
+    let uid = props.data.uid;
+    let boardType = props.data.type;
     function setTitleColorEachLotto(){
-        let boardType = location.state?.type;
-
-        if(boardType === 4) {
-            switch (member_grade) {
+        if(props.data.board_type === 4) {
+            switch (props.data.member_grade) {
                 case "daily":
                     setTitleColor(Color.ORANGE);
                     break;
@@ -44,46 +31,78 @@ const FeedDetailContents = (props) => {
             }
         }
     }
-    useEffect(()=>{
-        let userUid = getUserData().uid;
-        setUserUid(userUid);
 
+   async function deleteFeedData(){
+        let answer = window.confirm('您確認要刪除嗎?');
+        if(answer) {
+            await deleteFeed(props.data.uid);
+            navigate(-1);
+        }
+        else {
+            return null;
+        }
+    }
+
+    function clickEditBtn(){
+        let object = {
+            uid : props.data.uid,
+            title : props.data.title,
+            reg_date : props.data.reg_date,
+            // img_url : props.data.img_url,
+            contents : props.data.contents,
+            board_type : props.data.type,
+            mode: 'edit',}
+        console.log('FeedDetailContents.jsx:54 ->',props.data);
+        if(boardType === 6){
+            navigate(props.winnerSharePath + props.writePath +"/"+uid,
+                {state: object
+                });
+        }
+        else if(boardType === 7){
+            navigate(props.wishBoardPath + props.writePath +"/"+uid,
+                {state: object
+                });
+        }
+    }
+
+    useEffect(()=>{
         setTitleColorEachLotto();
     },[])
     return (
-        <section className='feedCardDetailCover'>
-            <h1>
-                <Title text1={category} color={Color.MAIN_RED}/>
-            </h1>
+        <section className='feedContentCover'>
+            {menuOn === true
+                ?  <DotBtnMenu onDelete={deleteFeedData} onEdit={clickEditBtn}/>
+                : null
+            }
             <div className='contents'>
                 <div className='title' style={{backgroundColor:titleColor}}>
-                    <p>{title} </p>
                     <div>
-                        <UserIdWithIcon member_grade={member_grade}
-                                        member_name={member_name}/>
-                        <span>{convertToChineseYear(reg_date)} {getJustTime(reg_date)}</span>
+                        <p>{props.data.title} </p>
+                        {props.isMine(props.data.member_uid) === true
+                            ? <DotBtn menuOn={menuOn} setMenuOn={setMenuOn}/>
+                            : null}
                     </div>
+                    <div>
+                        <UserIdWithIcon member_grade={props.data.member_grade}
+                                        member_name={props.data.member_name}/>
+                        <span>{convertToChineseYear(props.data.reg_date)} {getJustTime(props.data.reg_date)}</span>
+                    </div>
+                    {boardType === 6
+                        ? <WinnerData uid={uid}/>
+                        : null}
                 </div>
                 <p className='desc'>
-                    <img src={getImageUrl(img_url)} alt="contents images"/>
-                    {contents}
+                    <img src={getImageUrl(props.data.img_url)} alt="contents images"/>
+                    {props.data.contents}
                 </p>
             </div>
             <footer>
                 <div className='btnCover'>
-                    <HeartBtn count={heart}/>
-                    <CommentBtn count={comment}/>
+                    <HeartBtn count={props.data.heart}/>
+                    <CommentBtn count={props.data.comment}/>
                 </div>
             </footer>
-            <section className='commentCover'>
-                <div className='writeCover'>
-                    <FeedComment/>
-                    <LineButton text={'上傳留言'} btnStyle={{borderColor: '#E5E5E5'}} fontStyle={{color: '#656565'}}/>
-                </div>
-            <FeedCommentsList
-                userUid={userUid}
-                data={data}/>
-            </section>
+
         </section>
     );
 };

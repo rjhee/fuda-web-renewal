@@ -3,15 +3,17 @@ import Title from "../../../Components/Common/Title";
 import FeedCircleBtn from "../../../Components/Feed/FeedCircleBtn";
 import FeedCardLists from "../../../Components/Feed/FeedCardLists";
 import {lang} from "../../../Assets/Lang/Lang";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Color} from "../../../Styles/Base/color";
-import {getPublicFeedListGuest, getPublicFeedList } from "../../../Service/FeedService"
+import {getPublicFeedListGuest, getPublicFeedList, getFeedLoveSelf} from "../../../Service/FeedService"
 import {isGuest} from "../../../Service/AuthService"
 import Pagination from "../../../Components/Common/Pagination";
 import LottoButton from "../../../Components/Feed/LottoButton";
-
+import loveMap from "../../../Service/FeedLoveService";
+import WriteBtn from "../../../Components/Feed/WriteBtn";
 const FeedScreen = (props) => {
     let { id } = useParams();
+    const navigate = useNavigate();
     let [buttonData, setButtonData] = useState([
         {key:0, on:false, title:lang().ALL, subTitle:'全部', path:props.allPath, icon: require('../../../Assets/Images/icon/feed0-icon.png'), title_kr:'최근소식'},
         {key:1, on:false, title:lang().OFFICIAL, subTitle:'官方新聞', path: props.officialPath, icon:require('../../../Assets/Images/icon/feed1-icon.png'), title_kr:'공식뉴스'},
@@ -25,7 +27,7 @@ const FeedScreen = (props) => {
     ]);
 
     let [currentTitle, setCurrentTitle] = useState('');
-    let [currentKey, setCurrentKey] = useState(0);
+    let [currentKey, setCurrentKey] = useState({});
     let [currentFeedPath, setCurrentFeedPath] = useState('');
     let [page, setPage] = useState(0);
     let [lastPage, setLastPage] = useState(0);
@@ -44,7 +46,7 @@ const FeedScreen = (props) => {
             if (data.path === currentPage) {
                 data.on = true;
                 setCurrentTitle(data.title);
-                setCurrentKey(data.key);
+                setCurrentKey({key: data.key});
                 setCurrentFeedPath(data.path);
                 getFeedData(buttonData[data.key], isGuest(), true);
             } else {
@@ -56,7 +58,6 @@ const FeedScreen = (props) => {
 
     }
 
-
     let getFeedData = async (value, guest, init = false) => {
         try {
             let result = null;
@@ -66,16 +67,16 @@ const FeedScreen = (props) => {
                 result = await getPublicFeedListGuest(value.key, lastFeed, PAGE_COUNT, 0);
             }
             else if(guest === false) {
+
                 result = await getPublicFeedList(value.key, lastFeed, PAGE_COUNT, 0);
+                await getFeedLoveData(result.data);
             }
-            console.log('FeedScreen.jsx: value.key->',value.key);
             console.log('FeedScreen.jsx:59 guest : ->',guest);
             console.log('FeedScreen.jsx:72 ->', result.data);
             if(result.data === null) {
                 setFeedLastUid(0);
                 setFeedListData([]);
             }
-
             if(Number(value.key) === 0){
                 setFeedLastUid(result?.data?.all[result?.data?.all?.length-1]['uid']);
                 setFeedListData(result?.data?.all);
@@ -85,6 +86,7 @@ const FeedScreen = (props) => {
                 setFeedListData(result?.data);
             }
 
+            setFeedLoveData(result.data);
 
 
         }catch (e){
@@ -99,15 +101,59 @@ const FeedScreen = (props) => {
 
     function onNext() {
         if(page+1 === lastPage)return null;
-        else setPage(page+1);
+        else{
+            setPage(page+1);
+        }
     }
 
+    let setFeedLoveData = (allFeedData) => {
+        console.log('FeedScreen.jsx:110 ->',allFeedData);
+        for(let i = 0; i< allFeedData.length; i++) {
+            if(allFeedData[i]['likeCnt'] !== null) {
+                loveMap.setCnt(allFeedData[i].uid, allFeedData[i]['likeCnt']);
+            }
+        }
+    }
 
+    let getFeedLoveData = async (data) => {
+        let max = 0;
+        let min = 987654321;
+
+        for(let i = 0; i<data.length; i++) {
+            if(data[i].type !== 8) {
+                if(data[i].uid > max) {
+                    max = data[i].uid;
+                }
+
+                if(data[i].uid < min) {
+                    min = data[i].uid;
+                }
+            }
+        }
+
+        let result = await getFeedLoveSelf(min, max);
+
+        if (result.data !== null) {
+            for (let i = 0; i < result.data.length; i++) {
+                loveMap.set(result.data[i]['board_id'], true);
+                loveMap.setCnt(result.data[i]['board_id'], result.data[i]['cnt']);
+            }
+        }
+    }
+
+    function moveToWrite(boardType) {
+        navigate('write',{state:{board_type: boardType, mode: 'upload' }});
+    }
 
     useEffect(()=>{
         onMenu();
-        console.log('FeedScreen.jsx:89 ->',feedListData);
-    },[id,  currentKey])
+        setPage(0);
+        setFeedLastUid(0);
+    },[id])
+
+    useEffect(()=>{
+        getFeedData(currentKey, isGuest(), false);
+    },[page])
 
     return (
         <section className='feedScreenCover'>
@@ -115,13 +161,13 @@ const FeedScreen = (props) => {
                 <Title text1={currentTitle} color={Color.MAIN_RED}/>
             </h1>
             <FeedCircleBtn data={buttonData}/>
-            {feedListData[0].type === 4
+            {feedListData[0]?.type === 4
             ? <LottoButton
                     data={feedListData}
                     lottoListPath={props.lottoListPath}
                     category={currentTitle}/>
             : null}
-            {feedListData.length === 0
+            {feedListData?.length === 0
                 ? <div className='noNewsYet'>
                     <span>目前無訊息</span>
                 </div>
@@ -129,7 +175,10 @@ const FeedScreen = (props) => {
                     data={feedListData}
                     category={currentTitle}
                     path={currentFeedPath}/>}
-            <Pagination current={page} onPrev={onPrev} onNext={onNext}/>
+            <Pagination current={page} last={page+2} onPrev={onPrev} onNext={onNext}/>
+            {isGuest() === false && (currentKey.key === 6 || currentKey.key === 7)
+                ? <WriteBtn onClick={()=>moveToWrite(currentKey.key)}/>
+                : null}
         </section>
     );
 };

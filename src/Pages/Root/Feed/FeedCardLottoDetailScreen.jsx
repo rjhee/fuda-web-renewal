@@ -4,7 +4,7 @@ import {Color} from "../../../Styles/Base/color";
 import {convertToChineseYear, getImageUrl, getJustTime} from "../../../Service/util";
 import HeartBtn from "../../../Components/Common/HeartBtn";
 import CommentBtn from "../../../Components/Common/CommentBtn";
-import FeedComment from "../../../Components/Feed/FeedComment";
+import FeedCommentForm from "../../../Components/Feed/FeedCommentForm";
 import LineButton from "../../../Components/Common/LineButton";
 import FeedCommentsList from "../../../Components/Feed/FeedCommentsList";
 import {useLocation} from "react-router-dom";
@@ -106,7 +106,7 @@ const FeedCardLottoDetailScreen = (props) => {
             </footer>
             <section className='commentCover'>
                 <div className='writeCover'>
-                    <FeedComment/>
+                    <FeedCommentForm/>
                     <LineButton text={'上傳留言'} btnStyle={{borderColor: '#E5E5E5'}} fontStyle={{color: '#656565'}}/>
                 </div>
                 <FeedCommentsList
