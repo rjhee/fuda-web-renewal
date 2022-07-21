@@ -69,7 +69,7 @@ const DirectInquiryWriteScreen = () => {
                     text={'取消'} btnStyle={{width:'48%'}}/>
                 <LineButton
                     onClick={()=> checkAlert('確定要上傳嗎?', createData)}
-                    text={'確認'} btnStyle={{borderColor: Color.MAIN_RED, width:'48%'}} fontStyle={{color: Color.MAIN_RED}}/>
+                    text={'發布'} btnStyle={{borderColor: Color.MAIN_RED, width:'48%'}} fontStyle={{color: Color.MAIN_RED}}/>
             </div>
         </section>
     );

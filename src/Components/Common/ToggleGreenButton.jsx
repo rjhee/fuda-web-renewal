@@ -1,4 +1,5 @@
 import React from 'react';
+import {notificationChange} from "../../Service/UserService";
 
 const ToggleGreenButton = (props) => {
     let on = '開';
@@ -6,7 +7,16 @@ const ToggleGreenButton = (props) => {
 
     function toggleSwitch() {
         props.setOn(!props.on);
+        props.value[props?.data.COLUMN] = !props.on === true ? props?.data.TRUE : props?.data.FALSE;
+        notificationChange(props?.data.COLUMN, props?.value[props?.data.COLUMN]).then(r=>{
+            if(r.data !== null) {
+                console.log('NotificationToggle.js::26 ->',JSON.stringify(r.data));
+            }
+        });
     }
+
+
+
     return (
         <button onClick={toggleSwitch} className={props.on === true ? 'onToggleGreenButtonCover' : 'offToggleGreenButtonCover'}>
             <div className={props.on === true ? 'toggleOn' : 'hidden'}/>

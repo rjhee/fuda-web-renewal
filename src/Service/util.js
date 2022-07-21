@@ -1,3 +1,105 @@
+export const NotificationDefine = {
+    push_yn:{
+        COLUMN:'push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+        title: '最新消息',
+        contents: '最新開獎結果及其他樂透相關資訊',
+    },
+    super_vip_push_yn:{
+        COLUMN:'super_vip_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+        title: '威力彩最新消息',
+        contents: '最新預測號碼及開獎通知',
+    },
+    big_vip_push_yn:{
+        COLUMN:'big_vip_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+        title: '大樂透最新消息',
+        contents: '最新預測號碼及開獎通知',
+    },
+    daily_vip_push_yn:{
+        COLUMN:'daily_vip_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+        title: '今彩539最新消息',
+        contents: '最新預測號碼及開獎通知',
+    },
+    vip_notice_push_yn:{
+        COLUMN:'vip_notice_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+    },
+    event_push_yn:{
+        COLUMN:'event_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+    },
+    daily_free_push_yn:{
+        COLUMN:'daily_free_push_yn',
+        TRUE:'Y',
+        FALSE:'N',
+        title: '免費富達號碼',
+        contents: '一般會員最新預測號碼通知',
+    },
+
+    big_ticket_yn:{
+        COLUMN:'big_ticket_yn',
+        TRUE:'Y',
+        FALSE:'N',
+    },
+
+    big_ticket_cnt:{
+        COLUMN:'big_ticket_cnt',
+        TRUE: 5,
+        FALSE: 10,
+    },
+
+    daily_ticket_yn:{
+        COLUMN:'daily_ticket_yn',
+        TRUE:'Y',
+        FALSE:'N',
+    },
+
+    daily_ticket_cnt:{
+        COLUMN:'daily_ticket_cnt',
+        TRUE: 6,
+        FALSE: 12,
+    },
+
+    super_ticket_yn:{
+        COLUMN:'super_ticket_yn',
+        TRUE:'Y',
+        FALSE:'N',
+    },
+
+    super_ticket_cnt:{
+        COLUMN:'super_ticket_cnt',
+        TRUE: 5,
+        FALSE: 10,
+    },
+
+    daily_receive_time:{
+        COLUMN:'daily_receive_time',
+        TRUE:'M',
+        FALSE:'E',
+    },
+
+    big_receive_time:{
+        COLUMN:'big_receive_time',
+        TRUE:'M',
+        FALSE:'E',
+    },
+
+    super_receive_time:{
+        COLUMN:'super_receive_time',
+        TRUE:'M',
+        FALSE:'E',
+    },
+}
+
 export let dailyWinDefine = [
     {rate:'頭獎', match:'5個'},
     {rate:'貳獎', match:'4個'},

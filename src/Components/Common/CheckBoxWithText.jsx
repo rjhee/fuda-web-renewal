@@ -4,7 +4,7 @@ import {lang} from "../../Assets/Lang/Lang";
 const CheckBoxWithText = (props) => {
     let text = props.text ? props.text : "同意使用條款 (必填)";
     let subText = props.subText ? props.subText : "checkbox sub text";
-
+    let type = props.type ? props.type : '';
     const [isChecked, setIsChecked] = useState(false);
 
     function checkedInput(e) {
@@ -24,11 +24,11 @@ const CheckBoxWithText = (props) => {
         <div className='checkBoxWithText' onClick={()=> props.onClick(props.i) ? props.onClick(props.i) : null}>
             <div className='checkboxCover'>
                 <input className='hidden' type="checkbox" id={`checkbox_${props.i}`} onClick={(e)=>props.setChecked ? checkedInput(e) : null} />
-                <label htmlFor={`checkbox_${props.i}`} className='checkboxLabel'>
-                <div className={`checkbox  ${props.checked === true ? 'checked' : ''} `}/>
-                    <p className='text'>
-                        <strong>{text}</strong>
-                    </p>
+                <label htmlFor={`checkbox_${type+props.i}`} className='checkboxLabel'>
+                    <div className={`${props.small === true ? 'small' : ''} checkbox ${props.checked === true ? 'checked' : ''} `}/>
+                        <p className='text'>
+                            <strong>{text}</strong>
+                        </p>
                 </label>
                 <span>
                 {props.isDescBtn ?

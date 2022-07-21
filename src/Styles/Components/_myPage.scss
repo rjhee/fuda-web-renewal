@@ -770,6 +770,12 @@
       > img {
         margin-bottom: 20px;
       }
+      > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
     }
     li:nth-child(1) {
       border-bottom: 1px dashed $LIGHT_GREY_6;
@@ -838,6 +844,7 @@
         color: $LIGHT_GREY;
         font-family: Noto_Regular, sans-serif;
       }
+
     }
     li:nth-child(1) {
       > img {

@@ -574,6 +574,8 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
       cursor: pointer;
       display: flex;
       flex-direction: row;
+      align-items: center;
+      justify-content: center;
       > .checked {
         cursor: pointer;
         background-image: url("../../Assets/Images/icon/check.png");
@@ -591,6 +593,11 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
         border: 2px solid $REGULAR_GREY;
         border-radius: 4px;
         margin-right: 10px;
+      }
+      > .small {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
       }
       > .text {
         cursor: pointer;

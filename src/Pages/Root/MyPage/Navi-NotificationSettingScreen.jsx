@@ -8,8 +8,9 @@ import NotificationNumber from "../../../Components/MyPage/NotificationNumber";
 import {useParams} from "react-router-dom";
 import {getUserData} from "../../../Service/AuthService";
 import {showTooltip} from "../../../Service/util";
+import {getNotificationInfo} from "../../../Service/UserService";
 import Tooltip from "../../../Components/Common/Tooltip";
-
+import {NotificationDefine} from "../../../Service/util";
 
 
 const NaviNotificationSettingScreen = (props) => {
@@ -19,7 +20,17 @@ const NaviNotificationSettingScreen = (props) => {
     const [etc, setEtc] = useState(false);
     const [grade, setGrade] = useState(null);
     const [tooltipAd, setTooltipAd] = useState(false);
+    const [notificationValue, setNotificationValue] = useState(null);
 
+    const toggleDefine = {
+        free: [NotificationDefine?.daily_free_push_yn,
+            NotificationDefine?.push_yn],
+
+        vip:[NotificationDefine?.super_vip_push_yn,
+            NotificationDefine?.big_vip_push_yn,
+            NotificationDefine?.daily_vip_push_yn,
+            NotificationDefine?.push_yn],
+    }
 
     useEffect(()=>{
 
@@ -32,8 +43,17 @@ const NaviNotificationSettingScreen = (props) => {
             setNumber(true);
         }
         setGrade(getUserData().grade);
-        console.log('Navi-NotificationSettingScreen.jsx:36 ->',getUserData());
     },[id])
+
+
+    useEffect(()=>{
+        getNotificationInfo().then(r => {
+            if(r.data !== null) {
+                setNotificationValue(r.data[0]);
+            }
+        });
+    },[]);
+
     return (
         <section className='naviNotificationSettingCover'>
             <h1>
@@ -45,7 +65,7 @@ const NaviNotificationSettingScreen = (props) => {
                 <ColorButton onClick={()=>showTooltip(setTooltipAd)} text={'廣告設定'} color={etc ? Color.MAIN_RED : Color.LIGHT_GREY_1}/>
                 {tooltipAd === true ? <Tooltip down={true} top={'-60px'} left={'60%'}/> : null}
             </div>
-            {list === true ? <NotificationList grade={grade}/> : null}
+            {list === true ? <NotificationList value={notificationValue} grade={grade} data={toggleDefine}/> : null}
             {number === true ? <NotificationNumber grade={grade}/> : null}
         </section>
     );

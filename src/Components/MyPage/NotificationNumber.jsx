@@ -13,6 +13,7 @@ const NotificationNumber = (props) => {
 
     useEffect(()=>{
         let userData = getUserData();
+        console.log('NotificationNumber.jsx:16 ->',userData);
         checkNormalUser(userData);
     },[])
 
@@ -34,17 +35,16 @@ const NotificationNumber = (props) => {
         alert('設定完成!');
     }
 
-    function setNumberSetting(e) {
-        // if(userType === 'NORMAL'){
-        //     e.preventDefault();
-        //     alert('一般會員無法變更服務資訊');
-        // }
-        // else {
-        // }
-           updateNumberSetting();
+    function setNumberSetting() {
+        if(userType === 'NORMAL'){
+            alert('一般會員無法變更服務資訊');
+        }else {
+            updateNumberSetting();
+        }
     }
     useEffect(()=>{
         getNotificationInfo().then(r => {
+            console.log('NotificationNumber.jsx:48 ->',r.data);
             if(r.data !== null) {
                 setNotificationValue(r.data[0]);
             }
