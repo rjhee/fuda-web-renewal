@@ -7,7 +7,7 @@ const LineButton = (props) => {
             className='LineButtonCover'
             onClick={props.onClick}
             style={props.btnStyle}>
-            <span style={props.fontStyle}>{text}</span>
+            <span className='text' style={props.fontStyle}>{text}</span>
         </button>
     );
 };

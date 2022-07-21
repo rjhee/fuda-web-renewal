@@ -96,9 +96,9 @@ const MyPage = (props) => {
             {/*view 완료, feat 완료*/}
             <Route path={MAIN + USER + SIGN_OUT + REASON} element={<UserInfoEditSignOutReasonScreen mainPath={MAIN} loginPath={LOGIN}/>}/>
             {/*view 완료* ,feat 완료*/}
-            <Route path={MAIN + QNA + DETAIL + ID} element={<DirectInquiryDetailScreen/>}/>
+            <Route path={MAIN + QNA + DETAIL + ID} element={<DirectInquiryDetailScreen writePath={MAIN + QNA + WRITE}/>}/>
             {/*view 완료*/}
-            <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen/>}/>
+            <Route path={MAIN + QNA + WRITE} element={<DirectInquiryWriteScreen />}/>
         </Routes>
     );
 };

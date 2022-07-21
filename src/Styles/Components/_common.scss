@@ -833,13 +833,13 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   border-radius: 20px;
   border: 2px solid $LIGHT_GREY;
   padding: 2px 18px;
-  max-height: 30px;
-  > span {
+  max-height: 35px;
+  > .text {
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;
     font-size: 15px;
-    line-height: 22px;
+    line-height: 25px;
     text-align: center;
     color: #7B7B7B;
   }

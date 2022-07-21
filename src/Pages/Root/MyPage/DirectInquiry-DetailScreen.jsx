@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Title from "../../../Components/Common/Title";
 import {Color} from "../../../Styles/Base/color";
 import LineButton from "../../../Components/Common/LineButton";
-import {getUserQnADetail} from "../../../Service/UserService";
+import {getUserQnADetail, deleteQnA} from "../../../Service/UserService";
 import {useLocation, useNavigate} from "react-router-dom";
 import {convertToChineseYear, getImageUrl, getJustTime} from "../../../Service/util";
+import {deleteComment} from "../../../Service/FeedService";
 
-const DirectInquiryDetailScreen = () => {
+const DirectInquiryDetailScreen = (props) => {
     const location = useLocation();
     let navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -14,6 +15,8 @@ const DirectInquiryDetailScreen = () => {
     const [answerDate, setAnswerDate] = useState('');
     const [answerContents, setAnswerContents] = useState('');
     const [answerImg, setAnswerImg] = useState('');
+
+    let uid = location.state.uid;
 
     let getData = async () => {
         console.log('DirectInquiry-DetailScreen.jsx:11 ->',location.state.uid);
@@ -48,11 +51,20 @@ const DirectInquiryDetailScreen = () => {
     }
 
     function deleteDirectInquiryDetail(){
+        let answer = window.confirm('您確認要刪除嗎?');
+        if(answer) {
+            deleteQnA(uid).then(r=>{
+                navigate(-1);
+            });
+        }
+        else {
+            return null;
+        }
 
     }
 
-    function updateDirectInquiryDetail(){
-
+    function moveToWriteScreen(){
+        navigate(props.writePath);
     }
 
     useEffect(()=>{
@@ -86,10 +98,10 @@ const DirectInquiryDetailScreen = () => {
             <div className='btnCover'>
                 <LineButton
                     onClick={deleteDirectInquiryDetail}
-                    text={'刪除'} btnStyle={{marginRight:'6px', width:'48%'}}/>
+                    text={'刪除'} btnStyle={{marginRight:'6px', width:'48%',borderColor: Color.MAIN_RED,}} fontStyle={{color: Color.MAIN_RED}}/>
                 <LineButton
-                    onClick={updateDirectInquiryDetail}
-                    text={'寄信'} btnStyle={{borderColor: Color.MAIN_RED, width:'48%'}} fontStyle={{color: Color.MAIN_RED}}/>
+                    onClick={moveToWriteScreen}
+                    text={'表單'} btnStyle={{ width:'48%'}}/>
             </div>
         </section>
     );

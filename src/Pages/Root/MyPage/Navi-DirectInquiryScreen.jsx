@@ -37,9 +37,9 @@ const NaviDirectInquiryScreen = (props) => {
         switch(state) {
             case 'wait' :
             case 'process' :
-              return <span className='response_y'>回覆完成</span>
+              return <span className='response_n'>回覆中</span>
             case 'end' :
-               return <span className='response_n'>回覆中</span>
+               return <span className='response_y'>回覆完成</span>
         }
     }
 
