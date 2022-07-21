@@ -172,6 +172,18 @@ const FeedScreen = (props) => {
                     <span>目前無訊息</span>
                 </div>
                 : <FeedCardLists
+                    feedPath={props.feedPath}
+                    detailPath={props.detailPath}
+                    allPath={props.allPath}
+                    officialPath={props.officialPath}
+                    newsPath={props.newsPath}
+                    eventPath={props.eventPath}
+                    resultPath={props.resultPath}
+                    winnerPath={props.winnerPath}
+                    winnerSharePath={props.winnerSharePath}
+                    wishBoardPath={props.wishBoardPath}
+                    mailPath={props.mailPath}
+                    lottoListPath={props.lottoListPath}
                     data={feedListData}
                     category={currentTitle}
                     path={currentFeedPath}/>}

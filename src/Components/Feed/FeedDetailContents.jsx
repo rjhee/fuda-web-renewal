@@ -9,6 +9,8 @@ import DotBtnMenu from "./DotBtnMenu";
 import {deleteFeed} from "../../Service/FeedService";
 import DotBtn from "./DotBtn";
 import WinnerData from "./WinnerData";
+import FeedDetailContentTitle from "./FeedDetailContentTitle";
+import FeedDetailContentContent from "./FeedDetailContentContent";
 
 const FeedDetailContents = (props) => {
     const navigate = useNavigate();
@@ -75,26 +77,21 @@ const FeedDetailContents = (props) => {
                 : null
             }
             <div className='contents'>
-                <div className='title' style={{backgroundColor:titleColor}}>
-                    <div>
-                        <p>{props.data.title} </p>
-                        {props.isMine(props.data.member_uid) === true
-                            ? <DotBtn menuOn={menuOn} setMenuOn={setMenuOn}/>
-                            : null}
-                    </div>
-                    <div>
-                        <UserIdWithIcon member_grade={props.data.member_grade}
-                                        member_name={props.data.member_name}/>
-                        <span>{convertToChineseYear(props.data.reg_date)} {getJustTime(props.data.reg_date)}</span>
-                    </div>
-                    {boardType === 6
-                        ? <WinnerData uid={uid}/>
-                        : null}
-                </div>
-                <p className='desc'>
-                    <img src={getImageUrl(props.data.img_url)} alt="contents images"/>
-                    {props.data.contents}
-                </p>
+                <FeedDetailContentTitle
+                    title={props.data.title}
+                    titleColor={titleColor}
+                    menuOn={menuOn}
+                    setMenuOn={setMenuOn}
+                    member_grade={props.data.member_grade}
+                    member_name={props.data.member_name}
+                    member_uid={props.data.member_uid}
+                    reg_date={props.data.reg_date}
+                    uid={props.uid}
+                    boardType={boardType}
+                    isMine={props.isMine}/>
+                <FeedDetailContentContent
+                    img_url={props.data.img_url}
+                    contents={props.data.contents}/>
             </div>
             <footer>
                 <div className='btnCover'>

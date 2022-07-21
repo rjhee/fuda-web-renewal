@@ -45,9 +45,10 @@ const Feed = () => {
                     lottoListPath={FEED + RESULT}
                 />}/>
             <Route path={FEED + ID + ID} element={<FeedCardDetailScreen winnerSharePath={FEED + WINNER_SHARE} wishBoardPath={FEED + WISH_BOARD} writePath={WRITE}/>}/>
+            <Route path={FEED + RESULT + ID + ID} element={<FeedCardLottoDetailScreen/>}/>
+            <Route path={FEED + EVENT + ID} element={<FeedCardEventDetailScreen/>}/>
 
             <Route path={FEED + ID + LOTTO_TYPE} element={<FeedLottoListScreen detailPath={FEED + RESULT}/>}/>
-            <Route path={FEED + ID + ID + ID} element={<FeedCardLottoDetailScreen/>}/>
 
             <Route path={FEED + ID + DETAIL + ID} element={<FeedCardEventDetailScreen/>}/>
             <Route path={FEED + ID + WRITE} element={<FeedWriteScreen/>}/>

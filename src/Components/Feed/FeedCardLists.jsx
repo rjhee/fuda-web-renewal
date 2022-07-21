@@ -1,17 +1,61 @@
 import React, {useEffect} from 'react';
 import FeedCard from "./FeedCard";
 import {Link, useNavigate} from "react-router-dom";
+import {lang} from "../../Assets/Lang/Lang";
 
 const FeedCardLists = (props) => {
     const navigate = useNavigate();
 
+    function setPath(type){
+        switch (type){
+            case 1 :
+                return props.officialPath;
+            case 2 :
+                return props.newsPath;
+            case 3 : // 이벤트 피드
+                return props.eventPath;
+            case 4 : // 로또 피드
+                return props.resultPath;
+            case 5 :
+                return props.winnerPath;
+            case 6 :
+                return props.winnerSharePath;
+            case 7 :
+                return props.wishBoardPath;
+                case 8 :
+                    return props.mailPath;
+
+        }
+    }
+
+    function setCategoryName(type){
+        switch (type){
+            case 1 :
+                return lang().OFFICIAL;
+            case 2 :
+                return lang().FUDANEWS;
+            case 3 : // 이벤트 피드
+                return lang().EVENT;
+            case 4 : // 로또 피드
+                return lang().RESULT;
+            case 5 :
+                return lang().WINNER;
+            case 6 :
+                return lang().WINNERSHARE;
+            case 7 :
+                return lang().WISHBOARD;
+            case 8 :
+                return lang().MAIL;
+
+        }
+    }
 
     function moveToDetailPage(data,e){
         console.log('FeedCardLists.jsx:10 ->',data);
+        let type = data.type;
+        let path = type !== 4 ?  setPath(data.type) : `${setPath(data.type)}/${data.member_grade}`;
+
         if(e.target.className !== 'heartButton'){
-            let path = data.type !== 4
-                ? props.path
-                : `${props.path}/${data.member_grade}`;
             navigate(`${path}/${data.uid}`,{state:
                     {
                         uid: data.uid,
@@ -21,7 +65,7 @@ const FeedCardLists = (props) => {
                         heart: data.likeCnt,
                         comment: data.commentCnt,
                         contents: data.contents,
-                        category: props.category,
+                        category: setCategoryName(type),
                         member_uid: data.member_uid,
                         member_name: data.member_name,
                         member_grade: data.member_grade,

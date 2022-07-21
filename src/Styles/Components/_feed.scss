@@ -812,3 +812,150 @@
     height: inherit;
   }
 }
+
+
+// FeedCardEventDetailScreen.jsx
+.feedCardEventDetailCover {
+  padding: 10px 0;
+   img {
+    display: block;
+  }
+  > h1 {
+     padding: 0 21px;
+    margin-bottom: 20px;
+  }
+  > .contents {
+    .winnerCover{
+      margin-bottom: 40px;
+    }
+    .winnerContainer{
+      position: relative;
+    }
+    .winnerText {
+      width: 68%;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left:50%;
+      transform: translateX(-50%);
+      color: $WHITE;
+      font-size: 25px;
+    }
+    .resultContainer {
+      position: relative;
+      margin-bottom: 100px;
+      > img {
+        margin-bottom: 120px;
+      }
+    }
+    .resultText{
+      position: absolute;
+      color: #2081e7;
+      font-size: 25px;
+      top: 7%;
+      left:50%;
+      width: 80%;
+      transform: translateX(-50%);
+      text-align: center;
+      padding: 30px;
+    }
+  }
+  > footer {
+    padding: 0 21px;
+      > .btnCover {
+        display: flex;
+        margin-bottom: 20px;
+      }
+    }
+  > .commentCover {
+    padding: 0 21px;
+    > .writeCover {
+      margin-bottom: 40px;
+      text-align: right;
+    }
+  }
+}
+
+// FeedEventResultBall.jsx
+.resultBallCover{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 2px solid #d3e5f9;
+    margin: 0 21px;
+  .lottoBallCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    > li {
+      min-height: 30px;
+      min-width: 30px;
+      max-width: 35px;
+      max-height: 35px;
+      border-radius: 50%;
+      background-color: #d3e5f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 2px;
+      > span {
+        font-weight: bold;
+        font-size: 16px;
+        color: #444;
+      }
+    }
+  }
+  .issueCover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .issue {
+    color: #333;
+    font-family: Noto_Light, sans-serif;
+    font-size: 16px;
+  }
+
+
+}
+// FeedEventWinnerBall.jsx
+.winnerBallCover {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 2px solid #e6e7e8;
+  margin: 0 21px;
+  .userId {
+    margin-right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    width: 130px;
+  }
+  > .ballCover{
+  display: flex;
+    > li {
+      min-height: 30px;
+      min-width: 30px;
+      max-width: 35px;
+      max-height: 35px;
+      border-radius: 50%;
+      background-color: $REGULAR_RED;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 2px;
+      > span {
+        font-weight: bold;
+        font-size: 18px;
+        color: $WHITE;
+      }
+    }
+  }
+
+}
