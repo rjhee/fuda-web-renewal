@@ -324,6 +324,202 @@
   margin: 0 21px 100px 21px;
 }
 
+// Analytics common style
+.sectionBoxCover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 10px 5px 10px;
+  border: 1px solid $LIGHT_GREY_2;
+  border-radius: 10px;
+  margin: 30px 21px;
+  position: relative;
+  .issue {
+    position: absolute;
+    top: -23%;
+    background-color: $WHITE;
+    padding: 10px;
+    font-size: 15px;
+    color: $DARK_GREY_2;
+  }
+  .lottoNumCover {
+    margin: 12px 0;
+    display: flex;
+    flex-direction: row;
+  }
+  .lottoNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 2px;
+    background-color: $LIGHT_GREY_3;
+    font-size: 15px;
+    color: $LIGHT_GREY;
+  }
+   .bonusNum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #FFDA7C;
+    color: $LIGHT_RED;
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin-left: 12px;
+    margin-right: 2px;
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      background-image: url('../../Assets/Images/icon/plus-icon.png');
+      background-size: 10px 10px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 10px;
+      height: 10px;
+      right: 105%;
+    }
+  }
+  .even {
+    color: $LIGHT_RED;
+    border: 1px solid $LIGHT_RED;
+  }
+  .odd {
+    color: $NEON_BLUE;
+    border: 1px solid $NEON_BLUE;
+  }
+   .line{
+    padding: 0 10px;
+    font-size: 13px;
+    color: $LIGHT_GREY_2;
+    margin: 10px 0;
+    text-align: center;
+  }
+  .lottoNumFontPoint {
+    color: $LIGHT_RED;
+  }
+  .lottoPointBall {
+    background-color: $LIGHT_RED;
+    color: $WHITE;
+  }
+}
+
+//WinningPerIssue.jsx
+.WinningPerIssue {
+  > .indexCover {
+    border-top: 1px solid $LIGHT_GREY_2;
+    border-bottom: 1px solid $LIGHT_GREY_2;
+  }
+  > .indexCover,
+  > .contentsCover{
+    display: flex;
+    padding: 6px 0;
+    justify-content: space-between;
+    width: 100%;
+    > li {
+      color: $DARK_GREY_2;
+      width: 25%;
+      text-align: center;
+      font-size: 14px;
+    }
+  }
+
+}
+
+// AmountPerIssue.jsx
+.AmountPerIssue {
+  .indexCover {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    border-top: 1px solid $LIGHT_GREY_2;
+    padding: 6px 0;
+    > .indexSubCover{
+      display: flex;
+      justify-content: space-between;
+      width: 35%;
+    }
+    .indexFont{
+      font-size: 14px;
+      color: $DARK_GREY_2;
+      text-align: center;
+    }
+  }
+
+}
+
+// ContinuousPerIssue.jsx
+.ContinuousPerIssue {
+  .lottoNumRedFont{
+    color: $LIGHT_RED;
+  }
+ .indexCover {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   padding: 4px 0;
+   > .indexFont {
+      font-size: 14px;
+      color: $DARK_GREY_2;
+      text-align: center;
+      margin: 10px 0;
+   }
+ }
+}
+
+// OddEvenPerIssue.jsx
+.OddEvenPerIssue {
+  .lottoNum {
+    background-color: transparent;
+  }
+}
+
+// SizePerIssue.jsx
+.SizePerIssue {
+  .lottoNum {
+    background-color: transparent;
+  }
+}
+
+// MantissaPerIssue.jsx
+.MantissaPerIssue {
+  > .indexCover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: $DARK_GREY_2;
+    text-align: center;
+    > .indexFont {
+      font-size: 14px;
+      color: $DARK_GREY_2;
+      text-align: center;
+    }
+  }
+}
+
+// LianPerIssue.jsx
+.LianPerIssue {
+
+}
+
+// AdjacentPerIssue.jsx
+.AdjacentPerIssue {
+
+}
+
+
+
+
+
 // WinningScreen.jsx
 .winningScreenCover {
  > h1 {

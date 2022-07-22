@@ -7,8 +7,8 @@ const AmountPerIssue = (props) => {
     // 최근 10개의 회차의 각 당첨금액 통계
 
     return(
-        <div className={'sectionCover'}>
-            <header className={'issueFont'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
+        <div className={'AmountPerIssue sectionBoxCover'}>
+            <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
             <ul className={'lottoNumCover'}>
                 {props.lotto.map((num)=>
                     <li className={'lottoNum'}>
@@ -16,14 +16,10 @@ const AmountPerIssue = (props) => {
                     </li>
                 )}
                 {props.type.name === 'super' ?
-                    <li>
-                        <div className={'plusCover'}>
-                            <img src={plusIcon} className={'plusImg'}/>
-                        </div>
-                        <div className={'bonusNum'}>
-                            <span className={'lottoNumFont'}>{props.sn}</span>
-                        </div>
-                    </li>: null}
+                    <li className={'bonusNum'}>
+                        <span className={'lottoNumFont'}>{props.sn}</span>
+                    </li>
+                : null}
             </ul>
             <ul className={'indexCover'}>
                 <li className={'indexSubCover'}>
@@ -42,58 +38,5 @@ const AmountPerIssue = (props) => {
         </div>
     );
 };
-//
-// const style = StyleSheet.create({
-//     lottoNumFont: {
-//         fontSize: 15,
-//         color: Color.LIGHT_GREY,
-//     },
-//     plusCover: {
-//         alignItems: "center",
-//         justifyContent: "center",
-//         marginHorizontal: 2,
-//     },
-//     plusImg: {
-//         width: 7.5,
-//         height: 7.5,
-//         resizeMode: "contain",
-//     },
-//     bonusNum: {
-//         alignItems: "center",
-//         justifyContent: "center",
-//         width: 30,
-//         height: 30,
-//         borderRadius: 50,
-//         marginHorizontal: 2,
-//         backgroundColor: Color.LIGHT_YELLOW,
-//         color: Color.LIGHT_GREY,
-//     },
-//     indexCover: {
-//         flexDirection: "row",
-//         justifyContent:"space-between",
-//         borderTopWidth: 1,
-//         borderTopColor: Color.LIGHT_GREY_2,
-//         width: "80%",
-//         ...Platform.select({
-//             ios: {
-//                 paddingVertical: 4,
-//             },
-//             android: {
-//                 paddingVertical: 0,
-//             },
-//         }),
-//     },
-//     indexFont: {
-//         fontFamily: Font.SANS_REGULAR,
-//         fontSize: 14,
-//         color: Color.DARK_GREY_2,
-//         textAlign: "center",
-//     },
-//     indexSubCover: {
-//         flexDirection: "row",
-//         justifyContent:"space-between",
-//         width: "35%"
-//     }
-//
-// })
+
 export default AmountPerIssue;

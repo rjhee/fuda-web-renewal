@@ -477,6 +477,7 @@ const AnalyticsListScreen = (props) => {
                     }
                 }
             }
+
             setMantissaStaticsArr(mantissaStaticsArr)
         })
 
@@ -499,7 +500,7 @@ const AnalyticsListScreen = (props) => {
         if(staticsLevel) {
             onMainBtn(staticsLevel);
         }
-    },[])
+    },[lotto])
 
     useEffect(()=>{
         // getLotto();
@@ -517,7 +518,7 @@ const AnalyticsListScreen = (props) => {
         calACNum();
         countFrequencyNum();
         mantissaStatics();
-
+        console.log('AnalyticsListScreen.jsx:520 ->',lotto);
     },[lotto])
 
 

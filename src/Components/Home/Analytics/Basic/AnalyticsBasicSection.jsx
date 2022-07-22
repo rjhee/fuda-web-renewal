@@ -56,7 +56,7 @@ export const AnalyticsBasicSection = (props) => {
 
     return (
         <div className={'contentsCover'}>
-            <h1>{props.title.issue}</h1>
+            <h1>{props?.title.issue}</h1>
             {/*<ContentsTitleSection*/}
             {/*    titleColor={props.titleColor}*/}
             {/*    index={props.i}*/}
@@ -69,13 +69,13 @@ export const AnalyticsBasicSection = (props) => {
             {/*    mantissaStatics={props.mantissaStatics}*/}
             {/*    lottoType={props.type.name}*/}
             {/*    lotto={props.lotto}/>*/}
-            {props.lotto.map((data, i)=>
+            {props?.lotto.map((data, i)=>
                 <>
                     {props?.staticsType === 'winning' ?
                         <WinningPerIssue
                             i={i}
                             issue={data.issue}
-                            type={props.type}
+                            type={props?.type}
                             lotto={data.valueString}
                             sn={data.snString}
                             continuousNum={data.continuous !== undefined && data.continuous}
@@ -83,72 +83,72 @@ export const AnalyticsBasicSection = (props) => {
                             lianNum={data.lian !== undefined && data.lian}
                             adjacentNum={data.adjacent !== undefined && data.adjacent}
                             commonStyle={commonStyle}/> : null}
-                    {/*{props.staticsType === 'amount' ?*/}
-                    {/*    <AmountPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        type={props.type}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        win_mny_1={data.win_mny_1}*/}
-                    {/*        win_mny_2={data.win_mny_2}*/}
-                    {/*        // win_mny_1={data.win_mny_1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}*/}
-                    {/*        // win_mny_2={data.win_mny_2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}*/}
-                    {/*        win_1={data.win_1}*/}
-                    {/*        win_2={data.win_2}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'continuous' ?*/}
-                    {/*    <ContinuousPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        type={props.type}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        continuousNum={data.continuous !== undefined && data.continuous}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'oddEven' ?*/}
-                    {/*    <OddEvenPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        type={props.type}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'size' ?*/}
-                    {/*    <SizePerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        type={props.type}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'mantissa' ?*/}
-                    {/*    <MantissaPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        type={props.type}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        repeatNum={data.repeat !== undefined && data.repeat}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'lian' ?*/}
-                    {/*    <LianPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        type={props.type}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        lianNum={data.lian !== undefined && data.lian}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
-                    {/*{props.staticsType === 'adjacent' ?*/}
-                    {/*    <AdjacentPerIssue*/}
-                    {/*        i={i}*/}
-                    {/*        issue={data.issue}*/}
-                    {/*        type={props.type}*/}
-                    {/*        lotto={data.valueString}*/}
-                    {/*        sn={data.snString}*/}
-                    {/*        adjacentNum={data.adjacent !== undefined && data.adjacent}*/}
-                    {/*        commonStyle={commonStyle}/> : null}*/}
+                    {props.staticsType === 'amount' ?
+                        <AmountPerIssue
+                            i={i}
+                            issue={data.issue}
+                            type={props.type}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            win_mny_1={data.win_mny_1}
+                            win_mny_2={data.win_mny_2}
+                            // win_mny_1={data.win_mny_1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            // win_mny_2={data.win_mny_2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            win_1={data.win_1}
+                            win_2={data.win_2}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'continuous' ?
+                        <ContinuousPerIssue
+                            i={i}
+                            issue={data.issue}
+                            type={props.type}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            continuousNum={data.continuous !== undefined && data.continuous}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'oddEven' ?
+                        <OddEvenPerIssue
+                            i={i}
+                            issue={data.issue}
+                            type={props.type}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'size' ?
+                        <SizePerIssue
+                            i={i}
+                            type={props.type}
+                            issue={data.issue}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'mantissa' ?
+                        <MantissaPerIssue
+                            i={i}
+                            type={props.type}
+                            issue={data.issue}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            repeatNum={data.repeat !== undefined && data.repeat}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'lian' ?
+                        <LianPerIssue
+                            i={i}
+                            issue={data.issue}
+                            type={props.type}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            lianNum={data.lian !== undefined && data.lian}
+                            commonStyle={commonStyle}/> : null}
+                    {props.staticsType === 'adjacent' ?
+                        <AdjacentPerIssue
+                            i={i}
+                            issue={data.issue}
+                            type={props.type}
+                            lotto={data.valueString}
+                            sn={data.snString}
+                            adjacentNum={data.adjacent !== undefined && data.adjacent}
+                            commonStyle={commonStyle}/> : null}
                 </>
             )}
 
@@ -156,9 +156,3 @@ export const AnalyticsBasicSection = (props) => {
         </div>
     )
 };
-
-// const style = StyleSheet.create({
-//     contentsCover:{
-//         paddingHorizontal:21,
-//     },
-// });
