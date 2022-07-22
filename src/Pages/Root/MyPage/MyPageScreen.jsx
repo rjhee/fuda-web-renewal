@@ -25,9 +25,7 @@ const MyPageScreen = (props) => {
     const [inputValue, setInputValue] = useState(100000);
 
     let updateMaxValue = async (value) =>{
-        // TODO
-        // max value 업데이트 안되는거 확인
-
+        // TODO enter 키 눌렀을때도 실행되게 하고 싶다
         let check = /^[0-9]+$/;
         if (!check.test(value)) {
             alert("僅能輸入數字");
@@ -43,6 +41,7 @@ const MyPageScreen = (props) => {
             return false ;
         }
         setMaxValue(value);
+        console.log('MyPageScreen.jsx:44 ->',value);
         await UserService.setGoal(value)
         return true;
     }
@@ -95,8 +94,7 @@ const MyPageScreen = (props) => {
                     setValue={setMaxValue}
                     setInputValue={setInputValue}
                     updateValue={async()=> {
-                        let success = await updateMaxValue(inputValue);
-                        console.log('MyPageScreen.jsx:96 ->',success);}}/>
+                        let success = await updateMaxValue(inputValue);}}/>
                 : null}
             <div className='infoCover'>
                 <UserInfoCard/>

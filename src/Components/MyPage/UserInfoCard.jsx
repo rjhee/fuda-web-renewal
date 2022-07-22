@@ -3,6 +3,8 @@ import {lang} from "../../Assets/Lang/Lang";
 import { Link, useNavigate } from 'react-router-dom';
 import UserIdWithIcon from "../Common/UserIdWithIcon";
 import * as AuthService from "../../Service/AuthService"
+import {showTooltip} from "../../Service/util";
+import Tooltip from "../Common/Tooltip";
 
 const UserInfoCard = (props) => {
     const [grade, setGrade] = useState('FREE');
@@ -10,6 +12,7 @@ const UserInfoCard = (props) => {
     const [date, setDate] = useState('110.08.13 ~ 111.08.13');
     const [money, setMoney] = useState('0');
     const [uid, setUid] = useState(0);
+    const [tooltipFc, setTooltipFc] = useState(false);
 
     let refreshUserData = async function(){
         let userInfo = await AuthService.getUserData();
@@ -82,16 +85,18 @@ const UserInfoCard = (props) => {
                    <strong>{getGradeDate()}</strong>
                    <span>{date}</span>
                 </p>
-                <Link to='/shop'>
-                    <button>{lang().SHOP}</button>
-                </Link>
+                {/* shop 이동 버튼*/}
+                {/*<Link to='/shop'>*/}
+                {/*    <button>{lang().SHOP}</button>*/}
+                {/*</Link>*/}
             </div>
             <div className='userFc'>
                 <p>
                     <strong>{money} </strong>
                     <span>FC</span>
                 </p>
-                <button>{lang().EXCHANGE}</button>
+                <button onClick={()=>showTooltip(setTooltipFc)}>{lang().EXCHANGE}</button>
+                {tooltipFc === true ? <Tooltip down={true} top={'-50px'} left={'58%'}/> : null}
             </div>
         </section>
     );

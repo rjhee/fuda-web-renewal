@@ -810,7 +810,13 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
     }
     > .btnCover {
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 68px;
         height: 27px;
         border-radius: 20px;
@@ -818,8 +824,6 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
         font-style: normal;
         font-weight: 500;
         font-size: 15px;
-        line-height: 22px;
-        /* identical to box height */
         text-align: center;
         color: #FFFFFF;
         margin: 0 5px;
