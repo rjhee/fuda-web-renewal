@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {lang} from "../../../Assets/Lang/Lang";
 import mainIcon from "../../../Assets/Images/banner/chara.png"
 import scanIcon from "../../../Assets/Images/icon/icon-QR.png"
 
 const MyCombineScreen = (props) => {
+    useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
     return (
         <section className='myCombineMenuCover'>
             <Link to={props.pathResult+'/daily'}>

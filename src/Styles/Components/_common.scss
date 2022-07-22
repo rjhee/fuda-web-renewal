@@ -90,12 +90,12 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   //width: 100%;
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 0 8px;
-  min-width: 96px;
+  padding: 0 12px;
+  min-width: 100px;
   height: 36px;
   border-radius: 20px;
   margin: 2px;
-
+  background-color: $LIGHT_GREY_6;
   .text {
     font-family: Noto_Medium, sans-serif;
     font-size: $font_RR;
@@ -109,6 +109,7 @@ $noticeIcon : url('../../Assets/Images/icon/notice.png');
   justify-content: center;
   align-items: center;
   width: 65px;
+  padding: 0;
   .line{
     display: flex;
     justify-content: center;

@@ -50,7 +50,7 @@ const FeedDetailContents = (props) => {
             uid : props.data.uid,
             title : props.data.title,
             reg_date : props.data.reg_date,
-            // img_url : props.data.img_url,
+            img_url : props.data.img_url,
             contents : props.data.contents,
             board_type : props.data.type,
             mode: 'edit',}

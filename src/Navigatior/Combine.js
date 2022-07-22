@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import MyCombineScreen from "../Pages/Root/MyCombine/MyCombineScreen";
-import Result from "../Pages/Root/MyCombine/Result";
-import History from "../Pages/Root/MyCombine/History";
+import LottoMyResultScreen from "../Pages/Root/MyCombine/LottoMyResultScreen";
+import QrHistoryScreen from "../Pages/Root/MyCombine/QrHistoryScreen";
 import HomeScreen from "../Pages/Root/Home/HomeScreen";
 
 const Combine = () => {
@@ -18,8 +18,8 @@ const Combine = () => {
                 <MyCombineScreen
                     pathResult={COMBINE + RESULT}
                     pathHistory={COMBINE+HISTORY}/>}/>
-            <Route path={COMBINE + RESULT + ID} element={<Result path={COMBINE + RESULT}/>}/>
-            <Route path={COMBINE + HISTORY + ID} element={<History path={COMBINE + HISTORY}/>}/>
+            <Route path={COMBINE + RESULT + ID} element={<LottoMyResultScreen path={COMBINE + RESULT}/>}/>
+            <Route path={COMBINE + HISTORY + ID} element={<QrHistoryScreen path={COMBINE + HISTORY}/>}/>
         </Routes>
     );
 };

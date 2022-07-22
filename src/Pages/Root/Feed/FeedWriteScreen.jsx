@@ -16,7 +16,7 @@ const FeedWriteScreen = () => {
     const [bigTitle, setBigTitle] = useState('');
     const [title, setTitle] = useState('');
     const [contents, setContents] = useState('');
-    const [imgUrl, setImgUrl] = useState([]);
+    const [imgUrl, setImgUrl] = useState('');
     const [titlePlaceHolder, setTitlePlaceHolder] = useState('');
     const [contentPlaceHolder, setContentPlaceHolder] = useState('');
     const [isSelect, setIsSelect] = useState(false);
@@ -46,8 +46,8 @@ const FeedWriteScreen = () => {
             setContents(location.state?.contents);
             setImgUrl(location.state?.img_url??'');
         }
-
-
+        console.log('FeedWriteScreen.jsx:49 ->',location.state);
+        console.log('FeedWriteScreen.jsx:50 ->',location.state.img_url);
 
     },[]);
 
@@ -231,7 +231,7 @@ const FeedWriteScreen = () => {
                 : null}
                 <LongInput type={'text'} placeHolder={titlePlaceHolder} value={title} setValue={setTitle}/>
                 <Textarea placeHolder={contentPlaceHolder} value={contents} setValue={setContents}/>
-                <LongFileInput setValue={setImgUrl} value={''}/>
+                <LongFileInput setValue={setImgUrl} value={imgUrl}/>
             </div>
             <div className='btnCover'>
                 <LineButton

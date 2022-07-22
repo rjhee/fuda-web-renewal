@@ -314,7 +314,7 @@ export const lang = () => {
         'MAKE_SCAN' :'對獎紀錄',
 
         //----- analytics info modal---------
-        // ContinuousPerIssue.js
+        // ContinuousPerIssue.jsx
         'CONSECUTIVE_NUM' : '連號', // 연속 숫자
         'PAIR_CONSECUTIVE_NUM' : '對連號', // 연속 숫자 쌍
         'SIMPLE_CONSECUTIVE_NUM' : '(簡單連號)', // 간단한 하이픈
@@ -324,20 +324,20 @@ export const lang = () => {
         'CONSECUTIVE_PATTERN_23' : '簡單連號和3連續號碼的組合模式', // 단순 연속 숫자와 3개의 연속 숫자의 조합 패턴
         'CONSECUTIVE_PATTERN_4' : '出現4個連續號碼的模式', // 4개의 연속된 숫자가 나타나는 패턴
 
-        // QualityPerIssue.js
+        // QualityPerIssue.jsx
         'PRIME_NUM_DESC' : '只有1跟自己本身可以整除的數', // 1만이 자기 자신으로 나누어 떨어지는 수
         'MULTIPLES3_NUM_DESC' : '可以被3整除的數, 但3歸於質數', // 3의 배수
         'COMPOSITE_NUM_DESC' : '除了質數與3倍數以外的數', // 합성수
 
-        // SumNumberPerIssue.js
+        // SumNumberPerIssue.jsx
         'SUM_WINNING_NUM' : '開出獎號之加總', // 당첨된 숫자의 합
         'SUM_MANTISSA_WINNING_NUM' : '每個號碼的尾數之加總', // 각 숫자의 가수의 합
 
-        // UncombinePerIssue.js
+        // UncombinePerIssue.jsx
         'MATCHING_NUM_DESC' : '經常出現在一起的配對號碼', // 자주 함께나타나는 수
         'UN_MATCHING_NUM_DESC' : '很少出現在一起的號碼', // 드물게 함께나타나는 수
 
-        // ACvaluePerIssue.js
+        // ACvaluePerIssue.jsx
         'DIFF_NUM' : '間隔數', // 간격수
         'DIFF_NUM_DESC' : '表示相互鄰近號碼之間的差異', // 서로 인접한 숫자 간의 차이를 나타냄
         'HEIGHT_DIFF_NUM' : '高低差', // 서로 인접한 숫자 간의 차이를 나타냄

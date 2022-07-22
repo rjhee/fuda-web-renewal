@@ -40,6 +40,10 @@ const PressScreen = () => {
     }
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
+    useEffect(()=>{
         getPressData();
         getPressDataNum();
     },[page])

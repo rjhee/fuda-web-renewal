@@ -47,6 +47,10 @@ const MyPageScreen = (props) => {
     }
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
+    },[])
+
+    useEffect(()=>{
         UserService.getGoal().then(r=>{
             console.log('AnalyzeBar.jsx:22 ->',r);
             if( r.data !== null && r.data[0] !== null && r.data[0].goal !== null) {

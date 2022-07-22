@@ -9,7 +9,7 @@ import * as LocalStorageService from "../../../Service/LocalStorageService"
 import {convertToChineseYear, setWillLotteryDay} from "../../../Service/util";
 import {getBuyIssueData} from "../../../Service/LottoService"
 
-const History = (props) => {
+const QrHistoryScreen = (props) => {
     let { id } = useParams();
     const [dailyLotto, setDailyLotto] = useState(false);
     const [bigLotto, setBigLotto] = useState(false);
@@ -112,4 +112,4 @@ const History = (props) => {
     );
 };
 
-export default History;
+export default QrHistoryScreen;

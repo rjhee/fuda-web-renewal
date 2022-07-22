@@ -11,7 +11,7 @@ import MyResultList from "../../../Components/MyCombine/MyResultList";
 import {getBuyIssueData,getLottoBuyData} from "../../../Service/LottoService";
 
 
-const Result = (props) => {
+const LottoMyResultScreen = (props) => {
     let { id } = useParams();
     const [dailyLotto, setDailyLotto] = useState(false);
     const [bigLotto, setBigLotto] = useState(false);
@@ -135,4 +135,4 @@ const Result = (props) => {
 };
 
 
-export default Result;
+export default LottoMyResultScreen;
