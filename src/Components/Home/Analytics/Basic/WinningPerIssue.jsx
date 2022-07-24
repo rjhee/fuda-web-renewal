@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import plusIcon from "../../../../Assets/Images/icon/plus-icon.png"
 import {lang} from "../../../../Assets/Lang/Lang";
 
 const WinningPerIssue = (props) => {

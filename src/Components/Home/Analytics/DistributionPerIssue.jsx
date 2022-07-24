@@ -9,13 +9,13 @@ const DistributionPerIssue = (props) => {
     let sn = [];
     let typeLength = 0;
 
-    if(props.type.name === 'big') {
+    if(props?.type === 'big') {
         typeLength = 49;
     }
-    else if(props.type.name === 'super'){
+    else if(props?.type === 'super'){
         typeLength = 38;
     }
-    else if(props.type.name === 'daily'){
+    else if(props?.type === 'daily'){
         typeLength = 39;
     }
 
@@ -29,20 +29,20 @@ const DistributionPerIssue = (props) => {
 
     return (
         <ul className={'contentsCover'}>
-            {props.lotto.map((items, i)=>
+            {props?.lotto.map((items, i)=>
                 <li>
                     <div key={i} className={'sectionCover'}>
                         <span className={'issueFont'}>{lang().FIRST}{items.issue}{lang().ISSUE}</span>
                         <div>
                             <ul className={'numBoxCover'}>
                                 {num.map((item, i)=>
-                                    <li key={i} className={'numBox'} style={(items.value.indexOf(item) !== -1) ? {backgroundColor: Color.LIGHT_RED} : ((props.type.name === 'big' && item === items.sn) ? {backgroundColor: Color.LIGHT_YELLOW} : '')}>
-                                        <span style={(items.value.indexOf(item) !== -1) ? {color: Color.WHITE} : ((props.type.name === 'big' && item === items.sn) ? {color: Color.LIGHT_RED} : '')}>{item}</span>
+                                    <li key={i} className={'numBox'} style={(items.value.indexOf(item) !== -1) ? {backgroundColor: Color.LIGHT_RED} : ((props.type === 'big' && item === items.sn) ? {backgroundColor: Color.LIGHT_YELLOW} : '')}>
+                                        <span style={(items.value.indexOf(item) !== -1) ? {color: Color.WHITE} : ((props.type === 'big' && item === items.sn) ? {color: Color.LIGHT_RED} : '')}>{item}</span>
                                     </li>
                                 )}
                             </ul>
                             <ul className={'snBoxCover'}>
-                                {props.type.name === 'super' && sn.map((item, i)=>
+                                {props?.type === 'super' && sn.map((item, i)=>
                                     <li key={i} style={items.sn === item ? {backgroundColor: Color.LIGHT_YELLOW} : ''} className={'snBox'}>
                                         <span style={items.sn === item ? {color: Color.LIGHT_RED} : ''} className={'snBoxFont'}>{item}</span>
                                     </li>

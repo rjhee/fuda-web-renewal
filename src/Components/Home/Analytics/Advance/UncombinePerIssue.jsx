@@ -6,7 +6,7 @@ const UncombinePerIssue = (props) => {
     // 숫자가 나타나지 않은 횟수 통계
 
     return (
-        <div className={'sectionCover'}>
+        <div className={'UncombinePerIssue sectionBoxCover'}>
             <ul className={'columnCover'}>
                 {props.noShowArr.map((item, i)=>
                     <li key={i+1} className={'rowCover'}>

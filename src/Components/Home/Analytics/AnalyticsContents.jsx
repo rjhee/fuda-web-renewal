@@ -3,6 +3,7 @@ import AnalyticsCircleBtn from "./AnalyticsCircleBtn";
 import WinningPerIssue from "./Basic/WinningPerIssue";
 import {AnalyticsBasicSection} from "./Basic/AnalyticsBasicSection";
 import {AnalyticsAdvanceSection} from "./Advance/AnalyticsAdvanceSection";
+import DistributionPerIssue from "./DistributionPerIssue";
 
 const AnalyticsContents = (props) => {
     const [data, setData] = useState([]);
@@ -29,17 +30,37 @@ const AnalyticsContents = (props) => {
                 staticsType={props.staticsType}
                 color={props.color}
                 data={data}/>
-            <AnalyticsBasicSection
-                key={''}
-                title={''}
-                staticsType={props.staticsType}
-                mantissaStatics={props.mantissaStaticsArr}
-                type={props.lottoType}
-                titleColor={props.color}
-                lotto={props.lotto}/>
-            {/*<AnalyticsAdvanceSection*/}
-            {/*    data={props.data}/>*/}
-
+            {props.staticsLevel
+                ? <DistributionPerIssue
+                    key={''}
+                    title={''}
+                    staticsType={props.staticsType}
+                    mantissaStatics={props.mantissaStaticsArr}
+                    type={props.lottoType}
+                    titleColor={props.color}
+                    lotto={props.lotto}
+                />
+                : <>
+                    <AnalyticsBasicSection
+                        key={''}
+                        title={''}
+                        staticsType={props.staticsType}
+                        mantissaStatics={props.mantissaStaticsArr}
+                        type={props.lottoType}
+                        titleColor={props.color}
+                        lotto={props.lotto}/>
+                    <AnalyticsAdvanceSection
+                        key={''}
+                        title={''}
+                        cooperArr={props.cooperArr}
+                        noShowArr={props.noShowArr}
+                        numCount={props.numCount}
+                        staticsType={props.staticsType}
+                        mantissaStatics={props.mantissaStaticsArr}
+                        type={props.lottoType}
+                        titleColor={props.color}
+                        lotto={props.lotto}/>
+                </>}
             {props.staticsLevel}
             {props.staticsType}
         </>

@@ -6,8 +6,8 @@ const ACvaluePerIssue = (props) => {
    // 간격수, 최대수 - 최소수, AC
 
     return(
-        <div className={'sectionCover'}>
-            <header className={'issueFont'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
+        <div className={'ACvaluePerIssue sectionBoxCover'}>
+            <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
             <ul className={'lottoNumCover'}>
                 {props.lotto.map((num, i)=>
                     <li key={i} className={'lottoNum'}>
@@ -15,24 +15,19 @@ const ACvaluePerIssue = (props) => {
                     </li>
                 )}
                 {props.type.name === 'super' ?
-                    <li>
-                        <div className={'plusCover'}>
-                            <img src={plusIcon} className={'plusImg'}/>
-                        </div>
-                        <div className={'bonusNum'}>
-                            <span className={'lottoNumFont'}>{props.sn}</span>
-                        </div>
-                    </li>: null}
+                    <li className={'bonusNum'}>
+                        <span className={'lottoNumFont'}>{props.sn}</span>
+                    </li> : null}
             </ul>
             <ul className={'indexCover'}>
                 <li style={{width:'30%'}}>{lang().INTERVAL_NUM}</li>
-                <li style={{width:'40%'}}>{lang().HEIGHT_DIFF}</li>
-                <li style={{width:'20%'}}>{lang().AC_S}</li>
+                <li style={{width:'45%'}}>{lang().HEIGHT_DIFF}</li>
+                <li style={{width:'15%'}}>{lang().AC_S}</li>
             </ul>
             <ul className={'indexCover'}>
                 <li style={{width:'30%'}}>{props.diffNum.join('-')}</li>
-                <li style={{width:'40%'}}>{props.heightDiffNum}</li>
-                <li style={{width:'20%'}}>{props.AcNum}</li>
+                <li style={{width:'45%'}}>{props.heightDiffNum}</li>
+                <li style={{width:'15%'}}>{props.AcNum}</li>
             </ul>
         </div>
     );

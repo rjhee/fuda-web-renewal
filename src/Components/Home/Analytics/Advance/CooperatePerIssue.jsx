@@ -5,8 +5,8 @@ const CooperatePerIssue = (props) => {
     // 모든 회차에서 함께나온 횟수가 많은 숫자, 적은 숫자
 
     return (
-        <div className={'sectionCover'}>
-            <ul className={'matchingCover'}>
+        <div className={'CooperatePerIssue'}>
+            <ul className={'sectionBoxCover'}>
             {props.cooperArr
                 .sort((a, b)=> b['count'] - a['count'])
                 .map((items, i)=>
@@ -26,7 +26,7 @@ const CooperatePerIssue = (props) => {
                    </li>
                     : null)}
             </ul>
-            <ul className={'matchingCover'}>
+            <ul className={'sectionBoxCover'}>
                 {props.cooperArr
                     .sort((a, b)=> a['count'] - b['count'])
                     .map((items, i)=>

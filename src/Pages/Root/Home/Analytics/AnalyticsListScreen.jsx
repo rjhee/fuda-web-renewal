@@ -518,7 +518,6 @@ const AnalyticsListScreen = (props) => {
         calACNum();
         countFrequencyNum();
         mantissaStatics();
-        console.log('AnalyticsListScreen.jsx:520 ->',lotto);
     },[lotto])
 
 
@@ -545,6 +544,9 @@ const AnalyticsListScreen = (props) => {
                 lotto={lotto}
                 onMenuBtn={onSubBtn}
                 moveToSection={moveToStaticsType}
+                cooperArr={cooperArr}
+                noShowArr={noShowArr}
+                numCount={numCount}
                 lottoType={currentLotto}
                 staticsLevel={currentLevel}
                 staticsType={currentStatics}

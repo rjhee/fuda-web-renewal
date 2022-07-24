@@ -5,7 +5,7 @@ const CODE = require('./status-code');
 // const apiURL = 'https://mobile-dev.fudalotto.com.tw';
 //  const apiURL = 'http://localhost:3030/';
 // const apiURL = 'http://192.168.0.9:3030';
-const apiURL = 'http://192.168.0.9:3030';
+const apiURL = 'http://192.168.219.100:3030';
 
 let client = axios.create({
     baseURL: apiURL,

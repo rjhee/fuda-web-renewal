@@ -9,50 +9,9 @@ import SizePerIssue from "./SizePerIssue";
 import MantissaPerIssue from "./MantissaPerIssue";
 import LianPerIssue from "./LianPerIssue";
 import AdjacentPerIssue from "./AdjacentPerIssue";
-import plusIcon from "../../../../Assets/Images/icon/plus-icon.png"
-import {Color} from "../../../../Styles/Base/color";
 
 export const AnalyticsBasicSection = (props) => {
-    console.log('AnalyticsBasicSection.jsx:16 ->',props);
 
-    const commonStyle = {
-        sectionCover: {
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 10,
-            borderColor: Color.LIGHT_GREY_2,
-            borderWidth: 1,
-            marginVertical: 20,
-            paddingTop: 15,
-            paddingBottom: 5,
-            paddingHorizontal: 10,
-        },
-        issueFont: {
-            fontSize: 15,
-            color: Color.DARK_GREY_2,
-            position: "absolute",
-            backgroundColor: Color.WHITE,
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-        },
-        lottoNumCover: {
-            flexDirection: "row",
-            marginVertical: 12,
-        },
-        lottoNum: {
-            alignItems: "center",
-            justifyContent: "center",
-            width: 30,
-            height: 30,
-            borderRadius: 50,
-            marginHorizontal: 2,
-            backgroundColor: Color.LIGHT_GREY_3,
-        },
-        lottoNumFont: {
-            fontSize: 15,
-            color: Color.LIGHT_GREY,
-        },
-    }
 
     return (
         <div className={'contentsCover'}>
@@ -81,8 +40,7 @@ export const AnalyticsBasicSection = (props) => {
                             continuousNum={data.continuous !== undefined && data.continuous}
                             repeatNum={data.repeat !== undefined && data.repeat}
                             lianNum={data.lian !== undefined && data.lian}
-                            adjacentNum={data.adjacent !== undefined && data.adjacent}
-                            commonStyle={commonStyle}/> : null}
+                            adjacentNum={data.adjacent !== undefined && data.adjacent}/> : null}
                     {props.staticsType === 'amount' ?
                         <AmountPerIssue
                             i={i}
@@ -95,8 +53,7 @@ export const AnalyticsBasicSection = (props) => {
                             // win_mny_1={data.win_mny_1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             // win_mny_2={data.win_mny_2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             win_1={data.win_1}
-                            win_2={data.win_2}
-                            commonStyle={commonStyle}/> : null}
+                            win_2={data.win_2}/> : null}
                     {props.staticsType === 'continuous' ?
                         <ContinuousPerIssue
                             i={i}
@@ -104,24 +61,21 @@ export const AnalyticsBasicSection = (props) => {
                             type={props.type}
                             lotto={data.valueString}
                             sn={data.snString}
-                            continuousNum={data.continuous !== undefined && data.continuous}
-                            commonStyle={commonStyle}/> : null}
+                            continuousNum={data.continuous !== undefined && data.continuous}/> : null}
                     {props.staticsType === 'oddEven' ?
                         <OddEvenPerIssue
                             i={i}
                             issue={data.issue}
                             type={props.type}
                             lotto={data.valueString}
-                            sn={data.snString}
-                            commonStyle={commonStyle}/> : null}
+                            sn={data.snString}/> : null}
                     {props.staticsType === 'size' ?
                         <SizePerIssue
                             i={i}
                             type={props.type}
                             issue={data.issue}
                             lotto={data.valueString}
-                            sn={data.snString}
-                            commonStyle={commonStyle}/> : null}
+                            sn={data.snString}/> : null}
                     {props.staticsType === 'mantissa' ?
                         <MantissaPerIssue
                             i={i}
@@ -129,8 +83,7 @@ export const AnalyticsBasicSection = (props) => {
                             issue={data.issue}
                             lotto={data.valueString}
                             sn={data.snString}
-                            repeatNum={data.repeat !== undefined && data.repeat}
-                            commonStyle={commonStyle}/> : null}
+                            repeatNum={data.repeat !== undefined && data.repeat}/> : null}
                     {props.staticsType === 'lian' ?
                         <LianPerIssue
                             i={i}
@@ -138,8 +91,7 @@ export const AnalyticsBasicSection = (props) => {
                             type={props.type}
                             lotto={data.valueString}
                             sn={data.snString}
-                            lianNum={data.lian !== undefined && data.lian}
-                            commonStyle={commonStyle}/> : null}
+                            lianNum={data.lian !== undefined && data.lian}/> : null}
                     {props.staticsType === 'adjacent' ?
                         <AdjacentPerIssue
                             i={i}
@@ -147,8 +99,7 @@ export const AnalyticsBasicSection = (props) => {
                             type={props.type}
                             lotto={data.valueString}
                             sn={data.snString}
-                            adjacentNum={data.adjacent !== undefined && data.adjacent}
-                            commonStyle={commonStyle}/> : null}
+                            adjacentNum={data.adjacent !== undefined && data.adjacent}/> : null}
                 </>
             )}
 

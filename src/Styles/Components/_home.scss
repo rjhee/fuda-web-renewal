@@ -409,6 +409,25 @@
     background-color: $LIGHT_RED;
     color: $WHITE;
   }
+  .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: $LIGHT_GREY_3;
+    margin: 0 2px;
+    width: 30px;
+    height: 30px;
+  }
+  .circleFont {
+    color: $LIGHT_GREY;
+    font-size: 15px;
+  }
+  .countFont {
+    color: $REGULAR_GREY;
+    font-size: 14px;
+    margin: 0 7px;
+  }
 }
 
 //WinningPerIssue.jsx
@@ -515,6 +534,108 @@
 .AdjacentPerIssue {
 
 }
+
+// QualityPerIssue.jsx
+.QualityPerIssue {
+  .indexCover {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content:center;
+    text-align: center;
+    border-top: 1px solid $LIGHT_GREY_2;
+    padding: 6px 0;
+  }
+  .indexFont {
+    width: 33%;
+    font-size: 14px;
+    color: $DARK_GREY_2;
+  }
+}
+
+// CooperatePerIssue.jsx
+.CooperatePerIssue {
+  display: flex;
+  padding: 50px 21px;
+  .sectionBoxCover{
+    flex-grow: 1;
+    margin: 5px;
+  }
+  .titleFont {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $WHITE;
+    padding: 10px;
+    font-size: 15px;
+  }
+  .rowCover {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid $LIGHT_GREY_2;
+    padding: 7px 0;
+  }
+  .circleCover {
+    display: flex;
+    margin: 0 7px;
+  }
+}
+
+// UncombinePerIssue.jsx
+.UncombinePerIssue {
+  .columnCover {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .rowCover {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid $LIGHT_GREY_2;
+    padding-bottom: 7px;
+    margin: 7px 5px 0 0;
+    width: 47%;
+    max-width: 155px;
+  }
+  .countFont {
+    margin: 0;
+  }
+
+}
+
+// ACvaluePerIssue.jsx
+.ACvaluePerIssue {
+  .issue {
+    top: -20px
+  }
+  .indexCover {
+    display: flex;
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-top: 1px solid $LIGHT_GREY_2;
+    padding: 8px 0;
+
+    > li {
+      flex-grow: 1;
+      flex-shrink: 0;
+      font-size: 14px;
+      color: $DARK_GREY_2;
+    }
+  }
+}
+
 
 
 
