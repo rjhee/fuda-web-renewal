@@ -10,13 +10,12 @@ import {Color} from "../../../Styles/Base/color";
 //         yLabel={y축 라벨 고정index array[앞, 뒤]}/>
 // endregiond
 const RowBarGraph = (props) => {
+    console.log('RowBarGraph.jsx:13 ->',props);
     let xLabelArr = !props.xLabelArr ? ['0', '11', '22', '33', '44', '55'] : props.xLabelArr;
     let yLabelArr = !props.yLabelArr ? ['111000011', '111000012', '111000013', '111000014', '111000015', '111000016'] : props.yLabelArr;
     let data = !props.data ? ["39", "11", "22", "33", "23", "18"] : props.data;
-    let size = !props.size ? 80 : props.size;
-    let sizeResult = 1.0652;
     let yLabel = !props.yLabel ? ['第','期'] : props.yLabel;
-
+    let maxNum = props.maxNum ? props.maxNum : 250;
     return (
         <div className={'chartCover'}>
             <ul className={'lineCover'}>
@@ -34,17 +33,14 @@ const RowBarGraph = (props) => {
             </ul>
             <ul className={'xLabelCover'}>
                 {xLabelArr.map((num, i)=>
-                    <li key={num*(i+num)} className={'xLabel'}>{num}</li>
+                    <li key={num*(i+num)}>{num}</li>
                 )}
             </ul>
             <div className={'rowCover'}>
-                {props.bg === 'S'
-                    ? <img className={'bgImg'}/>
-                    : null}
                 <ul className={'yLabelCover'}>
                     {yLabelArr.map((num, i)=>
                         <li key={num*(i+num)} className={'yLabelSubCover'}>
-                            <div className={'labelCircle'}>
+                            <div className={props.staticsType === 'frequency' ? 'labelCircle' : ''}>
                                 <span className={'yLabelFont'}>{yLabel[0]}{num+1}{yLabel[1]}</span>
                             </div>
                         </li>
@@ -53,7 +49,7 @@ const RowBarGraph = (props) => {
                 <ul className={'barCover'}>
                     {data.map((num, i)=>
                         <li key={num*(i+num)} className={'barSubCover'}>
-                            <div className={'bar'} style={{width: `${(270/sizeResult * num)/270*100}%`}}>
+                            <div className={'bar'} style={{backgroundColor: props.color,width: `${num/maxNum*100}%`}}>
                                 <span className={'barNum'}>{num}</span>
                             </div>
                         </li>

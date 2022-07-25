@@ -5,7 +5,7 @@ const AnalyticsColorBtnGroup = (props) => {
     return (
         <div className='btnCover'>
             {props.btnTitle.map((item)=>
-                <ColorButton onClick={()=> props.moveToSection(item.type,()=> props.onMenuBtn(item.type))} on={item.on} text={item.title} color={props.color}/>
+                <ColorButton onClick={()=> props.moveToSection(item.type, props.staticsType, 'level')} on={item.on} text={item.title} color={props.color}/>
             )}
         </div>
     );

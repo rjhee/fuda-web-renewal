@@ -10,12 +10,12 @@ const AmountPerIssue = (props) => {
         <div className={'AmountPerIssue sectionBoxCover'}>
             <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
             <ul className={'lottoNumCover'}>
-                {props.lotto.map((num)=>
-                    <li className={'lottoNum'}>
+                {props.lotto.map((num, i)=>
+                    <li className={'lottoNum'} key={i}>
                         <div className={'lottoNumFont'}>{num}</div>
                     </li>
                 )}
-                {props.type.name === 'super' ?
+                {props.type === 'super' ?
                     <li className={'bonusNum'}>
                         <span className={'lottoNumFont'}>{props.sn}</span>
                     </li>

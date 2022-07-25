@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import ContentsTitleSection from "../ContentsTitleSection";
 import QualityPerIssue from "./QualityPerIssue";
@@ -11,71 +11,12 @@ import FrequencyPerIssue from "./FrequencyPerIssue";
 import {Color} from "../../../../Styles/Base/color";
 
 export const AnalyticsAdvanceSection = (props) => {
-    console.log('AnalyticsAdvanceSection.jsx:15 ->',props);
-    const commonStyle = {
-        sectionCover: {
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: 10,
-            borderColor: Color.LIGHT_GREY_2,
-            borderWidth: 1,
-            marginVertical: 20,
-            paddingTop: 15,
-            paddingBottom: 5,
-            paddingHorizontal: 10,
-        },
-        issueFont: {
-            fontSize: 15,
-            color: Color.DARK_GREY_2,
-            position: "absolute",
-            backgroundColor: Color.WHITE,
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-
-        },
-        lottoNumCover: {
-            flexDirection: "row",
-            marginVertical: 12,
-        },
-        lottoNum: {
-            alignItems: "center",
-            justifyContent: "center",
-            width: 30,
-            height: 30,
-            borderRadius: 50,
-            marginHorizontal: 2,
-            backgroundColor: Color.LIGHT_GREY_3,
-        },
-        lottoNumFont: {
-            fontSize: 15,
-            color: Color.LIGHT_GREY,
-        },
-    }
-    let sum = [];
-    let sumMantissa = [];
-    let issue = [];
-    // props?.lotto.map((data) => {
-    //     sum.push(data.sumNum[0]);
-    //     sumMantissa.push(data.sumMantissa[0]);
-    //     issue.push(data.issue);
-    // })
-
 
     return (
         <div>
-            <h1>{props?.title.issue}</h1>
-            {/*<ContentsTitleSection*/}
-            {/*    index={props.i}*/}
-            {/*    titleColor={props.titleColor}*/}
-            {/*    key={props.i + props.title.L}*/}
-            {/*    title={props.title.L}*/}
-            {/*    title_XL={props.title.XL}*/}
-            {/*    type={props.title.name}*/}
-            {/*    subTitle={props.title.subTitle}*/}
-            {/*    info={props.title.info}*/}
-            {/*    lotto={props.lotto}*/}
-            {/*    infoText={props.title.infoText}/>*/}
-            {props?.lotto.map((data, i)=>
+            {/*<h1>{props?.title.issue}</h1>*/}
+
+            {props?.lotto?.map((data, i)=>
                 <>
                     {props.staticsType === 'quality' ?
                         <QualityPerIssue
@@ -86,8 +27,7 @@ export const AnalyticsAdvanceSection = (props) => {
                             sn={data.snString}
                             compositeNum={data.compositeNum != undefined && data.compositeNum}
                             primeNum={data.primeNum != undefined && data.primeNum}
-                            multiples3Num={data.multiples3Num != undefined &&data.multiples3Num}
-                            commonStyle={commonStyle}/> : null}
+                            multiples3Num={data.multiples3Num != undefined &&data.multiples3Num}/> : null}
                     {props.staticsType === 'ac' ?
                         <ACvaluePerIssue
                             i={i}
@@ -98,34 +38,31 @@ export const AnalyticsAdvanceSection = (props) => {
                             heightDiffNum={data.heightDiffNum}
                             AcNum={data.AcNum}
                             sn={data.snString}
-                            repeatNum={data.repeat}
-                            commonStyle={commonStyle}/> : null}
+                            repeatNum={data.repeat}/> : null}
                 </>
             )}
             {props.staticsType === 'sum' ?
                 <SumNumberPerIssue
-                    issue={issue}
-                    sum={sum}
-                    commonStyle={commonStyle}/> : null}
+                    staticsType={props.staticsType}
+                    issue={props.issue}
+                    sum={props.sum}/> : null}
             {props.staticsType === 'sumMantissa' ?
                 <SumMantissaPerIssue
-                    issue={issue}
-                    sumMantissa={sumMantissa}
-                    commonStyle={commonStyle}/> : null}
+                    staticsType={props.staticsType}
+                    issue={props.issue}
+                    sumMantissa={props.sumMantissa}/> : null}
             {props.staticsType === 'cooperate' ?
                 <CooperatePerIssue
-                    cooperArr={props.cooperArr}
-                    commonStyle={commonStyle}/> : null}
+                    cooperArr={props.cooperArr}/> : null}
             {props.staticsType === 'unCombine' ?
                 <UncombinePerIssue
-                    noShowArr={props.noShowArr}
-                    commonStyle={commonStyle}/> : null}
+                    noShowArr={props.noShowArr}/> : null}
             {props.staticsType === 'frequency' ?
                 <FrequencyPerIssue
                     type={props.type}
+                    staticsType={props.staticsType}
                     titleColor={props.titleColor}
-                    numCount={props.numCount}
-                    commonStyle={commonStyle}/> : null}
+                    numCount={props.numCount}/> : null}
 
         </div>
     )

@@ -9,14 +9,16 @@ const UncombinePerIssue = (props) => {
         <div className={'UncombinePerIssue sectionBoxCover'}>
             <ul className={'columnCover'}>
                 {props.noShowArr.map((item, i)=>
-                    <li key={i+1} className={'rowCover'}>
-                        <div className={'circleCover'}>
-                            <div className={'circle'}>
-                                <span className={'circleFont'}>{i+1}</span>
+                    0 < i ?
+                        <li key={i+1} className={'rowCover'}>
+                            <div className={'circleCover'}>
+                                <div className={'circle'}>
+                                    <span className={'circleFont'}>{i}</span>
+                                </div>
                             </div>
-                        </div>
-                        <span className={'countFont'}>{lang().RECENTLY}{item}{lang().NO_SHOW}</span>
-                    </li>
+                            <span className={'countFont'}>{lang().RECENTLY}{item}{lang().NO_SHOW}</span>
+                        </li>
+                        : null
                 )}
             </ul>
         </div>

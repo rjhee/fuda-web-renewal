@@ -18,43 +18,42 @@ const ColumnBarGraph = (props) => {
     let sizeResult = 10;
     let barCover = null;
     let per = 0;
-    if(props.type === 'big'){
-        barCover = props.style.bigBarCover;
-        per = 6;
-    }else if(props.type === 'super'){
-        barCover = props.style.superBarCover;
-        per = 6.2;
-    }else if(props.type === 'daily'){
-        barCover = props.style.dailyBarCover;
-        per = 7.7
-    }
-
+    // if(props.type === 'big'){
+    //     barCover = props.style.bigBarCover;
+    //     per = 6;
+    // }else if(props.type === 'super'){
+    //     barCover = props.style.superBarCover;
+    //     per = 6.2;
+    // }else if(props.type === 'daily'){
+    //     barCover = props.style.dailyBarCover;
+    //     per = 7.7
+    // }
+    console.log('ColumnBarGraph.jsx:31 ->',props);
     return (
-        <div className={'chartCover'}>
+        <div className={'ColumnBarGraph'}>
             <ul className={'lineCover'}>
-                <li className={'lineSubCover'}><div className={'boldLine'}/></li>
-                <li className={'lineSubCover'}><div className={'line'}/></li>
-                <li className={'lineSubCover'}><div className={'boldLine'}/></li>
-                <li className={'lineSubCover'}><div className={'line'}/></li>
-                <li className={'lineSubCover'}><div className={'pointLine'}/></li>
+                <li className={'boldLine'}/>
+                <li className={'line'}/>
+                <li className={'boldLine'}/>
+                <li className={'line'}/>
+                <li className={'pointLine'} style={props.color ? {backgroundColor: props.color} : null}/>
             </ul>
             <ul className={'yLabelCover'}>
-                {props.yLabelArr.map((num,i)=>
+                {props?.yLabelArr.map((num,i)=>
                     <li key={i} className={'yLabelFont'}>{props.yLabelArr[props.yLabelArr.length-1]-num}</li>
                 )}
             </ul>
             <ul className={'xLabelCover'}>
-                {props.xLabelIndex.map((item, i)=>
+                {props?.xLabelIndex.map((item, i)=>
                     <li key={i} className={'xLabel'}>{item}</li>
                 )}
             </ul>
-            <ul className={barCover}>
-                {props.xLabelArr.map((num, i)=>
-                    <li key={i} className={'barSubCover'}>
-                        <span className={'bar'} style={{height: `${num * per}%`}}/>
-                        {/*<Text style={{position: 'absolute', color: Color.WHITE, left:10, top:0, fontSize: 11}}>{num}</Text>*/}
-                    </li>
+            <ul className={'barCover'}>
+                {props?.xLabelArr?.map((num, i)=>
+                    i < 10 ? <li key={i} className={'bar'} style={{height: (num/130*100)+"%"}}>{num}</li>
+                        : null
                 )}
+
             </ul>
         </div>
     );

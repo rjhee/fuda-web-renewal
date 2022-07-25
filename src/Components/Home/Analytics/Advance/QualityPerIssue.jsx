@@ -13,7 +13,7 @@ const QualityPerIssue = (props) => {
                         <div className={'lottoNumFont'}>{num}</div>
                     </li>
                 )}
-                {props.type.name === 'super' ?
+                {props.type === 'super' ?
                    <li className={'bonusNum'}>
                        <span className={'lottoNumFont'}>{props.sn}</span>
                    </li> : null}

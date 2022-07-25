@@ -12,8 +12,8 @@ const WinningPerIssue = (props) => {
             <div className={'WinningPerIssue sectionBoxCover'}>
                 <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
                 <ul className={'lottoNumCover'}>
-                    {props?.lotto.map((num)=>
-                        <li className={'lottoNum'}>
+                    {props?.lotto?.map((num, i)=>
+                        <li className={'lottoNum'} key={i}>
                             <span className={'lottoNumFont'}>{num.toString()[0]}<span className={'lottoNumFontPoint'}>{num.toString()[1]}</span></span>
                         </li>
                     )}

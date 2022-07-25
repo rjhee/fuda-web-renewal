@@ -23,23 +23,10 @@ const AnalyticsScreen = (props) => {
     const [bigSnAll, setBigSnAll] = useState([]);
     const [superSnAll, setSuperSnAll] = useState([]);
 
-
-
-    let bigNumCopy = [];
-    let superNumCopy = [];
-    let dailyNumCopy = [];
-
-    let bigNumAllCopy = [];
-    let superNumAllCopy = [];
-    let dailyNumAllCopy = [];
-
-    let bigSnAllCopy = [];
-    let superSnAllCopy = [];
-
-
     const getIssueNum = () => {
         getWinDaily()
             .then((result)=>{
+                let dailyNumCopy = [];
                 result.data.forEach((data, i)=>{
                     let numberBefore = [data.b1, data.b2, data.b3, data.b4, data.b5];
                     let numbersAfter = [];
@@ -49,10 +36,12 @@ const AnalyticsScreen = (props) => {
                     let dailyData = {type: 'daily', key: i+data.issue, issue:data.issue, value:numberBefore, valueString:numbersAfter, win_mny_1: data.win_mny_1, win_mny_2: data.win_mny_2, win_1: data.win_cnt_1, win_2: data.win_cnt_2};
                     dailyNumCopy.push(dailyData);
                 })
+                    console.log('AnalyticsScreen.jsx:51 ->',dailyNumCopy);
                 setDailyNum(dailyNumCopy);
             })
         getWinBig()
             .then((result)=>{
+                let bigNumCopy = [];
                 result.data.forEach((data, i)=>{
                     let numberBefore = [data.b1, data.b2, data.b3, data.b4, data.b5, data.b6];
                     let numbersAfter = [];
@@ -67,6 +56,7 @@ const AnalyticsScreen = (props) => {
             })
         getWinSuper()
             .then((result)=>{
+                let superNumCopy = [];
                 result.data.forEach((data, i)=>{
                     let numberBefore = [data.b1, data.b2, data.b3, data.b4, data.b5, data.b6];
                     let numbersAfter = [];
@@ -80,6 +70,8 @@ const AnalyticsScreen = (props) => {
             })
         getWinBigNumAll()
             .then((result) => {
+                let bigNumAllCopy = [];
+                let bigSnAllCopy = [];
                 result.data.forEach((data, i)=> {
                     bigNumAllCopy.push([data.b1, data.b2, data.b3, data.b4, data.b5, data.b6]);
                     bigSnAllCopy.push(data.sn);
@@ -89,6 +81,8 @@ const AnalyticsScreen = (props) => {
             })
         getWinSuperNumAll()
             .then((result)=> {
+                let superNumAllCopy = [];
+                let superSnAllCopy = [];
                 result.data.forEach((data, i)=> {
                     superNumAllCopy.push([data.b1, data.b2, data.b3, data.b4, data.b5, data.b6]);
                     superSnAllCopy.push(data.sn);
@@ -98,6 +92,7 @@ const AnalyticsScreen = (props) => {
             })
         getWinDailyNumAll()
             .then((result)=> {
+                let dailyNumAllCopy = [];
                 result.data.forEach((data, i)=> {
                     dailyNumAllCopy.push([data.b1, data.b2, data.b3, data.b4, data.b5]);
                 })
@@ -110,7 +105,7 @@ const AnalyticsScreen = (props) => {
     function moveToPage(type){
         switch (type){
             case 'daily':
-                navigate(props.dailyPath + props.winning, {state: {lottoType:type, staticsLevel: 'basic',staticsType: 'winning', data: dailyNum,countNum: dailyNumAll, countSn: ''}});
+                navigate(props.dailyPath + props.winning, {state: {lottoType:type, staticsLevel: 'basic',staticsType: 'winning', data: dailyNum,countNum: dailyNumAll, countSn: []}});
                 break;
             case 'big' :
                 navigate(props.bigPath + props.winning, {state: {lottoType:type, staticsLevel: 'basic',staticsType: 'winning', data: bigNum,countNum: bigNumAll,countSn: bigSnAll}});

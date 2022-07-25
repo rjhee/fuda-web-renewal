@@ -1,5 +1,5 @@
 
-import ContentsTitleSection from "../ContentsTitleSection";
+
 import WinningPerIssue from "./WinningPerIssue";
 import AmountPerIssue from "./AmountPerIssue"
 import React, {useEffect} from "react";
@@ -12,24 +12,11 @@ import AdjacentPerIssue from "./AdjacentPerIssue";
 
 export const AnalyticsBasicSection = (props) => {
 
-
     return (
         <div className={'contentsCover'}>
-            <h1>{props?.title.issue}</h1>
-            {/*<ContentsTitleSection*/}
-            {/*    titleColor={props.titleColor}*/}
-            {/*    index={props.i}*/}
-            {/*    key={props.i + props.title.L}*/}
-            {/*    title={props.title.L}*/}
-            {/*    type={props.title.type}*/}
-            {/*    subTitle={props.title.subTitle}*/}
-            {/*    info={props.title.info}*/}
-            {/*    infoText={props.title.infoText}*/}
-            {/*    mantissaStatics={props.mantissaStatics}*/}
-            {/*    lottoType={props.type.name}*/}
-            {/*    lotto={props.lotto}/>*/}
-            {props?.lotto.map((data, i)=>
-                <>
+            {/*<h1>{props?.title.issue}</h1>*/}
+            {props?.lotto?.map((data, i)=>
+                <div key={i}>
                     {props?.staticsType === 'winning' ?
                         <WinningPerIssue
                             i={i}
@@ -100,7 +87,7 @@ export const AnalyticsBasicSection = (props) => {
                             lotto={data.valueString}
                             sn={data.snString}
                             adjacentNum={data.adjacent !== undefined && data.adjacent}/> : null}
-                </>
+                </div>
             )}
 
 

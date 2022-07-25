@@ -18,12 +18,25 @@ const AnalyticsListScreen = (props) => {
     const [mainColor, setMainColor] = useState(null);
     const [subColor, setSubColor] = useState(null);
 
-    const [lotto, setLotto] = useState(location?.state?.data);
-    const [count, setCount] = useState({num:location?.state?.countNum, sn:location?.state?.countSn});
+    const [lotto, setLotto] = useState();
+    const [lottoCount, setLottoCount] = useState([]);
+    const [snCount, setSnCount] = useState();
 
-    const [currentLotto, setCurrentLotto] = useState('daily');
-    const [currentLevel, setCurrentLevel] = useState('basic');
-    const [currentStatics, setCurrentStatics] = useState('winning');
+
+    const [lottoNumAll, setLottoNumAll] = useState([]);
+    const [numCount, setNumCount] = useState({});
+    const [cooperArr, setCooperArr] = useState([]);
+    const [noShowArr, setNoShowArr] = useState([]);
+    const [mantissaStaticsArr, setMantissaStaticsArr] = useState([]);
+
+    const [userType, setUserType] = useState('');
+
+    let primeNum = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+
+
+    const [currentLotto, setCurrentLotto] = useState(null);
+    const [currentLevel, setCurrentLevel] = useState(null);
+    const [currentStatics, setCurrentStatics] = useState(null);
     const [circleBtnBasic , setCircleBtnBasic] = useState([
         {type: 'winning', S: lang().WINNING_S, L:lang().WINNING_L, subTitle: lang().WINNING_SUB , on: true,},
         {type: 'amount', S: lang().AMOUNT_S, L: lang().AMOUNT_L, subTitle: lang().AMOUNT_SUB , on: false},
@@ -62,26 +75,26 @@ const AnalyticsListScreen = (props) => {
                 {title: lang().HEIGHT_DIFF_NUM, desc: [lang().HEIGHT_DIFF_NUM_DESC]},
                 {title: lang().AC_S, desc: [lang().AC_DESC_1, lang().AC_DESC_2, lang().AC_DESC_3]}]},
         {type: 'frequency',S: lang().FREQUENCY_S, L: lang().FREQUENCY_L, subTitle: lang().FREQUENCY_SUB , on: false}]);
-    const [distribution , setDistribution] = useState({type: 'distribution', L:lang().DISTRIBUTION, subTitle: lang().DISTRIBUTION_SUB });
+    const [distribution , setDistribution] = useState([{type: 'distribution', L:lang().DISTRIBUTION, subTitle: lang().DISTRIBUTION_SUB }]);
 
     const [btnTitle, setBtnTitle] = useState([
         {type: 'basic',title: lang().BASIC, on: true},
         {type: 'advance',title: lang().ADVANCE, on: false},
         {type: 'distribution',title: lang().DISTRIBUTION, on: false}]);
 
-    const onSubBtn = (staticsLevel, calType) => {
+    const onSubBtn = (level, calType) => {
         let copy = [];
-        if(staticsLevel === 'basic'){
+        if(level === 'basic'){
             copy = [...circleBtnBasic];
             copy.forEach((data) => data.type === calType ?  data.on = true : data.on = false);
             setCircleBtnBasic(copy);
         }
-        else if(staticsLevel === 'advance'){
+        else if(level === 'advance'){
             copy = [...circleBtnAdvance];
             copy.forEach((data) => data.type === calType ?  data.on = true : data.on = false);
             setCircleBtnAdvance(copy);
-        }else if(staticsLevel === 'distribution'){
-
+        }else if(level === 'distribution'){
+            return
         }
 
     }
@@ -90,86 +103,161 @@ const AnalyticsListScreen = (props) => {
         let copy = [...btnTitle];
         copy.forEach((data) => data.type === type ?  data.on = true : data.on = false);
         setBtnTitle(copy);
+
     }
 
-    function moveToSection(){
+    function moveToSection(type, path){
+        // console.log('AnalyticsListScreen.jsx:110 ->',type);
+        // console.log('AnalyticsListScreen.jsx:111 ->',path);
+        //
+        // setLottoData();
+        // if(type === 'staticsLevel'){
+        //     onMainBtn(staticsLevel);
+        //     moveToStaticsLevel (path);
+        // }
+        // else if(type === 'staticsType'){
+        //     onSubBtn(staticsLevel, staticsType);
+        //     moveToStaticsType(path);
+        // }else {
+        //     onSubBtn(staticsLevel, staticsType);
+        //     moveToStaticsType(path);
+        // }
+    }
+
+    function firstEnter(btnType, level, type){
+        if(btnType === 'level'){
+            onMainBtn(level);
+
+        }
+        else {
+            onSubBtn(level, type);
+
+        }
+    }
+
+    function changeStaticsPage(level, type, btnType){
+        console.log('AnalyticsListScreen.jsx:128 ->',level, type, btnType);
+        if(btnType === 'level'){
+            onMainBtn(level);
+            moveToStaticsLevel(level)
+        }
+        else {
+            onSubBtn(level, type);
+            moveToStaticsType(level, type);
+        }
+    }
+
+    // function setLottoData(){
+    //     let data = location?.state?.data;
+    //     let lottoType = location?.state?.lottoType;
+    //     let staticsLevel = location?.state?.staticsLevel;
+    //     let staticsType = location?.state?.staticsType;
+    //     let countNum = location?.state?.countNum;
+    //     let countSn = location?.state?.countSn;
+    //     console.log('AnalyticsListScreen.jsx:118 ->',location);
+    //     setLottoCount(countNum);
+    //     setSnCount(countSn);
+    //     setLotto(data);
+    //     setCurrentLotto(lottoType);
+    //     setCurrentLevel(staticsLevel);
+    //     setCurrentStatics(staticsType);
+    //     if(lottoType === 'daily'){
+    //         setTitle(lang().DAILY_LOTTO);
+    //         setMainColor(Color.ORANGE);
+    //         setSubColor(Color.REGULAR_ORANGE);
+    //     }
+    //     else if(lottoType === 'big'){
+    //         setTitle(lang().BIG_LOTTO);
+    //         setMainColor(Color.DARK_BLUE);
+    //         setSubColor(Color.LIGHT_BLUE);
+    //     }
+    //     else if(lottoType === 'super'){
+    //         setTitle(lang().SUPER_LOTTO);
+    //         setMainColor(Color.REGULAR_RED);
+    //         setSubColor(Color.LIGHT_RED);
+    //     }
+    // }
+
+    function moveToStaticsLevel (path){
+        let first = '';
+        let urlPath = props.dailyPath +'/'+ path;
+
+        switch (path){
+            case 'basic':
+                first = 'winning';
+                navigate( urlPath + '/winning', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:first}});
+                break;
+            case 'advance' :
+                first = 'quality';
+                navigate(urlPath + '/quality', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:first}});
+                break;
+            case 'distribution' :
+                first = 'list';
+                navigate(urlPath + '/list', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:first}});
+                break;
+        }
+
+    }
+
+    function moveToStaticsType(level, path){
+        let urlPath = props.dailyPath + "/" + level + "/";
+
+        switch (level){
+            case 'basic':
+                navigate(urlPath + path, {state: {lottoType:currentLotto, staticsLevel: level, staticsType:path}});
+                break;
+            case 'advance' :
+                navigate(urlPath + path, {state: {lottoType:currentLotto, staticsLevel: level, staticsType:path}});
+                break;
+            case 'distribution' :
+                navigate(urlPath + '/list', {state: {lottoType:currentLotto, staticsLevel: level, staticsType:path}});
+                break;
+        }
+
+    }
+
+
+
+
+
+
+    useEffect(()=>{
+        let data = location?.state?.data;
+        if(data) {
+            setLotto(data);
+        }
+    },[])
+
+    useEffect(()=> {
         let lottoType = location?.state?.lottoType;
         let staticsLevel = location?.state?.staticsLevel;
         let staticsType = location?.state?.staticsType;
+        let countNum = location?.state?.countNum;
+        let countSn = location?.state?.countSn;
+        console.log('AnalyticsListScreen.jsx:118 ->',location);
+        setLottoCount(countNum);
+        setSnCount(countSn);
 
-        if(staticsLevel){
-            setCurrentLevel(staticsLevel);
-        }
-        if(staticsType){
-            setCurrentStatics(staticsType);
-        }
-        if(lottoType){
-            setCurrentLotto(lottoType);
-        }
-    }
-
-    function setLottoData(){
-        if(currentLotto === 'daily'){
+        setCurrentLotto(lottoType);
+        setCurrentLevel(staticsLevel);
+        setCurrentStatics(staticsType);
+        if(lottoType === 'daily'){
             setTitle(lang().DAILY_LOTTO);
             setMainColor(Color.ORANGE);
             setSubColor(Color.REGULAR_ORANGE);
         }
-        else if(currentLotto === 'big'){
+        else if(lottoType === 'big'){
             setTitle(lang().BIG_LOTTO);
             setMainColor(Color.DARK_BLUE);
             setSubColor(Color.LIGHT_BLUE);
         }
-        else if(currentLotto === 'super'){
+        else if(lottoType === 'super'){
             setTitle(lang().SUPER_LOTTO);
             setMainColor(Color.REGULAR_RED);
             setSubColor(Color.LIGHT_RED);
         }
-    }
-
-    function moveToStaticsLevel (path, callback){
-        callback();
-        let urlPath = props.dailyPath +'/'+ path;
-        switch (path){
-            case 'basic':
-                navigate( urlPath + '/winning', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:currentStatics}});
-                break;
-            case 'advance' :
-                navigate(urlPath + '/quality', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:currentStatics}});
-                break;
-            case 'distribution' :
-                navigate(urlPath + '/list', {state: {lottoType:currentLotto, staticsLevel: path, staticsType:currentStatics}});
-                break;
-        }
-
-    }
-
-    function moveToStaticsType(path, callback){
-        callback();
-        let urlPath = props.dailyPath + "/" + currentLevel + "/";
-        switch (currentLevel){
-            case 'basic':
-                navigate(urlPath + path, {state: {lottoType:currentLotto, staticsLevel: currentLevel, staticsType:path}});
-                break;
-            case 'advance' :
-                navigate(urlPath + path, {state: {lottoType:currentLotto, staticsLevel: currentLevel, staticsType:path}});
-                break;
-            case 'distribution' :
-                navigate(urlPath + '/list', {state: {lottoType:currentLotto, staticsLevel: currentLevel, staticsType:path}});
-                break;
-        }
-    }
-
-
-
-    const [lottoNumAll, setLottoNumAll] = useState([]);
-    const [numCount, setNumCount] = useState({});
-    const [cooperArr, setCooperArr] = useState([]);
-    const [noShowArr, setNoShowArr] = useState([]);
-    const [mantissaStaticsArr, setMantissaStaticsArr] = useState([]);
-
-    const [userType, setUserType] = useState('');
-
-    let primeNum = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47];
+        firstEnter(staticsLevel, staticsType,'level');
+    },[currentStatics, currentLevel, currentLotto])
 
     //region [COPY VARIABLE]
     let continuousNumCopy = [];
@@ -192,11 +280,9 @@ const AnalyticsListScreen = (props) => {
     let noShowNumCopy = [];
     // endregion
 
-
-
     const getLotto = async () => {
         await setLotto(props.route.params?.data)
-        await setCount({num: props.route.params?.countNum, sn: props.route.params?.countSn})
+        // await setCount({num: props.route.params?.countNum, sn: props.route.params?.countSn})
     }
 
     const calContinuousNum = () => {
@@ -337,7 +423,6 @@ const AnalyticsListScreen = (props) => {
     const calCooperateNum = () => {
         let typeLength = 0;
         let cooperateArr = [];
-
         if(currentLotto === 'big'){
             typeLength = 49;
         }
@@ -355,11 +440,12 @@ const AnalyticsListScreen = (props) => {
                 cooperateArr[i].push([0])
 
             }}
-
-        count.num.map((items)=>{
+        lottoCount && lottoCount.map((items)=>{
             for(let i = 0; i < items.length; i++){
-                for(let j = i+1; j < items.length; j++){
-                    cooperateArr[items[i]][items[j]] && cooperateArr[items[i]][items[j]]++;
+                for(let j = i+1; j < items.length-1; j++){
+                    if(cooperateArr[items[i]][items[j]] !== undefined){
+                        cooperateArr[items[i]][items[j]]++;
+                    }else return;
                 }
             }
         })
@@ -367,7 +453,6 @@ const AnalyticsListScreen = (props) => {
             for(let j = i+1; j < typeLength; j++) {
                 i !== 0 && cooperateArr[i][j] && cooperArrCopy.push({num: [i+1, j+1], count : cooperateArr[i][j]})
             }}
-
         setCooperArr(cooperArrCopy);
     }
 
@@ -387,7 +472,7 @@ const AnalyticsListScreen = (props) => {
             noShowNumCopy.push(-99);
         }
 
-        count.num.map((items, index)=>{
+        lottoCount?.map((items, index) =>{
             for(let i = 0; i < items.length; i++){
                 let t = items[i];
                 if(noShowNumCopy[t] === -99) {
@@ -430,7 +515,8 @@ const AnalyticsListScreen = (props) => {
     }
 
     const countFrequencyNum = () => {
-        count.num && count.num.map((item)=>{
+        numCountCopy = [];
+        lottoCount?.map((item)=>{
             for(let i = 0; i < item.length; i++){
                 lottoNumAllCopy.push(item[i])
             }
@@ -487,23 +573,34 @@ const AnalyticsListScreen = (props) => {
 
     }
 
-
     function checkNormalUser (user){
         if(user.grade === 'FREE' &&  (!!user.vip_date === false)){
             setUserType('NORMAL');
         }
     }
+    const [sum, setSum] = useState([]);
+    const [sumMantissa, setSumMantissa] = useState([]);
+    const [issue, setIssue] = useState([]);
+    function createChartData(){
+        let sumCopy = [];
+        let sumMantissaCopy = [];
+        let issueCopy = [];
+        lotto?.map((data) => {
+            sumCopy.push(data.sumNum[0]);
+            sumMantissaCopy.push(data.sumMantissa[0]);
+            issueCopy.push(data.issue);
+        });
+        setSum(sumCopy);
+        setSumMantissa(sumMantissaCopy);
+        setIssue(issueCopy);
+    }
 
 
-    useEffect(()=> {
-        let staticsLevel = location?.state?.staticsLevel;
-        if(staticsLevel) {
-            onMainBtn(staticsLevel);
-        }
-    },[lotto])
+
 
     useEffect(()=>{
         // getLotto();
+
         let userData = getUserData();
         checkNormalUser(userData);
         calContinuousNum();
@@ -518,13 +615,12 @@ const AnalyticsListScreen = (props) => {
         calACNum();
         countFrequencyNum();
         mantissaStatics();
-    },[lotto])
+        createChartData();
+    },[circleBtnBasic])
 
 
-    useEffect(()=>{
-        setLottoData();
-        moveToSection();
-    })
+
+
 
     return (
         <section className='analyticsListCover'>
@@ -532,8 +628,7 @@ const AnalyticsListScreen = (props) => {
                 <Title text1={title} text2={lang().STATISTICAL_DATA} color={mainColor}/>
             </h1>
             <AnalyticsColorBtnGroup
-                onMenuBtn={onMainBtn}
-                moveToSection={moveToStaticsLevel}
+                moveToSection={changeStaticsPage}
                 lottoType={currentLotto}
                 staticsLevel={currentLevel}
                 staticsType={currentStatics}
@@ -542,8 +637,10 @@ const AnalyticsListScreen = (props) => {
                 />
             <AnalyticsContents
                 lotto={lotto}
-                onMenuBtn={onSubBtn}
-                moveToSection={moveToStaticsType}
+                moveToSection={changeStaticsPage}
+                sum={sum}
+                sumMantissa={sumMantissa}
+                issue={issue}
                 cooperArr={cooperArr}
                 noShowArr={noShowArr}
                 numCount={numCount}
@@ -554,6 +651,7 @@ const AnalyticsListScreen = (props) => {
                 basicData={circleBtnBasic}
                 advanceData={circleBtnAdvance}
                 mantissaStaticsArr={mantissaStaticsArr}
+                distribution={distribution}
                 btnTitle={btnTitle}/>
         </section>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import RowBarGraph from "../RowBarGraph";
 import {Color} from "../../../../Styles/Base/color";
@@ -6,29 +6,36 @@ import {Color} from "../../../../Styles/Base/color";
 const FrequencyPerIssue = (props) => {
     // 숫자가 모든 회차에서 나온 횟수 통계 그래프
 
-    const xLabel = [];
-    const yLabelIndex = [];
-    let yLabel = [];
-    let yLabelSn = [];
-
-    if(props.type.name === 'big'){
-        for(let i = 0; i < 49; i++){
-            yLabel[i] = i;
+    const [xLabel, setXLabel] = useState([]);
+    const [yLabelIndex, setYLabelIndex] = useState([]);
+    const [yLabel, setYLabel] = useState([]);
+    const [yLabelSn, setYLabelSn] = useState([]);
+    const [color, setColor] = useState(Color.MAIN_RED);
+    const [snColor, setSnColor] = useState(Color.LIGHT_GREY);
+    useEffect(()=>{
+        if(props.type === 'big'){
+            setColor(Color.LIGHT_BLUE);
+            for(let i = 0; i < 49; i++){
+                yLabel[i] = i;
+            }
         }
-    }
-    else if(props.type.name === 'super'){
-        for(let i = 0; i < 38; i++){
-            yLabel[i] = i;
+        else if(props.type === 'super'){
+            setColor(Color.LIGHT_RED);
+            setSnColor(Color.LIGHT_ORANGE);
+            for(let i = 0; i < 38; i++){
+                yLabel[i] = i;
+            }
+            for(let i = 0; i < 9; i++){
+                yLabelSn[i] = i;
+            }
         }
-        for(let i = 0; i < 9; i++){
-            yLabelSn[i] = i;
+        else if(props.type === 'daily'){
+            setColor(Color.LIGHT_ORANGE);
+            for(let i = 0; i < 39; i++){
+                yLabel[i] = i;
+            }
         }
-    }
-    else if(props.type.name === 'daily'){
-        for(let i = 0; i < 39; i++){
-            yLabel[i] = i;
-        }
-    }
+    },[color])
 
 
     const style = {
@@ -191,25 +198,26 @@ const FrequencyPerIssue = (props) => {
             lineHeight: 17,
         },
     }
+    console.log('FrequencyPerIssue.jsx:194 ->',props);
     return (
-        <div>
+        <div className='FrequencyPerIssue'>
             <RowBarGraph
-                bg={'L'}
+                staticsType={props.staticsType}
                 xLabelArr={xLabel}
                 yLabelArr={yLabel}
                 yLabel={yLabelIndex}
                 data={props.numCount.num}
-                size={363}
-                style={style}/>
-            {props.type.name === 'super' ?
+                color={color}
+                maxNum={300}/>
+            {props.type === 'super' ?
                 <RowBarGraph
-                    bg={'L'}
+                    staticsType={props.staticsType}
                     xLabelArr={xLabel}
                     yLabelArr={yLabelSn}
                     yLabel={yLabelIndex}
                     data={props.numCount.sn}
-                    size={363}
-                    style={styleSn}/> : null}
+                    color={snColor}
+                    maxNum={300}/> : null}
         </div>
     );
 };

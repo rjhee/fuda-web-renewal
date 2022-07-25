@@ -25,26 +25,28 @@ const DistributionPerIssue = (props) => {
     for(let i = 0; i < 9; i++){
         sn[i] = i+1;
     }
-
-
     return (
-        <ul className={'contentsCover'}>
+        <ul className={'DistributionPerIssue'}>
             {props?.lotto.map((items, i)=>
-                <li>
-                    <div key={i} className={'sectionCover'}>
-                        <span className={'issueFont'}>{lang().FIRST}{items.issue}{lang().ISSUE}</span>
+                <li className='sectionBoxCover'>
+                    <div key={i}>
+                        <span className={'issue'}>{lang().FIRST}{items.issue}{lang().ISSUE}</span>
                         <div>
                             <ul className={'numBoxCover'}>
                                 {num.map((item, i)=>
-                                    <li key={i} className={'numBox'} style={(items.value.indexOf(item) !== -1) ? {backgroundColor: Color.LIGHT_RED} : ((props.type === 'big' && item === items.sn) ? {backgroundColor: Color.LIGHT_YELLOW} : '')}>
-                                        <span style={(items.value.indexOf(item) !== -1) ? {color: Color.WHITE} : ((props.type === 'big' && item === items.sn) ? {color: Color.LIGHT_RED} : '')}>{item}</span>
+                                    <li key={i} className={`numBox ${(items.value.indexOf(item) !== -1) 
+                                        ? 'pickNumBox'
+                                        : ((props.type === 'big' && item === items.sn) 
+                                            ? 'bigPickNumBox' 
+                                            : '')}`}>
+                                        <span>{item}</span>
                                     </li>
                                 )}
                             </ul>
                             <ul className={'snBoxCover'}>
                                 {props?.type === 'super' && sn.map((item, i)=>
-                                    <li key={i} style={items.sn === item ? {backgroundColor: Color.LIGHT_YELLOW} : ''} className={'snBox'}>
-                                        <span style={items.sn === item ? {color: Color.LIGHT_RED} : ''} className={'snBoxFont'}>{item}</span>
+                                    <li key={i} className={`snBox ${items.sn === item ? 'pickSnBox' : ''}`}>
+                                        <span>{item}</span>
                                     </li>
                                 )}
                             </ul>

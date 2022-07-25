@@ -11,17 +11,17 @@ const OddEvenPerIssue = (props) => {
         <div className={'OddEvenPerIssue sectionBoxCover'}>
             <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
             <ul className={'lottoNumCover'}>
-                {props.lotto.map((num)=> {
+                {props.lotto.map((num, i)=> {
                         let result;
                         num % 2 === 0 ? result = 'even' : result = 'odd';
                        return (
-                           <li className={`${result} lottoNum`}>
+                           <li key={i} className={`${result} lottoNum`}>
                                 <div className={'lottoNumFont'}>{num}</div>
                            </li>)
                     }
                 )}
                 {props.type === 'daily' ? null
-                    :<li className={`${result} 'bonusNum'`}>
+                    :<li className={`${result} bonusNum`}>
                             <span className={'lottoNumFont'}>{props.sn}</span>
                         </li>}
             </ul>

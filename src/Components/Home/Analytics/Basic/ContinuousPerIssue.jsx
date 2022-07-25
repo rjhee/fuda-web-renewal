@@ -8,22 +8,22 @@ const ContinuousPerIssue = (props) => {
         <div className={'ContinuousPerIssue sectionBoxCover'}>
             <header className={'issue'}>{lang().FIRST}{props.issue}{lang().ISSUE}</header>
             <ul className={'lottoNumCover'}>
-                {props.lotto.map((num)=> {
+                {props.lotto.map((num, index)=> {
                     for (let i = 0; i < Object.keys({...props.continuousNum}).length; i++) {
                         if (props.continuousNum[i] === num) {
                             return (
-                                <li className={'lottoNum lottoNum'}>
+                                <li key={index} className={'lottoNum lottoNum'}>
                                     <div className={'lottoNumRedFont'}>{num}</div>
                                 </li>)
                         }
                     }
                     return (
-                        <li className={'lottoNum'}>
+                        <li key={index} className={'lottoNum'}>
                             <div className={'lottoNumFont'}>{num}</div>
                         </li>)
                     }
                 )}
-                {props.type.name === 'super' ?
+                {props.type === 'super' ?
                         <li className={'bonusNum'}>
                             <span className={'lottoNumFont'}>{props.sn}</span>
                         </li> : null}

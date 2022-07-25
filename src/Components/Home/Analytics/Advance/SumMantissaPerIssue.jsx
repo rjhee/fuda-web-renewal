@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {Color} from "../../../../Styles/Base/color";
 import RowBarGraph from "../RowBarGraph";
@@ -7,6 +7,12 @@ const SumMantissaPerIssue = (props) => {
     // 각 회차별 1회자리 합계
 
     const xLabel = [0, 11, 22, 33, 44, 55];
+    const [color, setColor] = useState('');
+    useEffect(()=>{
+        if(props.staticsType === 'sumMantissa'){
+            setColor(Color.LIGHT_RED);
+        }
+    },[])
     const style = {
         chartCover: {
             marginTop: 20,
@@ -62,14 +68,13 @@ const SumMantissaPerIssue = (props) => {
         },
     }
     return (
-        <div className={'chartCover'}>
+        <div className={'SumMantissaPerIssue'}>
             <RowBarGraph
-                bg={'S'}
+                maxNum={55}
                 xLabelArr={xLabel}
                 yLabelArr={props.issue}
                 data={props.sumMantissa}
-                size={80}
-                style={style}/>
+                color={color}/>
         </div>
 
     );
