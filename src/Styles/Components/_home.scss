@@ -983,4 +983,91 @@
 
 }
 
+// NoticeScreen.jsx
+.NoticeScreen {
+  padding: 21px;
+  > h1 {
+    margin-bottom: 10px;
+  }
+  > ul {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+    > li {
+      padding: 12px 0;
+      border-bottom: 1px dashed $LIGHT_GREY_2;
+      > button  {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        > strong.title {
+          font-size: 18px;
+          font-family: Noto_Bold, sans-serif;
+          color: $REGULAR_GREY;
+          margin-bottom: 4px;
+        }
+        > div.dateBox {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          font-size: 15px;
+          color: $LIGHT_GREY;
+        }
+      }
 
+    }
+  }
+}
+
+// NoticeDetailScreen.jsx
+.NoticeDetailScreen {
+  padding: 21px;
+  > h1 {
+    margin-bottom: 20px;
+  }
+  > header {
+    background-color: $REGULAR_RED;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 14px 20px;
+    > .title {
+      color: $WHITE;
+      font-size: 15px;
+      font-family: Noto_Bold, sans-serif;
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+    > .dateBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: $DARK_PURPLE;
+    }
+  }
+  > main {
+    border-radius: 5px;
+    border: 1px solid $LIGHT_GREY_1;
+    padding: 20px;
+    margin-bottom: 50px;
+    > img {
+      width: 100%;
+    }
+    > p {
+      color: $REGULAR_GREY;
+      font-size: 13px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+  }
+  > .backBtn {
+      text-align: center;
+  }
+}
+
+//backgroundColor: Color.REGULAR_RED,
+//borderRadius: 5,
+//marginBottom: 10,
+//paddingHorizontal: 20,
+//paddingVertical: 10,
