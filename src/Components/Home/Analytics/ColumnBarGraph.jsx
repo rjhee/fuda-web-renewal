@@ -50,7 +50,7 @@ const ColumnBarGraph = (props) => {
             </ul>
             <ul className={'barCover'}>
                 {props?.xLabelArr?.map((num, i)=>
-                    i < 10 ? <li key={i} className={'bar'} style={{height: (num/130*100)+"%"}}>{num}</li>
+                    i < 10 ? <li key={i} className={'bar'} style={{height: (num/130*100)+"%", backgroundColor : props.color ? props.color : null }}></li>
                         : null
                 )}
 
